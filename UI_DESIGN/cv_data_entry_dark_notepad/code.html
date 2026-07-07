@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Virtual Desk - CV Generator Notepad</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Dark Walnut Wood Texture */
+        .bg-walnut {
+            background-color: #1a110d;
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0,0,0,0.3) 50px, rgba(0,0,0,0.3) 51px),
+                linear-gradient(to right, #241814, #1a110d);
+            background-size: 200px 100%;
+        }
+
+        /* Charcoal Stationery Texture */
+        .charcoal-stationery {
+            background-color: #20201f;
+            background-image: 
+                linear-gradient(rgba(100, 100, 100, 0.1) 1px, transparent 1px);
+            background-size: 100% 28px; /* Matches line-height of body-lg */
+            position: relative;
+        }
+        
+        .charcoal-margin {
+            border-left: 2px solid rgba(255, 255, 255, 0.05);
+            margin-left: 40px;
+            height: 100%;
+        }
+
+        /* Skeuomorphic Depth for Dark Mode */
+        .embossed-text {
+            text-shadow: -1px -1px 1px rgba(0,0,0,0.8), 1px 1px 1px rgba(255,255,255,0.1);
+        }
+
+        .paper-shadow {
+            box-shadow: 
+                0 1px 1px rgba(0,0,0,0.5), 
+                0 15px 30px rgba(0,0,0,0.6),
+                0 25px 50px rgba(0,0,0,0.4);
+        }
+
+        .inner-indent {
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.4), inset -1px -1px 2px rgba(255,255,255,0.05);
+        }
+
+        /* Dark Metallic Paperclip Button */
+        .paperclip-btn {
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            border: 1px solid #3f484c;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3), -1px -1px 2px rgba(255,255,255,0.05);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .paperclip-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: translateX(-100%);
+        }
+
+        .paperclip-btn:hover::after {
+            transform: translateX(100%);
+            transition: transform 0.5s;
+        }
+
+        .paperclip-btn:active {
+            box-shadow: inset 1px 1px 3px rgba(0,0,0,0.5);
+            transform: translateY(1px);
+        }
+
+        /* Perforated Top Detail - Dark */
+        .perforated-top {
+            background-image: radial-gradient(circle, #1a110d 2px, transparent 2.5px);
+            background-size: 15px 100%;
+            height: 10px;
+            width: 100%;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#1c1b1b",
+                    "surface-variant": "#353535",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-tint": "#89d0ed",
+                    "surface-dim": "#131313",
+                    "secondary": "#c4c6cf",
+                    "on-secondary-fixed": "#181c22",
+                    "tertiary-container": "#c6c4c4",
+                    "secondary-container": "#43474e",
+                    "tertiary-fixed": "#e4e2e1",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "on-primary": "#003544",
+                    "surface": "#131313",
+                    "on-tertiary": "#303030",
+                    "primary-container": "#87ceeb",
+                    "inverse-primary": "#0c6780",
+                    "surface-container-highest": "#353535",
+                    "on-primary-container": "#005870",
+                    "on-secondary": "#2d3137",
+                    "on-error": "#690005",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container": "#20201f",
+                    "inverse-surface": "#e5e2e1",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "on-secondary-container": "#b2b5bd",
+                    "on-surface-variant": "#bfc8cd",
+                    "on-background": "#e5e2e1",
+                    "outline": "#899297",
+                    "on-surface": "#e5e2e1",
+                    "secondary-fixed": "#e0e2eb",
+                    "secondary-fixed-dim": "#c4c6cf",
+                    "primary-fixed": "#baeaff",
+                    "surface-bright": "#393939",
+                    "background": "#131313",
+                    "primary-fixed-dim": "#89d0ed",
+                    "primary": "#b4e8ff",
+                    "on-tertiary-container": "#515151",
+                    "on-primary-fixed-variant": "#004d62",
+                    "tertiary": "#e2e0df",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "inverse-on-surface": "#313030",
+                    "outline-variant": "#3f484c",
+                    "on-primary-fixed": "#001f29",
+                    "on-secondary-fixed-variant": "#43474e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "unit": "8px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Libre Caslon Text"],
+                    "label-sm": ["JetBrains Mono"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Libre Caslon Text"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Libre Caslon Text"],
+                    "headline-md": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-walnut min-h-screen font-body-md text-on-surface">
+<!-- Top App Bar (From COMPONENTS_8) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface-container-low border-b border-white/5 bg-gradient-to-b from-surface-container-high to-surface-container-low shadow-[0px_2px_4px_rgba(0,0,0,0.8)]">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">CV GENERATOR</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8 h-full">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-4 py-2 rounded" href="#">Profile</a>
+<a class="font-label-sm text-label-sm text-primary border-b-2 border-primary h-full flex items-center px-4" href="#">Templates</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-4 py-2 rounded" href="#">Export</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant/50 p-2 rounded transition-colors active:scale-95 duration-100" data-icon="account_circle">account_circle</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant/50 p-2 rounded transition-colors active:scale-95 duration-100" data-icon="settings">settings</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg shadow-lg font-label-sm hover:scale-[1.02] transition-transform active:scale-95">
+            DOWNLOAD
+        </button>
+</div>
+</header>
+<!-- Side Navigation (From COMPONENTS_8) -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col py-8 bg-surface border-r border-white/5 bg-[url('leather-texture-overlay')] bg-surface-container-lowest shadow-[4px_0px_10px_rgba(0,0,0,0.5)] z-40">
+<div class="mb-10 px-6">
+<h2 class="font-headline-lg text-headline-lg text-primary">Project Alpha</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Executive Resume</p>
+</div>
+<div class="flex flex-col w-full">
+<button class="flex items-center gap-4 px-6 py-4 text-on-surface-variant opacity-70 hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-sm text-label-sm">Documents</span>
+</button>
+<button class="flex items-center gap-4 px-6 py-4 bg-secondary-container/30 text-primary border-r-4 border-primary shadow-[inset_0px_2px_4px_rgba(0,0,0,0.8)] transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="style">style</span>
+<span class="font-label-sm text-label-sm">Templates</span>
+</button>
+<button class="flex items-center gap-4 px-6 py-4 text-on-surface-variant opacity-70 hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-sm text-label-sm">Materials</span>
+</button>
+<button class="flex items-center gap-4 px-6 py-4 text-on-surface-variant opacity-70 hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-20 px-4 md:pl-72 md:pr-12 flex justify-center min-h-screen">
+<div class="max-w-4xl w-full relative">
+<!-- The Legal Pad (Dark Mode) -->
+<div class="bg-surface-container paper-shadow rounded-sm overflow-hidden relative min-h-[1100px] flex flex-col">
+<!-- Perforated Top Detail -->
+<div class="perforated-top"></div>
+<!-- Notepad Header -->
+<div class="bg-surface-container-highest h-12 flex items-center px-8 border-b border-outline-variant">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Subject: Professional Experience Log</span>
+<span class="ml-auto font-label-sm text-label-sm text-on-surface-variant">Date: 12 Oct 2024</span>
+</div>
+<!-- Paper Surface -->
+<div class="flex-grow charcoal-stationery p-10 md:p-16">
+<div class="charcoal-margin absolute left-0 top-0 w-px h-full"></div>
+<div class="relative z-10 space-y-12">
+<!-- Section: Identity Stamped -->
+<div class="border-2 border-primary/20 p-4 inline-block transform -rotate-1 bg-surface-container-low/50">
+<h2 class="font-headline-md text-headline-md text-primary uppercase font-bold">Personal Details</h2>
+</div>
+<!-- Form Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+<!-- Input Field 1 -->
+<div class="space-y-2">
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase embossed-text">Full Name</label>
+<div class="relative group">
+<input class="w-full bg-surface-container-lowest border-none rounded-sm py-3 px-4 font-body-lg text-body-lg text-on-surface inner-indent focus:ring-2 focus:ring-primary-container placeholder:opacity-20 transition-all" placeholder="e.g. Jonathan Deskman" type="text"/>
+<div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-focus-within:w-full"></div>
+</div>
+</div>
+<!-- Input Field 2 -->
+<div class="space-y-2">
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase embossed-text">Job Title</label>
+<div class="relative group">
+<input class="w-full bg-surface-container-lowest border-none rounded-sm py-3 px-4 font-body-lg text-body-lg text-on-surface inner-indent focus:ring-2 focus:ring-primary-container placeholder:opacity-20 transition-all" placeholder="Executive Suite Manager" type="text"/>
+<div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-focus-within:w-full"></div>
+</div>
+</div>
+<!-- Textarea Field -->
+<div class="md:col-span-2 space-y-2 mt-4">
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase embossed-text">Professional Summary</label>
+<div class="relative group">
+<textarea class="w-full bg-surface-container-lowest border-none rounded-sm py-3 px-4 font-body-lg text-body-lg text-on-surface inner-indent focus:ring-2 focus:ring-primary-container placeholder:opacity-20 transition-all resize-none leading-[28px]" placeholder="Describe your career achievements here..." rows="6"></textarea>
+<!-- Visual Guide: Ruled Lines in Textarea -->
+<div class="absolute inset-0 pointer-events-none opacity-5 px-4 py-3 bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px)] bg-[length:100%_28px]"></div>
+</div>
+</div>
+</div>
+<!-- Section: Work History -->
+<div class="pt-8">
+<div class="flex items-center justify-between border-b-2 border-dotted border-outline-variant pb-2 mb-8">
+<h2 class="font-headline-md text-headline-md text-secondary uppercase font-bold">Experience History</h2>
+<button class="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                                ATTACH NEW RECORD
+                            </button>
+</div>
+<!-- Bento-style Experience Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1 -->
+<div class="p-6 bg-surface-container-lowest border border-white/5 rounded shadow-sm hover:shadow-[0_8px_16px_rgba(0,0,0,0.5)] transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 text-primary opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</div>
+<p class="font-label-sm text-label-sm text-primary mb-1">2018 — PRESENT</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">Senior Architect</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 italic">Metropolis Solutions Ltd.</p>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="text-[10px] uppercase font-bold px-2 py-0.5 bg-primary-container text-on-primary-container rounded-sm">Leadership</span>
+<span class="text-[10px] uppercase font-bold px-2 py-0.5 bg-primary-container text-on-primary-container rounded-sm">Strategy</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-6 bg-surface-container-lowest border border-white/5 rounded shadow-sm hover:shadow-[0_8px_16px_rgba(0,0,0,0.5)] transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 text-primary opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</div>
+<p class="font-label-sm text-label-sm text-primary mb-1">2015 — 2018</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">Lead Developer</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 italic">Digital Horizon Inc.</p>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="text-[10px] uppercase font-bold px-2 py-0.5 bg-primary-container text-on-primary-container rounded-sm">Frontend</span>
+<span class="text-[10px] uppercase font-bold px-2 py-0.5 bg-primary-container text-on-primary-container rounded-sm">System Design</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons Section -->
+<div class="flex flex-col md:flex-row gap-6 justify-end pt-12 border-t-2 border-dotted border-outline-variant">
+<button class="paperclip-btn flex items-center justify-center gap-3 px-10 py-4 rounded-sm text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+                            Clear All
+                        </button>
+<button class="bg-primary text-on-primary paper-shadow hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 px-12 py-4 rounded-sm font-label-sm text-label-sm uppercase tracking-widest font-bold">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+                            Finalize Draft
+                        </button>
+</div>
+</div>
+</div>
+<!-- Subtle Texture Overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-[0.05] mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+</div>
+<!-- Floating Decoration: The Ruler (Darkened) -->
+<div class="hidden lg:block absolute -right-16 top-48 w-12 h-96 bg-surface-container-high border border-outline-variant rounded-sm shadow-2xl transform rotate-2 pointer-events-none opacity-80">
+<div class="h-full flex flex-col justify-between py-4 px-1">
+<div class="w-full h-px bg-on-surface-variant/30"></div>
+<div class="w-1/2 h-px bg-on-surface-variant/30"></div>
+<div class="w-full h-px bg-on-surface-variant/30"></div>
+<div class="w-1/2 h-px bg-on-surface-variant/30"></div>
+<div class="w-full h-px bg-on-surface-variant/30"></div>
+<div class="w-1/2 h-px bg-on-surface-variant/30"></div>
+<div class="w-full h-px bg-on-surface-variant/30"></div>
+<div class="w-1/2 h-px bg-on-surface-variant/30"></div>
+<div class="w-full h-px bg-on-surface-variant/30"></div>
+<div class="w-1/2 h-px bg-on-surface-variant/30"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (From COMPONENTS_8) -->
+<footer class="fixed bottom-0 left-0 w-full z-40 flex justify-between items-center px-margin-desktop h-12 bg-surface-container-lowest border-t border-white/5 bg-gradient-to-t from-black to-surface-container-lowest">
+<div class="font-label-sm text-label-sm text-on-surface">
+        © 2024 EXECUTIVE CV GENERATOR
+    </div>
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors cursor-pointer" href="#">Support</a>
+</div>
+</footer>
+<script>
+    const main = document.querySelector('main');
+    const pad = document.querySelector('.paper-shadow');
+    
+    main.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth / 2 - e.pageX) / 120;
+        const y = (window.innerHeight / 2 - e.pageY) / 120;
+        pad.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    });
+</script>
+</body></html>

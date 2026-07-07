@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Filing Cabinet - CV Templates</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#1c1b1b",
+                        "surface-variant": "#353535",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-tint": "#89d0ed",
+                        "surface-dim": "#131313",
+                        "secondary": "#c4c6cf",
+                        "on-secondary-fixed": "#181c22",
+                        "tertiary-container": "#c6c4c4",
+                        "secondary-container": "#43474e",
+                        "tertiary-fixed": "#e4e2e1",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "on-primary": "#003544",
+                        "surface": "#131313",
+                        "on-tertiary": "#303030",
+                        "primary-container": "#87ceeb",
+                        "inverse-primary": "#0c6780",
+                        "surface-container-highest": "#353535",
+                        "on-primary-container": "#005870",
+                        "on-secondary": "#2d3137",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container": "#20201f",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#c8c6c6",
+                        "on-secondary-container": "#b2b5bd",
+                        "on-surface-variant": "#bfc8cd",
+                        "on-background": "#e5e2e1",
+                        "outline": "#899297",
+                        "on-surface": "#e5e2e1",
+                        "secondary-fixed": "#e0e2eb",
+                        "secondary-fixed-dim": "#c4c6cf",
+                        "primary-fixed": "#baeaff",
+                        "surface-bright": "#393939",
+                        "background": "#131313",
+                        "primary-fixed-dim": "#89d0ed",
+                        "primary": "#b4e8ff",
+                        "on-tertiary-container": "#515151",
+                        "on-primary-fixed-variant": "#004d62",
+                        "tertiary": "#e2e0df",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "inverse-on-surface": "#313030",
+                        "outline-variant": "#3f484c",
+                        "on-primary-fixed": "#001f29",
+                        "on-secondary-fixed-variant": "#43474e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Libre Caslon Text"],
+                        "label-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Libre Caslon Text"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .dark-walnut-desk {
+            background-color: #1a1412;
+            background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 2px, transparent 2px, transparent 4px),
+                              linear-gradient(to right, #241c19, #1a1412, #241c19);
+            background-size: 100% 100%;
+        }
+        .brushed-gunmetal {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            background-size: 400% 400%;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.05), inset 0 -2px 4px rgba(0,0,0,0.8);
+            position: relative;
+        }
+        .brushed-gunmetal::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
+            opacity: 0.15;
+            pointer-events: none;
+            filter: invert(1);
+        }
+        .stamp-button {
+            transition: transform 0.1s, box-shadow 0.1s;
+            background: linear-gradient(145deg, #89d0ed, #0c6780);
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.5), -1px -1px 2px rgba(255,255,255,0.1);
+        }
+        .stamp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 12px rgba(0,0,0,0.6), -1px -1px 2px rgba(255,255,255,0.1);
+        }
+        .stamp-button:active {
+            transform: translateY(2px);
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.6);
+            background: linear-gradient(145deg, #0c6780, #89d0ed);
+        }
+        .paper-sheet {
+            background: #ffffff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 1px rgba(0,0,0,0.3);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            aspect-ratio: 1 / 1.414;
+        }
+        .paper-sheet:hover {
+            transform: scale(1.05) rotate(-1deg);
+            z-index: 10;
+        }
+        .binder-clip {
+            background: #111;
+            width: 40px;
+            height: 20px;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+        .binder-clip::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: 5px;
+            width: 30px;
+            height: 15px;
+            border: 2px solid #444;
+            border-bottom: none;
+            border-radius: 15px 15px 0 0;
+        }
+        .cabinet-shadow {
+            box-shadow: inset 0 20px 40px rgba(0,0,0,0.6);
+        }
+        .drawer-handle {
+            background: linear-gradient(to bottom, #4a4a4a, #2a2a2a);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1);
+        }
+        @keyframes slideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .drawer-slide {
+            animation: slideIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body class="dark-walnut-desk min-h-screen overflow-x-hidden font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-gradient-to-b from-surface-container-high to-surface-container-low border-b border-white/5 shadow-[0px_2px_4px_rgba(0,0,0,0.8)]">
+<div class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">
+        CV GENERATOR
+    </div>
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-3 py-2 rounded" href="#">Documents</a>
+<a class="font-label-sm text-label-sm text-primary border-b-2 border-primary hover:bg-surface-variant/50 transition-colors px-3 py-2 rounded" href="#">Templates</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-3 py-2 rounded" href="#">Materials</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-3 py-2 rounded" href="#">History</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-variant/50 p-2 rounded transition-colors">account_circle</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-variant/50 p-2 rounded transition-colors">settings</span>
+<button class="stamp-button px-6 py-1.5 rounded font-label-sm text-on-primary uppercase tracking-wider active:scale-95 duration-100 ml-2">
+            Download
+        </button>
+</div>
+</header>
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col py-8 bg-surface-container-lowest border-r border-white/5 bg-[url('leather-texture-overlay')] shadow-[4px_0px_10px_rgba(0,0,0,0.5)] z-40">
+<div class="px-6 mb-12">
+<div class="font-headline-lg text-headline-lg text-primary font-bold mb-1">Project Alpha</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Executive Resume</div>
+</div>
+<div class="flex flex-col w-full">
+<div class="flex items-center gap-4 px-6 py-4 cursor-pointer text-on-surface-variant opacity-70 hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-sm text-label-sm">Documents</span>
+</div>
+<div class="flex items-center gap-4 px-6 py-4 cursor-pointer bg-secondary-container/30 text-primary border-r-4 border-primary shadow-[inset_0px_2px_4px_rgba(0,0,0,0.8)] transition-all duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">style</span>
+<span class="font-label-sm text-label-sm">Templates</span>
+</div>
+<div class="flex items-center gap-4 px-6 py-4 cursor-pointer text-on-surface-variant opacity-70 hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-sm text-label-sm">Materials</span>
+</div>
+<div class="flex items-center gap-4 px-6 py-4 cursor-pointer text-on-surface-variant opacity-70 hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pt-24 pb-24 px-margin-desktop ml-64 min-h-screen flex flex-col items-center">
+<div class="w-full max-w-container-max">
+<!-- Cabinet Header Area -->
+<div class="mb-12 text-center md:text-left">
+<h1 class="font-headline-xl text-white mb-4 drop-shadow-xl">The Template Cabinet</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl">Browse our executive suite of professional layouts. Each template is precision-crafted to ensure your credentials stand out on the recruiter's desk.</p>
+</div>
+<!-- The Metal Drawer Container (Gunmetal) -->
+<div class="brushed-gunmetal rounded-t-xl p-12 min-h-[600px] drawer-slide relative overflow-hidden cabinet-shadow">
+<!-- Drawer Pull / Handle -->
+<div class="absolute -top-1 left-1/2 -translate-x-1/2 w-48 h-10 rounded-b-xl drawer-handle flex items-center justify-center border-t border-white/10">
+<div class="w-32 h-1.5 bg-black/40 rounded-full"></div>
+</div>
+<!-- Template Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 relative z-10 pt-4">
+<!-- Template Item 1 -->
+<div class="flex flex-col gap-6">
+<div class="paper-sheet relative p-4 group">
+<div class="binder-clip"></div>
+<div class="w-full h-full bg-slate-50 border border-slate-200 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzgvZmsd7gkEZhH6gsEETwhdJGNll-vbs0QheRdHifZ0rBU4-JUDIc_tRfHqRWo9fVr8JoHTXTrly4zk6dWObGCM8kEEnCN-_qB7s30EVfojrwqifVHHDla6gX64XxYRJRkARaqKnodnbHNV6nfFAjVI2G-xpx7LG_cwckvI6MUOgcfW7rDnBL0acKXNgjZ1kuUSni-GFGqydwZDwVtw7TZNoTVkI3NpC_-xGetVE1_-bAZisDlHBsrXHdsmnZPVaIFFq18fCNlUUK')"></div>
+</div>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors pointer-events-none"></div>
+</div>
+<div class="flex justify-between items-center px-2">
+<div>
+<h3 class="font-headline-lg text-2xl text-on-surface">The Executive</h3>
+<p class="font-label-sm text-secondary italic">Traditional &amp; Bold</p>
+</div>
+<button class="stamp-button w-10 h-10 rounded-full flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Template Item 2 -->
+<div class="flex flex-col gap-6 md:mt-8">
+<div class="paper-sheet relative p-4 group">
+<div class="binder-clip"></div>
+<div class="w-full h-full bg-slate-50 border border-slate-200 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMV0TS0qV1PsNmLDD_OXv8lste5QI8i11t2PhZcSlaPcCGT9rrGiq3kdv0R30s51rFRz98JGVwmVs4OT_GLhlPZHIKhsuw4ppDmlf_qIQTQis0QfDcdA4StyuU9UsaAuWetN6Kz_IWsAvenJyw5spzbSt6q4vCw-SJE9TgJdTxIjtqhk8iiTEtf8rZvB0xKGonJG-2DKVXmrrsVw_a1738EgA3e_4oqM1REEw3au9TzsQ8t2_6YQp_ciH6eDmglZr9IaZeRWriwM3B')"></div>
+</div>
+</div>
+<div class="flex justify-between items-center px-2">
+<div>
+<h3 class="font-headline-lg text-2xl text-on-surface">Modern Creative</h3>
+<p class="font-label-sm text-secondary italic">Clean &amp; Minimal</p>
+</div>
+<button class="stamp-button w-10 h-10 rounded-full flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Template Item 3 -->
+<div class="flex flex-col gap-6">
+<div class="paper-sheet relative p-4 group">
+<div class="binder-clip"></div>
+<div class="w-full h-full bg-slate-50 border border-slate-200 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqKmvUdHTt2WMuFzZohkwUDtYMKEMf8p3qh0ScQPU9vkjTHD5NEvuIct1m-ifRsQ5GrxioEekWREpx2LsclHbtdVtxBFMLX_wxb4nPaZTwZ8hmxo_VfD6T-Ndv7AuESYXKdfb5obPESo5YvCCGlNs43EuYTiEixJe_Fmaqvux1cFugtKFbzjYvFVGkz2OAPkN6UfebMbYlbzdwHyTsSMDLeXNH0jbZXUw41BP9oUEkd0Jm0i0WUeOMQ32zKeHGe9INx2HWWihPVWaB')"></div>
+</div>
+</div>
+<div class="flex justify-between items-center px-2">
+<div>
+<h3 class="font-headline-lg text-2xl text-on-surface">The Academic</h3>
+<p class="font-label-sm text-secondary italic">Classic &amp; Detailed</p>
+</div>
+<button class="stamp-button w-10 h-10 rounded-full flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Template Item 4 -->
+<div class="flex flex-col gap-6">
+<div class="paper-sheet relative p-4 group">
+<div class="binder-clip"></div>
+<div class="w-full h-full bg-slate-50 border border-slate-200 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCAFbYqxJcHkYSabyhgDrxdNOOI7yDA0mXUibsewtdDMvzqX-RwGwTRZbYdDA5ZslN_kSZAaSQq4JQ6_v-6BeMeNN_xnjNRQ8UGyimgWSzENhqwKSIccx5RIYRk5eZXCxToGUew4nR-rHzLtS7XiA_7fPCBpjOknVHGeTRA9uP8SLICpaW7jo868YT9HRys9r7ezPNQDj-YRrreYLf_SWuWR7QYeAkU4hvYhdyOl5L8J2x12-5_RIkjuPYmSQ-1YAk6uahhyop619sv')"></div>
+</div>
+</div>
+<div class="flex justify-between items-center px-2">
+<div>
+<h3 class="font-headline-lg text-2xl text-on-surface">System Architect</h3>
+<p class="font-label-sm text-secondary italic">Technical &amp; Dense</p>
+</div>
+<button class="stamp-button w-10 h-10 rounded-full flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Template Item 5 -->
+<div class="flex flex-col gap-6 mt-12">
+<div class="paper-sheet relative p-4 group">
+<div class="binder-clip"></div>
+<div class="w-full h-full bg-slate-50 border border-slate-200 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBE1mB6O5ZqL3x7CqFF-yVRjtxGUz9UCfQ1yxS3M-avaaZ6Pv9rNcW0P-wv2BeEvoKzZ-SlEc_wjHi58VV4IFinmW4RihCo7ytMugXhkesUheHCLW_OUI46EUcwUbjH0gBk0WC4fmf896rhTXq0B9RDRPyT5hffaeQsQ9iycH7oovZ5_UmFDgUDFFGHuQMZwlK4irQWrcTV-sMPm2_33YKs16N_dPCoqClUr8-wq1S8YeGkKzV7QjbEs82Cfdex3bllpNvJzzS1pbnd')"></div>
+</div>
+</div>
+<div class="flex justify-between items-center px-2">
+<div>
+<h3 class="font-headline-lg text-2xl text-on-surface">Global Director</h3>
+<p class="font-label-sm text-secondary italic">Luxury &amp; Authority</p>
+</div>
+<button class="stamp-button w-10 h-10 rounded-full flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Template Item 6 -->
+<div class="flex flex-col gap-6">
+<div class="paper-sheet relative p-4 group">
+<div class="binder-clip"></div>
+<div class="w-full h-full bg-slate-50 border border-slate-200 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRJZzR_MFbsdHwKt0Wzzh9P_Mjavtytgp10_eyRIZdZx_loOuV2PHwx8xp4CQp5siwc_UrENU_LNDhy9ZVcgqwJC_iW6hzDdbA_COUvr5oow-Wfc9hdhNIAwnffdZXF5gGzzMyvQk9YKYUYNaf3GccS_CvZ_HrNOYD0EjTTRCt2sGUMq6HP4aodzobE8DdyPnIidssTwOexpHYqduX12t0GRZ5Akjqtkvi1YL5hd6sNQ2oJqrKkRY80pdXyua8k6I8jQq57hqBf1QA')"></div>
+</div>
+</div>
+<div class="flex justify-between items-center px-2">
+<div>
+<h3 class="font-headline-lg text-2xl text-on-surface">Fresh Start</h3>
+<p class="font-label-sm text-secondary italic">Approachable &amp; Light</p>
+</div>
+<button class="stamp-button w-10 h-10 rounded-full flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Cabinet Bottom Details -->
+<div class="mt-16 pt-8 border-t border-white/5 flex justify-center">
+<button class="px-12 py-4 bg-surface-container-high rounded font-label-sm text-on-surface shadow-md hover:shadow-lg transition-all border border-white/5 active:shadow-inner uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined">sync</span>
+                    Load More Records
+                </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 left-0 w-full z-40 flex justify-between items-center px-margin-desktop h-12 bg-gradient-to-t from-black to-surface-container-lowest border-t border-white/5">
+<div class="font-label-sm text-label-sm text-on-surface">
+        © 2024 EXECUTIVE CV GENERATOR
+    </div>
+<div class="flex gap-gutter">
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors cursor-pointer" href="#">Support</a>
+</div>
+</footer>
+<!-- Interactive Script -->
+<script>
+    document.querySelectorAll('.paper-sheet').forEach(sheet => {
+        sheet.addEventListener('click', function() {
+            this.style.transition = "transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s, opacity 0.5s";
+            this.style.transform = "translateY(-100vh) rotate(5deg) scale(1.1)";
+            this.style.opacity = "0";
+            
+            setTimeout(() => {
+                alert("Template Selected! Loading your workspace...");
+                this.style.transform = "translateY(0) rotate(0) scale(1)";
+                this.style.opacity = "1";
+            }, 1000);
+        });
+    });
+</script>
+</body></html>

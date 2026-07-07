@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CV Generator - Export Module</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        
+        .mahogany-desk {
+            background-color: #2c160e;
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px),
+                radial-gradient(circle at 50% 50%, rgba(61, 31, 20, 0.8), #1a0d08);
+            background-size: 100% 100%, 100% 100%, cover;
+        }
+
+        .wood-texture {
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+            background-color: #5d4037;
+        }
+
+        .paper-stack {
+            box-shadow: 
+                0 1px 1px rgba(0,0,0,0.1),
+                0 2px 2px rgba(0,0,0,0.1),
+                0 4px 4px rgba(0,0,0,0.1),
+                0 8px 8px rgba(0,0,0,0.1),
+                0 16px 16px rgba(0,0,0,0.1);
+        }
+
+        .rubber-stamp {
+            transition: transform 0.1s, box-shadow 0.1s;
+            box-shadow: 
+                0 6px 0 0 #005870,
+                0 8px 15px rgba(0,0,0,0.4);
+        }
+
+        .rubber-stamp:active {
+            transform: translateY(4px);
+            box-shadow: 
+                0 2px 0 0 #005870,
+                0 4px 8px rgba(0,0,0,0.3),
+                inset 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .metal-clip {
+            background: linear-gradient(145deg, #e6e6e6, #ffffff);
+            box-shadow: 
+                inset 1px 1px 2px rgba(255,255,255,0.8),
+                2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .perforated-line {
+            background-image: radial-gradient(circle, #bfc8cd 1px, transparent 1px);
+            background-size: 8px 1px;
+            background-repeat: repeat-x;
+            height: 1px;
+            width: 100%;
+        }
+
+        .clipboard-tilt {
+            transform: rotate(-1deg);
+        }
+
+        /* Skeuomorphic inner shadow for paper fields */
+        .recessed-field {
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 1px solid white;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#e7bdb1",
+                      "on-secondary-fixed-variant": "#5d4037",
+                      "on-primary-fixed-variant": "#004d62",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-low": "#f6f3f2",
+                      "on-secondary-fixed": "#2c160e",
+                      "surface-tint": "#0c6780",
+                      "on-secondary": "#ffffff",
+                      "on-surface-variant": "#3f484c",
+                      "primary-fixed": "#baeaff",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "tertiary": "#5d5f5f",
+                      "outline": "#6f787d",
+                      "secondary-container": "#fed3c7",
+                      "on-primary-container": "#005870",
+                      "error": "#ba1a1a",
+                      "on-secondary-container": "#795950",
+                      "primary-fixed-dim": "#89d0ed",
+                      "on-primary": "#ffffff",
+                      "primary-container": "#87ceeb",
+                      "inverse-primary": "#89d0ed",
+                      "secondary-fixed": "#ffdbd0",
+                      "surface-container-highest": "#e5e2e1",
+                      "tertiary-container": "#c4c4c4",
+                      "background": "#fcf9f8",
+                      "outline-variant": "#bfc8cd",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "inverse-on-surface": "#f3f0ef",
+                      "surface-bright": "#fcf9f8",
+                      "secondary": "#77574d",
+                      "surface-container-high": "#eae7e7",
+                      "surface-container": "#f0eded",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-primary-fixed": "#001f29",
+                      "on-background": "#1b1c1c",
+                      "primary": "#0c6780",
+                      "on-tertiary-container": "#4f5151",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1b1c1c",
+                      "inverse-surface": "#303030",
+                      "surface": "#fcf9f8",
+                      "surface-variant": "#e5e2e1",
+                      "surface-dim": "#dcd9d9",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "desktop-margin": "64px",
+                      "component-gap": "16px",
+                      "tablet-margin": "32px",
+                      "document-padding": "80px",
+                      "mobile-margin": "16px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": ["\"Source Serif 4\""],
+                      "headline-md": ["\"Source Serif 4\""],
+                      "label-stamp": ["Space Mono"],
+                      "headline-lg": ["\"Source Serif 4\""],
+                      "label-embossed": ["Space Mono"],
+                      "body-md": ["\"Source Serif 4\""]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-stamp": ["14px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-embossed": ["12px", {"lineHeight": "14px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="mahogany-desk min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-desktop-margin h-20 bg-surface-container-high shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
+<div class="font-headline-md text-headline-md font-bold text-on-surface tracking-widest uppercase">CV GENERATOR</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-label-stamp text-label-stamp text-on-surface-variant opacity-80 hover:text-primary transition-colors" href="#">Profile</a>
+<a class="font-label-stamp text-label-stamp text-on-surface-variant opacity-80 hover:text-primary transition-colors" href="#">Templates</a>
+<a class="font-label-stamp text-label-stamp text-primary border-b-4 border-primary pb-1 font-bold" href="#">Export</a>
+</nav>
+<button class="rubber-stamp bg-primary-container text-on-primary-container px-6 py-2 font-label-stamp text-label-stamp rounded-sm uppercase tracking-wider">
+            Download
+        </button>
+</header>
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-20 h-[calc(100vh-80px)] w-20 flex flex-col items-center py-component-gap bg-secondary-container border-r border-outline-variant shadow-[4px_0_8px_rgba(0,0,0,0.2)] rounded-r-xl z-40">
+<div class="mb-8 text-center px-2">
+<div class="font-label-embossed text-label-embossed text-on-secondary-container font-bold opacity-60">Desk</div>
+</div>
+<div class="flex flex-col gap-6">
+<button class="w-12 h-12 flex items-center justify-center text-on-secondary-container hover:bg-secondary-fixed rounded-xl transition-all">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center text-on-secondary-container hover:bg-secondary-fixed rounded-xl transition-all">
+<span class="material-symbols-outlined">description</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center bg-secondary text-on-secondary rounded-xl shadow-inner -translate-x-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">ios_share</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas (The Desk Surface) -->
+<main class="pt-24 pb-20 px-4 md:pl-32 md:pr-12 min-h-screen flex items-center justify-center">
+<!-- Clipboard Live Preview Container -->
+<div class="relative max-w-4xl w-full flex flex-col lg:flex-row gap-12 items-start justify-center">
+<!-- The Wood Clipboard -->
+<div class="clipboard-tilt relative wood-texture p-6 md:p-10 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-4 border-[#3d2b1f] w-full max-w-[650px] transition-transform hover:rotate-0 duration-500">
+<!-- Metal Clip -->
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 w-48 h-16 metal-clip rounded-t-lg z-20 flex items-center justify-center border-b-2 border-outline-variant">
+<div class="w-12 h-2 bg-outline-variant rounded-full opacity-30"></div>
+</div>
+<!-- CV Paper Document -->
+<div class="paper-stack bg-white aspect-[210/297] w-full p-document-padding relative overflow-hidden flex flex-col gap-6">
+<!-- Subtle Paper Texture Overlay -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]"></div>
+<!-- CV Content Header -->
+<div class="border-b-2 border-on-surface-variant/10 pb-4">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Julian Vane</h1>
+<p class="font-label-stamp text-label-stamp text-primary uppercase">Executive Creative Director</p>
+</div>
+<!-- CV Content Body -->
+<div class="flex flex-col gap-8">
+<section>
+<h2 class="font-label-stamp text-label-stamp text-on-surface mb-2 border-b border-on-surface-variant/5">Executive Summary</h2>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+                                Visionary leader with 15+ years of experience in high-end design systems and digital craftsmanship. Specialized in bridging the gap between tactile aesthetics and functional utility.
+                            </p>
+</section>
+<div class="perforated-line"></div>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h2 class="font-label-stamp text-label-stamp text-on-surface mb-2">Core Competencies</h2>
+<ul class="font-body-md text-body-md text-on-surface-variant space-y-1">
+<li>• Skeuomorphic Interface Design</li>
+<li>• Brand Identity Architecture</li>
+<li>• Professional Stationery Craft</li>
+<li>• Executive Suite UX</li>
+</ul>
+</div>
+<div>
+<h2 class="font-label-stamp text-label-stamp text-on-surface mb-2">Education</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+<strong>Master of Fine Arts</strong><br/>
+                                    Design Academy Eindhoven<br/>
+<span class="text-label-embossed">Class of 2008</span>
+</p>
+</div>
+</section>
+<div class="perforated-line"></div>
+<section>
+<h2 class="font-label-stamp text-label-stamp text-on-surface mb-2">Work History</h2>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between items-baseline">
+<h3 class="font-body-lg text-body-lg font-bold">Virtual Desk Studio</h3>
+<span class="font-label-embossed text-label-embossed">2018 — Present</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Principal Systems Designer</p>
+</div>
+<div>
+<div class="flex justify-between items-baseline">
+<h3 class="font-body-lg text-body-lg font-bold">Paper &amp; Ink Collective</h3>
+<span class="font-label-embossed text-label-embossed">2012 — 2018</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Lead Visual Strategist</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Stamp Placeholder -->
+<div class="mt-auto flex justify-end opacity-20 rotate-12">
+<div class="border-4 border-primary rounded-full p-4 font-label-stamp text-label-stamp text-primary">
+                            VERIFIED
+                        </div>
+</div>
+</div>
+</div>
+<!-- Export Module Tool Panel -->
+<div class="flex-1 w-full lg:max-w-sm flex flex-col gap-6">
+<!-- Export Card -->
+<div class="bg-surface-container-low p-8 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-white/10 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-12 -mt-12"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Ready to Finalize?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                        Your professional dossier is ready for physical production. Review the layout on the desk before applying the final stamp.
+                    </p>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-label-embossed text-label-embossed">Format: PDF (Print-ready)</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-label-embossed text-label-embossed">Quality: High Resolution</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-label-embossed text-label-embossed">Margin: Standard A4</span>
+</div>
+</div>
+<!-- THE RUBBER STAMP BUTTON -->
+<button class="rubber-stamp w-full bg-primary-container text-on-primary-container py-6 px-4 rounded-sm flex flex-col items-center justify-center gap-2 group relative">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">download</span>
+<span class="font-label-stamp text-label-stamp text-lg tracking-widest uppercase">Export PDF</span>
+<span class="font-label-embossed text-label-embossed opacity-60">Final Ink Transfer</span>
+</button>
+</div>
+<!-- Tool Tray -->
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-highest p-4 rounded shadow-[2px_2px_0_rgba(0,0,0,0.2)] border border-white/20 hover:translate-y-0.5 hover:shadow-none transition-all flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant">edit</span>
+<span class="font-label-embossed text-label-embossed text-on-surface-variant">Edit</span>
+</button>
+<button class="flex-1 bg-surface-container-highest p-4 rounded shadow-[2px_2px_0_rgba(0,0,0,0.2)] border border-white/20 hover:translate-y-0.5 hover:shadow-none transition-all flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant">visibility</span>
+<span class="font-label-embossed text-label-embossed text-on-surface-variant">Preview</span>
+</button>
+<button class="flex-1 bg-surface-container-highest p-4 rounded shadow-[2px_2px_0_rgba(0,0,0,0.2)] border border-white/20 hover:translate-y-0.5 hover:shadow-none transition-all flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+<span class="font-label-embossed text-label-embossed text-on-surface-variant">Set</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Static Anchor -->
+<footer class="fixed bottom-0 left-0 w-full z-40 flex justify-between items-center px-desktop-margin py-2 h-12 bg-surface-container-lowest border-t-2 border-on-secondary-fixed-variant shadow-[0_-4px_12px_rgba(0,0,0,0.4)]">
+<div class="font-label-stamp text-label-stamp text-on-surface opacity-60">© 2024 VIRTUAL DESK STUDIO</div>
+<div class="flex gap-6">
+<a class="font-label-embossed text-label-embossed text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Terms</a>
+<a class="font-label-embossed text-label-embossed text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy</a>
+</div>
+</footer>
+<!-- Decorative Office Elements (Desk Clutter) -->
+<div class="fixed bottom-12 right-12 w-48 h-64 -rotate-6 pointer-events-none opacity-40 hidden xl:block">
+<div class="bg-secondary-container h-full w-full rounded-r shadow-lg border-l-8 border-secondary-fixed flex items-center justify-center">
+<div class="font-label-stamp text-label-stamp text-on-secondary-container -rotate-90">REFERENCE_FILES</div>
+</div>
+</div>
+<script>
+        // Micro-interaction for the Rubber Stamp
+        const stampBtn = document.querySelector('.rubber-stamp');
+        stampBtn.addEventListener('mousedown', () => {
+            // Audio cue or more visual feedback could be added here
+        });
+
+        // Interactive clipboard tilt on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const clipboard = document.querySelector('.clipboard-tilt');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 100;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 100;
+            clipboard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) rotate(-1deg)`;
+        });
+    </script>
+</body></html>

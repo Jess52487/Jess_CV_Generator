@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CV GENERATOR - Executive Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "error-container": "#ffdad6",
+                "secondary-fixed-dim": "#e7bdb1",
+                "on-secondary-fixed-variant": "#5d4037",
+                "on-primary-fixed-variant": "#004d62",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#f6f3f2",
+                "on-secondary-fixed": "#2c160e",
+                "surface-tint": "#0c6780",
+                "on-secondary": "#ffffff",
+                "on-surface-variant": "#3f484c",
+                "primary-fixed": "#baeaff",
+                "tertiary-fixed-dim": "#c6c6c7",
+                "tertiary": "#5d5f5f",
+                "outline": "#6f787d",
+                "secondary-container": "#fed3c7",
+                "on-primary-container": "#005870",
+                "error": "#ba1a1a",
+                "on-secondary": "#ffffff",
+                "primary-container": "#87ceeb",
+                "inverse-primary": "#89d0ed",
+                "secondary-fixed": "#ffdbd0",
+                "surface-container-highest": "#e5e2e1",
+                "tertiary-container": "#c4c4c4",
+                "background": "#fcf9f8",
+                "outline-variant": "#bfc8cd",
+                "on-tertiary-fixed-variant": "#454747",
+                "inverse-on-surface": "#f3f0ef",
+                "surface-bright": "#fcf9f8",
+                "secondary": "#77574d",
+                "surface-container-high": "#eae7e7",
+                "surface-container": "#f0eded",
+                "on-error-container": "#93000a",
+                "tertiary-fixed": "#e2e2e2",
+                "on-primary-fixed": "#001f29",
+                "on-background": "#1b1c1c",
+                "primary": "#0c6780",
+                "on-tertiary-container": "#4f5151",
+                "on-tertiary": "#ffffff",
+                "on-surface": "#1b1c1c",
+                "inverse-surface": "#303030",
+                "surface": "#fcf9f8",
+                "surface-variant": "#e5e2e1",
+                "surface-dim": "#dcd9d9",
+                "on-tertiary-fixed": "#1a1c1c",
+                "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "desktop-margin": "64px",
+                "component-gap": "16px",
+                "tablet-margin": "32px",
+                "document-padding": "80px",
+                "mobile-margin": "16px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "body-lg": ["\"Source Serif 4\""],
+                "headline-lg-mobile": ["\"Source Serif 4\""],
+                "headline-md": ["\"Source Serif 4\""],
+                "label-stamp": ["Space Mono"],
+                "headline-lg": ["\"Source Serif 4\""],
+                "label-embossed": ["Space Mono"],
+                "body-md": ["\"Source Serif 4\""]
+            },
+            "fontSize": {
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["30px", {"lineHeight": "36px", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-stamp": ["14px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "label-embossed": ["12px", {"lineHeight": "14px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .mahogany-desk {
+            background-color: #2c160e;
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+        }
+        
+        .lamp-light {
+            background: radial-gradient(circle at 50% 0%, rgba(255, 245, 200, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 10;
+        }
+
+        .leather-portfolio {
+            background-color: #3d2b1f;
+            background-image: url('https://www.transparenttextures.com/patterns/leather.png');
+            border: 2px solid #5d4037;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .stitch-border {
+            border: 1px dashed rgba(231, 189, 177, 0.3);
+        }
+
+        .manila-folder {
+            background-color: #f3e5ab;
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%);
+            border-radius: 4px 24px 4px 4px;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .manila-folder:hover {
+            transform: translateY(-4px) rotate(-1deg);
+            box-shadow: 8px 12px 20px rgba(0,0,0,0.4);
+        }
+
+        .paper-sheet {
+            background-color: #ffffff;
+            background-image: url('https://www.transparenttextures.com/patterns/pinstripe.png');
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .stamp-button {
+            box-shadow: 0 4px 0 #004d62;
+            transition: all 0.1s active;
+        }
+        .stamp-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #004d62;
+        }
+
+        .perforation {
+            border-bottom: 2px dotted #bfc8cd;
+        }
+    </style>
+</head>
+<body class="mahogany-desk min-h-screen text-on-surface selection:bg-primary-container overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-desktop-margin h-20 bg-surface-container-high dark:bg-surface-container shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-on-surface tracking-widest uppercase">CV GENERATOR</span>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-on-surface-variant font-label-stamp text-label-stamp hover:text-primary transition-colors" href="#">Profile</a>
+<a class="text-primary border-b-4 border-primary pb-1 font-bold font-label-stamp text-label-stamp" href="#">Templates</a>
+<a class="text-on-surface-variant font-label-stamp text-label-stamp hover:text-primary transition-colors" href="#">Export</a>
+</nav>
+<button class="bg-primary text-on-primary font-label-stamp text-label-stamp px-6 py-2 rounded-lg stamp-button hover:bg-surface-tint transition-all uppercase tracking-widest">
+            Download
+        </button>
+</header>
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-20 h-[calc(100vh-80px)] w-20 flex flex-col items-center py-component-gap bg-secondary-container border-r border-outline-variant shadow-[4px_0_8px_rgba(0,0,0,0.2)] rounded-r-xl z-40">
+<div class="mb-8 flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-3xl">desk</span>
+<span class="text-[8px] font-label-embossed uppercase tracking-tighter text-secondary mt-1">Desk</span>
+</div>
+<div class="flex flex-col gap-8 w-full items-center">
+<div class="group relative flex items-center justify-center w-full">
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-secondary-container hover:bg-secondary-fixed transition-all">
+<span class="material-symbols-outlined">person</span>
+</button>
+<span class="absolute left-full ml-2 px-2 py-1 bg-on-surface text-surface text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Profile</span>
+</div>
+<div class="group relative flex items-center justify-center w-full">
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-secondary text-on-secondary shadow-inner -translate-x-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+</button>
+<span class="absolute left-full ml-2 px-2 py-1 bg-on-surface text-surface text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Templates</span>
+</div>
+<div class="group relative flex items-center justify-center w-full">
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-secondary-container hover:bg-secondary-fixed transition-all">
+<span class="material-symbols-outlined">ios_share</span>
+</button>
+<span class="absolute left-full ml-2 px-2 py-1 bg-on-surface text-surface text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Export</span>
+</div>
+</div>
+</aside>
+<div class="lamp-light"></div>
+<main class="pt-32 pb-24 px-desktop-margin flex justify-center min-h-screen relative z-20">
+<!-- Main Portfolio Content -->
+<div class="leather-portfolio w-full max-w-5xl rounded-lg p-8 md:p-12 relative flex flex-col">
+<div class="stitch-border absolute inset-4 pointer-events-none rounded"></div>
+<!-- Portfolio Header -->
+<div class="relative z-10 mb-12 flex justify-between items-end">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary-fixed mb-2 tracking-tight">Recent Documents</h1>
+<p class="font-body-lg text-body-lg text-surface-variant opacity-80 italic">Curated Professional Portfolio</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-stamp text-label-stamp uppercase flex items-center gap-2 stamp-button">
+<span class="material-symbols-outlined text-sm">add</span> New Document
+                    </button>
+</div>
+</div>
+<!-- Bento Grid of Manila Folders -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+<!-- Folder 1 -->
+<div class="manila-folder p-6 flex flex-col h-64">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-secondary-container">folder_open</span>
+<span class="font-label-embossed text-label-embossed bg-on-secondary-fixed-variant text-surface px-2 py-0.5 rounded">PDF</span>
+</div>
+<div class="paper-sheet flex-grow p-4 mb-4 border-t-4 border-primary">
+<h3 class="font-headline-md text-on-surface text-lg leading-tight mb-1">Executive_Dir_v2</h3>
+<p class="font-label-embossed text-label-embossed text-outline uppercase">Last edited: 2 hours ago</p>
+<div class="mt-4 space-y-2">
+<div class="h-1 bg-surface-container-highest w-full rounded"></div>
+<div class="h-1 bg-surface-container-highest w-3/4 rounded"></div>
+<div class="h-1 bg-surface-container-highest w-5/6 rounded"></div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<button class="text-primary hover:underline font-label-stamp text-[10px] uppercase">Edit Suite</button>
+<span class="material-symbols-outlined text-outline text-lg cursor-pointer hover:text-error transition-colors">delete</span>
+</div>
+</div>
+<!-- Folder 2 -->
+<div class="manila-folder p-6 flex flex-col h-64">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-secondary-container">folder_open</span>
+<span class="font-label-embossed text-label-embossed bg-secondary text-on-secondary px-2 py-0.5 rounded">Draft</span>
+</div>
+<div class="paper-sheet flex-grow p-4 mb-4 border-t-4 border-secondary">
+<h3 class="font-headline-md text-on-surface text-lg leading-tight mb-1">Tech_Lead_Google</h3>
+<p class="font-label-embossed text-label-embossed text-outline uppercase">Last edited: Oct 24, 2023</p>
+<div class="mt-4 space-y-2">
+<div class="h-1 bg-surface-container-highest w-full rounded"></div>
+<div class="h-1 bg-surface-container-highest w-1/2 rounded"></div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<button class="text-primary hover:underline font-label-stamp text-[10px] uppercase">Continue Working</button>
+<span class="material-symbols-outlined text-outline text-lg cursor-pointer hover:text-error transition-colors">delete</span>
+</div>
+</div>
+<!-- Folder 3 -->
+<div class="manila-folder p-6 flex flex-col h-64">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-secondary-container">folder_open</span>
+<span class="font-label-embossed text-label-embossed bg-on-secondary-fixed-variant text-surface px-2 py-0.5 rounded">Shared</span>
+</div>
+<div class="paper-sheet flex-grow p-4 mb-4 border-t-4 border-primary">
+<h3 class="font-headline-md text-on-surface text-lg leading-tight mb-1">Creative_CV_Pink</h3>
+<p class="font-label-embossed text-label-embossed text-outline uppercase">Last edited: 5 days ago</p>
+<div class="mt-4 flex gap-1">
+<div class="w-4 h-4 bg-error rounded-full"></div>
+<div class="w-4 h-4 bg-primary-container rounded-full"></div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<button class="text-primary hover:underline font-label-stamp text-[10px] uppercase">Share Link</button>
+<span class="material-symbols-outlined text-outline text-lg cursor-pointer hover:text-error transition-colors">delete</span>
+</div>
+</div>
+<!-- Create New Placeholder -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center justify-center h-64 hover:border-primary-fixed transition-colors group cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:scale-110 transition-transform mb-4">
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-3xl">post_add</span>
+</div>
+<p class="font-label-stamp text-label-stamp text-outline group-hover:text-primary uppercase tracking-widest">Add Archive</p>
+</div>
+</div>
+<!-- Footer Section inside Portfolio -->
+<div class="mt-16 pt-8 border-t border-on-secondary-fixed-variant flex justify-between items-center relative z-10">
+<div class="flex items-center gap-8">
+<div class="flex flex-col">
+<span class="font-label-embossed text-label-embossed text-surface-variant uppercase">Storage</span>
+<div class="w-32 h-2 bg-on-secondary-fixed-variant rounded-full mt-1">
+<div class="w-1/3 h-full bg-primary-container rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-embossed text-label-embossed text-surface-variant uppercase">Total Files</span>
+<span class="font-headline-md text-primary-fixed leading-tight">12/50</span>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed shadow-lg">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a mature executive in a navy blue suit, soft studio lighting, high-end photography style, consistent with a professional corporate environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtpndNv2OSkGi6ooTMLm0f4_FOkzX-zgSLPuCcIaRLl7Cs2j4DNWHcJeNqgpJoQE87rYhKa3bwMKzY166MLAKjI_GsT_gvIWeAmNa4pEOHYcPyT1kI3Yv7TQpOnD_sHy7JfBpwgaZ5BmxO4Y8vt9zMHEUvK3FHAyPpw52br7-PL2XQ5f4wxszgf8OL_TNX4tho_8ckU8KO1X4wzi5ZNvESDrlPGxKRvaBpouQo8v-lLbgoqXoRWlWYXj1JKtqqOyCydBYImRbHwcsP"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Elements for "Desk" feel -->
+<div class="absolute -right-24 top-1/4 rotate-12 opacity-80 hidden xl:block">
+<div class="w-48 h-64 bg-white shadow-2xl p-6 transform hover:rotate-0 transition-transform cursor-pointer">
+<div class="w-full h-full border border-outline-variant p-4 flex flex-col">
+<div class="w-8 h-8 rounded-full bg-primary mb-4"></div>
+<div class="h-2 w-full bg-surface-variant mb-2"></div>
+<div class="h-2 w-3/4 bg-surface-variant"></div>
+<div class="mt-auto text-[8px] font-label-embossed">OFFICE NOTE: REMEMBER TO EXPORT BY FRIDAY.</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Bar -->
+<footer class="fixed bottom-0 left-0 w-full z-40 flex justify-between items-center px-desktop-margin py-2 bg-surface-container-lowest border-t-2 border-on-secondary-fixed-variant shadow-[0_-4px_12px_rgba(0,0,0,0.4)]" style="background-image: url('https://www.transparenttextures.com/patterns/leather.png');">
+<span class="font-label-stamp text-label-stamp text-on-surface opacity-80">© 2024 Virtual Desk Studio</span>
+<div class="flex gap-6">
+<a class="font-label-embossed text-label-embossed text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Terms</a>
+<a class="font-label-embossed text-label-embossed text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy</a>
+</div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+        document.querySelectorAll('.manila-folder').forEach(folder => {
+            folder.addEventListener('mousedown', () => {
+                folder.style.transform = 'scale(0.98) translateY(2px)';
+            });
+            folder.addEventListener('mouseup', () => {
+                folder.style.transform = '';
+            });
+        });
+
+        // Simple parallax effect for the "paper" behind the desk
+        window.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 50;
+            const moveY = (e.clientY - window.innerHeight / 2) / 50;
+            document.querySelector('.leather-portfolio').style.transform = `perspective(1000px) rotateX(${moveY * -0.1}deg) rotateY(${moveX * 0.1}deg)`;
+        });
+    </script>
+</body></html>
