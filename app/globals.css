@@ -1,26 +1,135 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-error-container: #ffdad6;
+  --color-secondary-fixed-dim: #e7bdb1;
+  --color-on-secondary-fixed-variant: #5d4037;
+  --color-on-primary-fixed-variant: #004d62;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f6f3f2;
+  --color-on-secondary-fixed: #2c160e;
+  --color-surface-tint: #0c6780;
+  --color-on-secondary: #ffffff;
+  --color-on-surface-variant: #3f484c;
+  --color-primary-fixed: #baeaff;
+  --color-tertiary-fixed-dim: #c6c6c7;
+  --color-tertiary: #5d5f5f;
+  --color-outline: #6f787d;
+  --color-secondary-container: #fed3c7;
+  --color-on-primary-container: #005870;
+  --color-error: #ba1a1a;
+  --color-primary-container: #87ceeb;
+  --color-inverse-primary: #89d0ed;
+  --color-secondary-fixed: #ffdbd0;
+  --color-surface-container-highest: #e5e2e1;
+  --color-tertiary-container: #c4c4c4;
+  --color-background: #fcf9f8;
+  --color-outline-variant: #bfc8cd;
+  --color-on-tertiary-fixed-variant: #454747;
+  --color-inverse-on-surface: #f3f0ef;
+  --color-surface-bright: #fcf9f8;
+  --color-secondary: #77574d;
+  --color-surface-container-high: #eae7e7;
+  --color-surface-container: #f0eded;
+  --color-on-error-container: #93000a;
+  --color-tertiary-fixed: #e2e2e2;
+  --color-on-primary-fixed: #001f29;
+  --color-on-background: #1b1c1c;
+  --color-primary: #0c6780;
+  --color-on-tertiary-container: #4f5151;
+  --color-on-tertiary: #ffffff;
+  --color-on-surface: #1b1c1c;
+  --color-inverse-surface: #303030;
+  --color-surface: #fcf9f8;
+  --color-surface-variant: #e5e2e1;
+  --color-surface-dim: #dcd9d9;
+  --color-on-tertiary-fixed: #1a1c1c;
+  --color-on-error: #ffffff;
+
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+
+  --spacing-desktop-margin: 64px;
+  --spacing-component-gap: 16px;
+  --spacing-tablet-margin: 32px;
+  --spacing-document-padding: 80px;
+  --spacing-mobile-margin: 16px;
+  --spacing-gutter: 24px;
+
+  --font-body-lg: "Source Serif 4";
+  --font-headline-lg-mobile: "Source Serif 4";
+  --font-headline-md: "Source Serif 4";
+  --font-label-stamp: "Space Mono";
+  --font-headline-lg: "Source Serif 4";
+  --font-label-embossed: "Space Mono";
+  --font-body-md: "Source Serif 4";
+
+  /* Need to set font sizes, but tailwind v4 sets sizes like this:
+     We can just let tailwind use regular text-lg or use custom css */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: var(--color-background);
+    color: var(--color-on-background);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.mahogany-desk {
+    background-color: #2c160e;
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+}
+
+.lamp-light {
+    background: radial-gradient(circle at 50% 0%, rgba(255, 245, 200, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 10;
+}
+
+.leather-portfolio {
+    background-color: #3d2b1f;
+    background-image: url('https://www.transparenttextures.com/patterns/leather.png');
+    border: 2px solid #5d4037;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.stitch-border {
+    border: 1px dashed rgba(231, 189, 177, 0.3);
+}
+
+.manila-folder {
+    background-color: #f3e5ab;
+    background-image: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%);
+    border-radius: 4px 24px 4px 4px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.manila-folder:hover {
+    transform: translateY(-4px) rotate(-1deg);
+    box-shadow: 8px 12px 20px rgba(0,0,0,0.4);
+}
+
+.paper-sheet {
+    background-color: #ffffff;
+    background-image: url('https://www.transparenttextures.com/patterns/pinstripe.png');
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.stamp-button {
+    box-shadow: 0 4px 0 #004d62;
+    transition: all 0.1s active;
+}
+.stamp-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #004d62;
+}
+
+.perforation {
+    border-bottom: 2px dotted #bfc8cd;
 }
