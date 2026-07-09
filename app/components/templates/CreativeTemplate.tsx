@@ -24,9 +24,15 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
           <div>
             <h2 className="text-xs uppercase tracking-widest text-[#94a3b8] font-bold mb-4">Core Skills</h2>
             <div className="flex flex-col gap-3">
-              {data.experiences.flatMap(e => e.skills).filter((v, i, a) => a.indexOf(v) === i).map(skill => (
-                <span key={skill} className="text-xs font-semibold text-[#334155] bg-[#f1f5f9] px-3 py-1.5 rounded-sm inline-block w-fit">{skill}</span>
-              ))}
+              {data.globalSkills && data.globalSkills.length > 0 ? (
+                data.globalSkills.map(skill => (
+                  <span key={skill} className="text-xs font-semibold text-[#334155] bg-[#f1f5f9] px-3 py-1.5 rounded-sm inline-block w-fit">{skill}</span>
+                ))
+              ) : (
+                data.experiences.flatMap(e => e.skills).filter((v, i, a) => a.indexOf(v) === i).map(skill => (
+                  <span key={skill} className="text-xs font-semibold text-[#334155] bg-[#f1f5f9] px-3 py-1.5 rounded-sm inline-block w-fit">{skill}</span>
+                ))
+              )}
             </div>
           </div>
         </div>
@@ -58,6 +64,29 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
               <p className="text-[#94a3b8] italic">No experience records available.</p>
             )}
           </div>
+
+          {/* Education (Optional) */}
+          {data.education && data.education.length > 0 && (
+            <>
+              <h2 className="text-xl font-bold text-[#0f172a] mt-12 mb-8 flex items-center gap-4">
+                Education
+                <div className="flex-grow h-px bg-[#e2e8f0]"></div>
+              </h2>
+              
+              <div className="space-y-8">
+                {data.education.map(edu => (
+                  <div key={edu.id} className="relative pl-8 border-l-2 border-[#f1f5f9]">
+                    <div className="absolute w-3 h-3 bg-[#94a3b8] rounded-full -left-[7px] top-1.5 border-4 border-[#ffffff]"></div>
+                    <div className="flex justify-between items-baseline mb-1">
+                      <h3 className="text-lg font-bold text-[#1e293b]">{edu.institution}</h3>
+                      <span className="text-xs font-bold text-[#64748b]">{edu.startYear} – {edu.endYear}</span>
+                    </div>
+                    <p className="text-[#475569] font-medium text-sm">{edu.degree}</p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
       </div>

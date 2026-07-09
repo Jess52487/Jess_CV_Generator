@@ -11,11 +11,21 @@ export type Experience = {
   skills: string[];
 };
 
+export type Education = {
+  id: string;
+  startYear: string;
+  endYear: string;
+  institution: string;
+  degree: string;
+};
+
 export type CVData = {
   fullName: string;
   jobTitle: string;
   summary: string;
   experiences: Experience[];
+  education: Education[];
+  globalSkills: string[];
   selectedTemplate: string;
 };
 
@@ -41,6 +51,16 @@ const defaultData: CVData = {
       skills: ["Frontend", "System Design"],
     },
   ],
+  education: [
+    {
+      id: "1",
+      startYear: "2011",
+      endYear: "2015",
+      institution: "University of Technology",
+      degree: "B.S. in Computer Science",
+    }
+  ],
+  globalSkills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
   selectedTemplate: "The Executive",
 };
 
@@ -51,6 +71,9 @@ type CVContextType = {
   addExperience: (exp: Experience) => void;
   updateExperience: (id: string, exp: Experience) => void;
   deleteExperience: (id: string) => void;
+  addEducation: (edu: Education) => void;
+  updateEducation: (id: string, edu: Education) => void;
+  deleteEducation: (id: string) => void;
 };
 
 const CVContext = createContext<CVContextType | undefined>(undefined);
@@ -114,12 +137,46 @@ export function CVProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const addEducation = (edu: Education) => {
+    setDataState((prev) => {
+      const updated = { ...prev, education: [...prev.education, edu] };
+      localStorage.setItem("jess-cv-data", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const updateEducation = (id: string, updatedEdu: Education) => {
+    setDataState((prev) => {
+      const updated = { 
+        ...prev, 
+        education: prev.education.map(e => e.id === id ? updatedEdu : e) 
+      };
+      localStorage.setItem("jess-cv-data", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const deleteEducation = (id: string) => {
+    setDataState((prev) => {
+      const updated = { 
+        ...prev, 
+        education: prev.education.filter(e => e.id !== id) 
+      };
+      localStorage.setItem("jess-cv-data", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
   if (!isLoaded) {
     return null; // Or a loading spinner
   }
 
   return (
-    <CVContext.Provider value={{ data, setData, updateField, addExperience, updateExperience, deleteExperience }}>
+    <CVContext.Provider value={{ 
+      data, setData, updateField, 
+      addExperience, updateExperience, deleteExperience,
+      addEducation, updateEducation, deleteEducation
+    }}>
       {children}
     </CVContext.Provider>
   );

@@ -18,6 +18,16 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
         </p>
       </div>
 
+      {/* Global Skills (Optional) */}
+      {data.globalSkills && data.globalSkills.length > 0 && (
+        <div className="mb-10">
+          <h2 className="text-xl font-bold mb-3 text-[#22c55e]">{'// Dependencies'}</h2>
+          <div className="text-sm text-[#4ade80] font-mono leading-relaxed">
+            [ {data.globalSkills.map(s => `"${s}"`).join(", ")} ]
+          </div>
+        </div>
+      )}
+
       {/* Experience */}
       <div>
         <h2 className="text-xl font-bold mb-6 text-[#22c55e]">{'// Execution_Log'}</h2>
@@ -42,6 +52,24 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
           )}
         </div>
       </div>
+
+      {/* Education (Optional) */}
+      {data.education && data.education.length > 0 && (
+        <div className="mt-10">
+          <h2 className="text-xl font-bold mb-6 text-[#22c55e]">{'// Init_Scripts'}</h2>
+          <div className="space-y-6">
+            {data.education.map(edu => (
+              <div key={edu.id} className="border-l-2 border-[#166534] pl-4">
+                <div className="flex justify-between items-baseline mb-1">
+                  <h3 className="text-md font-bold text-[#86efac]">{edu.institution}</h3>
+                  <span className="text-xs text-[#16a34a]">{`[ ${edu.startYear} - ${edu.endYear} ]`}</span>
+                </div>
+                <p className="text-sm text-[#22c55e]">{`> emit: ${edu.degree}`}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
