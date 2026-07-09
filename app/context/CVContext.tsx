@@ -74,7 +74,11 @@ export function CVProvider({ children }: { children: ReactNode }) {
   };
 
   const updateField = (field: keyof CVData, value: any) => {
-    setData((prev) => ({ ...prev, [field]: value }));
+    setDataState((prev) => {
+      const updated = { ...prev, [field]: value };
+      localStorage.setItem("jess-cv-data", JSON.stringify(updated));
+      return updated;
+    });
   };
 
   if (!isLoaded) {
