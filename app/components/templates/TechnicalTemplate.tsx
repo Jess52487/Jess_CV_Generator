@@ -5,9 +5,28 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
   return (
     <div className="font-[family-name:var(--font-technical)] text-[#22c55e] bg-[#111827] p-12 h-full">
       {/* Header */}
-      <div className="border-b border-[#166534] pb-6 mb-8">
-        <h1 className="text-3xl font-bold mb-2 text-[#22c55e]">{`> ${data.fullName || "User"}`}</h1>
-        <p className="text-md text-[#4ade80] opacity-80">{`[ role: "${data.jobTitle || "System"}" ]`}</p>
+      <div className="mb-10 pb-4 border-b border-[#166534]">
+        <h1 className="text-3xl font-bold mb-1 text-[#4ade80]">
+          <span className="text-[#22c55e]">const</span> user <span className="text-[#22c55e]">=</span> "{data.fullName || "Your Name"}";
+        </h1>
+        <p className="text-[#22c55e] text-lg font-mono">
+          <span className="text-[#166534]">{'/*'}</span> {data.jobTitle || "Your Title"} <span className="text-[#166534]">{'*/'}</span>
+        </p>
+
+        {/* Contact Info Array */}
+        <div className="mt-4 text-sm text-[#4ade80]">
+          <span className="text-[#22c55e]">const</span> contact <span className="text-[#22c55e]">=</span> {'{'}
+          <div className="pl-4 border-l border-[#166534] ml-2 mt-1 space-y-1">
+            {data.email && <div>email: <span className="text-[#86efac]">"{data.email}"</span>,</div>}
+            {data.phone && <div>phone: <span className="text-[#86efac]">"{data.phone}"</span>,</div>}
+            {data.address && <div>location: <span className="text-[#86efac]">"{data.address}"</span>,</div>}
+            {data.linkedin && <div>linkedin: <span className="text-[#86efac]">"{data.linkedin.replace('https://', '').replace('www.', '')}"</span>,</div>}
+            {data.website && <div>website: <span className="text-[#86efac]">"{data.website.replace('https://', '').replace('www.', '')}"</span>,</div>}
+            {data.github && <div>github: <span className="text-[#86efac]">"{data.github.replace('https://', '').replace('www.', '')}"</span>,</div>}
+            {data.nationality && <div>nationality: <span className="text-[#86efac]">"{data.nationality}"</span>,</div>}
+          </div>
+          {'};'}
+        </div>
       </div>
 
       {/* Summary */}
@@ -64,7 +83,10 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
                   <h3 className="text-md font-bold text-[#86efac]">{edu.institution}</h3>
                   <span className="text-xs text-[#16a34a]">{`[ ${edu.startYear} - ${edu.endYear} ]`}</span>
                 </div>
-                <p className="text-sm text-[#22c55e]">{`> emit: ${edu.degree}`}</p>
+                <p className="text-sm text-[#22c55e] mb-1">{`> emit: ${edu.degree}`}</p>
+                {edu.description && (
+                  <p className="text-xs text-[#16a34a] whitespace-pre-wrap">{`// ${edu.description}`}</p>
+                )}
               </div>
             ))}
           </div>

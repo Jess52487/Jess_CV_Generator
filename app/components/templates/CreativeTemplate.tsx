@@ -11,7 +11,17 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
         <div className="col-span-1 border-r border-[#e2e8f0] pr-8 h-full">
           <div className="mb-12 pt-4">
             <h1 className="text-3xl font-bold tracking-tight leading-none mb-3 text-[#0f172a]">{data.fullName || "Your Name"}</h1>
-            <p className="text-sm font-medium text-[#2563eb] uppercase tracking-widest">{data.jobTitle || "Your Title"}</p>
+            <p className="text-sm font-medium text-[#2563eb] uppercase tracking-widest mb-6">{data.jobTitle || "Your Title"}</p>
+            
+            <div className="flex flex-col gap-2 text-xs font-medium text-[#64748b]">
+              {data.email && <span className="flex items-center gap-2">✉ {data.email}</span>}
+              {data.phone && <span className="flex items-center gap-2">☏ {data.phone}</span>}
+              {data.address && <span className="flex items-center gap-2">⌂ {data.address}</span>}
+              {data.linkedin && <span className="flex items-center gap-2">in/ {data.linkedin.replace('https://', '').replace('www.', '')}</span>}
+              {data.website && <span className="flex items-center gap-2">↗ {data.website.replace('https://', '').replace('www.', '')}</span>}
+              {data.github && <span className="flex items-center gap-2">&lt;/&gt; {data.github.replace('https://', '').replace('www.', '')}</span>}
+              {data.nationality && <span className="flex items-center gap-2">⚐ {data.nationality}</span>}
+            </div>
           </div>
           
           <div className="mb-12">
@@ -82,6 +92,9 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
                       <span className="text-xs font-bold text-[#64748b]">{edu.startYear} – {edu.endYear}</span>
                     </div>
                     <p className="text-[#475569] font-medium text-sm">{edu.degree}</p>
+                    {edu.description && (
+                      <p className="text-[#64748b] text-xs mt-2 leading-relaxed">{edu.description}</p>
+                    )}
                   </div>
                 ))}
               </div>

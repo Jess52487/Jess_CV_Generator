@@ -5,9 +5,24 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
   return (
     <div className="font-[family-name:var(--font-executive)] text-[#111827] leading-relaxed bg-[#ffffff] h-full p-12">
       {/* Header */}
-      <div className="text-center border-b-4 border-double border-[#1f2937] pb-8 mb-10 pt-4">
-        <h1 className="text-4xl uppercase tracking-widest font-bold mb-3 text-[#111827]">{data.fullName || "Your Name"}</h1>
-        <p className="text-lg italic text-[#4b5563]">{data.jobTitle || "Your Title"}</p>
+      <div className="text-center mb-10 border-b-4 border-[#1f2937] pb-8">
+        <h1 className="text-5xl font-extrabold uppercase tracking-widest text-[#111827] mb-2">
+          {data.fullName || "Your Name"}
+        </h1>
+        <p className="text-2xl text-[#4b5563] font-light tracking-widest uppercase mb-4">
+          {data.jobTitle || "Professional Title"}
+        </p>
+        
+        {/* Contact Info Row */}
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-[#374151] font-medium mt-4">
+          {data.email && <span className="flex items-center gap-1">✉ {data.email}</span>}
+          {data.phone && <span className="flex items-center gap-1">☏ {data.phone}</span>}
+          {data.address && <span className="flex items-center gap-1">⌂ {data.address}</span>}
+          {data.linkedin && <span className="flex items-center gap-1">in/ {data.linkedin.replace('https://', '').replace('www.', '')}</span>}
+          {data.website && <span className="flex items-center gap-1">↗ {data.website.replace('https://', '').replace('www.', '')}</span>}
+          {data.github && <span className="flex items-center gap-1">&lt;/&gt; {data.github.replace('https://', '').replace('www.', '')}</span>}
+          {data.nationality && <span className="flex items-center gap-1">⚐ {data.nationality}</span>}
+        </div>
       </div>
 
       {/* Summary */}
@@ -57,17 +72,20 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
       </div>
 
       {/* Education (Optional) */}
-      {data.education && data.education.length > 0 && (
+      {(data.education || []).length > 0 && (
         <div className="mb-8 mt-12">
           <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-8 font-bold text-center text-[#111827]">Academic Profile</h2>
           <div className="space-y-6">
-            {data.education.map(edu => (
-              <div key={edu.id} className="flex justify-between items-baseline mb-2">
-                <div>
+            {(data.education || []).map(edu => (
+              <div key={edu.id} className="mb-4">
+                <div className="flex justify-between items-baseline mb-1">
                   <h3 className="text-lg font-bold text-[#111827]">{edu.institution}</h3>
-                  <p className="text-md text-[#4b5563] italic">{edu.degree}</p>
+                  <span className="text-sm text-[#4b5563] font-medium whitespace-nowrap ml-4">{edu.startYear} – {edu.endYear}</span>
                 </div>
-                <span className="text-sm text-[#4b5563] font-medium">{edu.startYear} – {edu.endYear}</span>
+                <p className="text-md text-[#4b5563] italic">{edu.degree}</p>
+                {edu.description && (
+                  <p className="text-sm text-[#374151] mt-2 leading-relaxed">{edu.description}</p>
+                )}
               </div>
             ))}
           </div>

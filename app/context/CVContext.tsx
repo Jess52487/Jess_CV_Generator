@@ -17,11 +17,19 @@ export type Education = {
   endYear: string;
   institution: string;
   degree: string;
+  description?: string;
 };
 
 export type CVData = {
   fullName: string;
   jobTitle: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  linkedin?: string;
+  website?: string;
+  github?: string;
+  nationality?: string;
   summary: string;
   experiences: Experience[];
   education: Education[];
@@ -30,8 +38,15 @@ export type CVData = {
 };
 
 const defaultData: CVData = {
-  fullName: "",
-  jobTitle: "",
+  fullName: "Jonathan Deskman",
+  jobTitle: "Executive Suite Manager",
+  email: "jonathan@example.com",
+  phone: "+1 (555) 123-4567",
+  address: "New York, NY",
+  linkedin: "linkedin.com/in/jdeskman",
+  website: "jdeskman.com",
+  github: "github.com/jdeskman",
+  nationality: "American",
   summary: "",
   experiences: [
     {
