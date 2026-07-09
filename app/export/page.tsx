@@ -6,6 +6,7 @@ import Footer from "../components/layout/Footer";
 import { useCVContext } from "../context/CVContext";
 import { useRef } from "react";
 import generatePDF, { Resolution, Margin } from "react-to-pdf";
+import TemplateRenderer from "../components/templates/TemplateRenderer";
 
 export default function ExportClipboard() {
   const { data } = useCVContext();
@@ -40,72 +41,8 @@ export default function ExportClipboard() {
             </div>
             
             {/* CV Paper Document (Target for PDF) */}
-            <div ref={targetRef} className="paper-stack bg-white aspect-[210/297] w-full p-[var(--spacing-document-padding)] relative overflow-hidden flex flex-col gap-6">
-              {/* Subtle Paper Texture Overlay */}
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]"></div>
-              
-              {/* CV Content Header */}
-              <div className="border-b-2 border-on-surface-variant/10 pb-4">
-                <h1 className="font-[family-name:var(--font-headline-lg)] text-[40px] text-[var(--color-on-surface)] mb-2">
-                  {data.fullName || "Your Name Here"}
-                </h1>
-                <p className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-primary)] uppercase">
-                  {data.jobTitle || "Your Professional Title"}
-                </p>
-              </div>
-              
-              {/* CV Content Body */}
-              <div className="flex flex-col gap-8">
-                <section>
-                  <h2 className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] mb-2 border-b border-on-surface-variant/5">Executive Summary</h2>
-                  <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)] italic whitespace-pre-wrap">
-                    {data.summary || "Your professional summary will appear here."}
-                  </p>
-                </section>
-                <div className="perforated-line"></div>
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h2 className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] mb-2">Core Competencies</h2>
-                    <ul className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)] space-y-1">
-                      <li>• Strategic Leadership</li>
-                      <li>• System Architecture</li>
-                      <li>• Design Thinking</li>
-                      <li>• Executive Execution</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h2 className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] mb-2">Selected Template</h2>
-                    <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)]">
-                      <strong>{data.selectedTemplate}</strong><br />
-                      <span className="text-[12px] font-[family-name:var(--font-label-embossed)]">Active Layout</span>
-                    </p>
-                  </div>
-                </section>
-                <div className="perforated-line"></div>
-                <section>
-                  <h2 className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] mb-2">Work History</h2>
-                  <div className="space-y-4">
-                    {data.experiences.length > 0 ? data.experiences.map((exp) => (
-                      <div key={exp.id}>
-                        <div className="flex justify-between items-baseline">
-                          <h3 className="font-[family-name:var(--font-body-lg)] text-[18px] font-bold">{exp.title}</h3>
-                          <span className="font-[family-name:var(--font-label-embossed)] text-[12px]">{exp.startDate} — {exp.endDate}</span>
-                        </div>
-                        <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)]">{exp.company}</p>
-                      </div>
-                    )) : (
-                      <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)] italic">No experience records added.</p>
-                    )}
-                  </div>
-                </section>
-              </div>
-              
-              {/* Footer Stamp Placeholder */}
-              <div className="mt-auto flex justify-end opacity-20 rotate-12">
-                <div className="border-4 border-[var(--color-primary)] rounded-full p-4 font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-primary)]">
-                  VERIFIED
-                </div>
-              </div>
+            <div ref={targetRef} className="paper-stack bg-white aspect-[210/297] w-full relative overflow-hidden flex flex-col p-0 m-0 print:m-0">
+              <TemplateRenderer data={data} />
             </div>
           </div>
 

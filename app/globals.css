@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 @import "tailwindcss";
 @source "./app";
 @source "./public";
@@ -67,6 +68,9 @@
   --font-label-embossed: "Space Mono";
   --font-body-md: "Source Serif 4";
 
+  --font-executive: "Playfair Display", "Georgia", serif;
+  --font-creative: "Inter", "Helvetica Neue", sans-serif;
+  --font-technical: "Fira Code", "Consolas", monospace;
   /* Need to set font sizes, but tailwind v4 sets sizes like this:
      We can just let tailwind use regular text-lg or use custom css */
 }
