@@ -13,7 +13,8 @@ export default function Notepad() {
   const { 
     data, updateField, 
     addExperience, updateExperience, deleteExperience,
-    addEducation, updateEducation, deleteEducation
+    addEducation, updateEducation, deleteEducation,
+    finalizeDraft
   } = useCVContext();
   const router = useRouter();
 
@@ -36,6 +37,7 @@ export default function Notepad() {
   const [showNationality, setShowNationality] = useState(!!data.nationality);
 
   const handleSave = () => {
+    finalizeDraft();
     router.push("/export");
   };
 

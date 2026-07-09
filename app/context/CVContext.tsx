@@ -37,6 +37,12 @@ export type CVData = {
   selectedTemplate: string;
 };
 
+export type SavedCV = {
+  id: string;
+  dateGenerated: string;
+  data: CVData;
+};
+
 const defaultData: CVData = {
   fullName: "",
   jobTitle: "",
@@ -64,14 +70,19 @@ type CVContextType = {
   addEducation: (edu: Education) => void;
   updateEducation: (id: string, edu: Education) => void;
   deleteEducation: (id: string) => void;
+  savedCVs: SavedCV[];
+  finalizeDraft: () => void;
+  deleteSavedCV: (id: string) => void;
 };
 
 const CVContext = createContext<CVContextType | undefined>(undefined);
 
-export function CVProvider({ children }: { children: ReactNode }) {
+export const CVProvider = ({ children }: { children: ReactNode }) => {
   const [data, setDataState] = useState<CVData>(defaultData);
+  const [savedCVs, setSavedCVs] = useState<SavedCV[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Load from localStorage on mount
   useEffect(() => {
     const saved = localStorage.getItem("jess-cv-data");
     if (saved) {
@@ -82,6 +93,16 @@ export function CVProvider({ children }: { children: ReactNode }) {
         console.error("Failed to parse saved CV data", e);
       }
     }
+
+    const history = localStorage.getItem("jess-cv-history");
+    if (history) {
+      try {
+        setSavedCVs(JSON.parse(history));
+      } catch (e) {
+        console.error("Failed to parse CV history", e);
+      }
+    }
+
     setIsLoaded(true);
   }, []);
 
@@ -158,6 +179,32 @@ export function CVProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const finalizeDraft = () => {
+    const newSavedCV: SavedCV = {
+      id: Date.now().toString(),
+      dateGenerated: new Date().toISOString(),
+      data: { ...data }
+    };
+    
+    setSavedCVs(prev => {
+      const updated = [newSavedCV, ...prev];
+      localStorage.setItem("jess-cv-history", JSON.stringify(updated));
+      return updated;
+    });
+
+    // Reset current draft to default
+    setDataState(defaultData);
+    localStorage.removeItem("jess-cv-data");
+  };
+
+  const deleteSavedCV = (id: string) => {
+    setSavedCVs(prev => {
+      const updated = prev.filter(cv => cv.id !== id);
+      localStorage.setItem("jess-cv-history", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
   if (!isLoaded) {
     return null; // Or a loading spinner
   }
@@ -166,7 +213,8 @@ export function CVProvider({ children }: { children: ReactNode }) {
     <CVContext.Provider value={{ 
       data, setData, updateField, 
       addExperience, updateExperience, deleteExperience,
-      addEducation, updateEducation, deleteEducation
+      addEducation, updateEducation, deleteEducation,
+      savedCVs, finalizeDraft, deleteSavedCV
     }}>
       {children}
     </CVContext.Provider>
