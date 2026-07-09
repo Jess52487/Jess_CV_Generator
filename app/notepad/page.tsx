@@ -16,8 +16,8 @@ export default function Notepad() {
   const [currentExp, setCurrentExp] = useState<Experience | null>(null);
 
   const handleSave = () => {
-    // Navigate to Templates after saving
-    router.push("/templates");
+    // Navigate to Export after saving
+    router.push("/export");
   };
 
   const handleClear = () => {
