@@ -290,29 +290,41 @@ export default function Notepad() {
                         </div>
 
                         {/* Optional Fields Container */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mt-6">
                           {showLinkedIn && (
-                            <div className="space-y-1 animate-in fade-in slide-in-from-top-2">
-                              <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-[var(--color-on-surface-variant)]">LinkedIn</label>
-                              <input type="text" className="w-full bg-[var(--color-surface-container-low)] border-b border-[var(--color-outline-variant)] px-3 py-2 outline-none" value={data.linkedin || ""} onChange={e => updateField("linkedin", e.target.value)} placeholder="linkedin.com/in/johndoe"/>
+                            <div className="space-y-2 animate-in fade-in slide-in-from-top-2 group">
+                              <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-[var(--color-on-surface-variant)] embossed-text">LinkedIn</label>
+                              <div className="relative">
+                                <input type="text" className="w-full bg-[var(--color-surface-container-low)] border-none rounded-sm py-3 px-4 font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface)] inner-indent focus:ring-2 focus:ring-[var(--color-primary-container)] placeholder:opacity-40 transition-all outline-none" value={data.linkedin || ""} onChange={e => updateField("linkedin", e.target.value)} placeholder="linkedin.com/in/johndoe"/>
+                                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 group-focus-within:w-full"></div>
+                              </div>
                             </div>
                           )}
                           {showWebsite && (
-                            <div className="space-y-1 animate-in fade-in slide-in-from-top-2">
-                              <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-[var(--color-on-surface-variant)]">Personal Website</label>
-                              <input type="text" className="w-full bg-[var(--color-surface-container-low)] border-b border-[var(--color-outline-variant)] px-3 py-2 outline-none" value={data.website || ""} onChange={e => updateField("website", e.target.value)} placeholder="johndoe.com"/>
+                            <div className="space-y-2 animate-in fade-in slide-in-from-top-2 group">
+                              <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-[var(--color-on-surface-variant)] embossed-text">Personal Website</label>
+                              <div className="relative">
+                                <input type="text" className="w-full bg-[var(--color-surface-container-low)] border-none rounded-sm py-3 px-4 font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface)] inner-indent focus:ring-2 focus:ring-[var(--color-primary-container)] placeholder:opacity-40 transition-all outline-none" value={data.website || ""} onChange={e => updateField("website", e.target.value)} placeholder="johndoe.com"/>
+                                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 group-focus-within:w-full"></div>
+                              </div>
                             </div>
                           )}
                           {showGitHub && (
-                            <div className="space-y-1 animate-in fade-in slide-in-from-top-2">
-                              <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-[var(--color-on-surface-variant)]">GitHub</label>
-                              <input type="text" className="w-full bg-[var(--color-surface-container-low)] border-b border-[var(--color-outline-variant)] px-3 py-2 outline-none" value={data.github || ""} onChange={e => updateField("github", e.target.value)} placeholder="github.com/johndoe"/>
+                            <div className="space-y-2 animate-in fade-in slide-in-from-top-2 group">
+                              <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-[var(--color-on-surface-variant)] embossed-text">GitHub</label>
+                              <div className="relative">
+                                <input type="text" className="w-full bg-[var(--color-surface-container-low)] border-none rounded-sm py-3 px-4 font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface)] inner-indent focus:ring-2 focus:ring-[var(--color-primary-container)] placeholder:opacity-40 transition-all outline-none" value={data.github || ""} onChange={e => updateField("github", e.target.value)} placeholder="github.com/johndoe"/>
+                                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 group-focus-within:w-full"></div>
+                              </div>
                             </div>
                           )}
                           {showNationality && (
-                            <div className="space-y-1 animate-in fade-in slide-in-from-top-2">
-                              <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-[var(--color-on-surface-variant)]">Nationality</label>
-                              <input type="text" className="w-full bg-[var(--color-surface-container-low)] border-b border-[var(--color-outline-variant)] px-3 py-2 outline-none" value={data.nationality || ""} onChange={e => updateField("nationality", e.target.value)} placeholder="e.g. Canadian"/>
+                            <div className="space-y-2 animate-in fade-in slide-in-from-top-2 group">
+                              <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-[var(--color-on-surface-variant)] embossed-text">Nationality</label>
+                              <div className="relative">
+                                <input type="text" className="w-full bg-[var(--color-surface-container-low)] border-none rounded-sm py-3 px-4 font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface)] inner-indent focus:ring-2 focus:ring-[var(--color-primary-container)] placeholder:opacity-40 transition-all outline-none" value={data.nationality || ""} onChange={e => updateField("nationality", e.target.value)} placeholder="e.g. Canadian"/>
+                                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 group-focus-within:w-full"></div>
+                              </div>
                             </div>
                           )}
                         </div>

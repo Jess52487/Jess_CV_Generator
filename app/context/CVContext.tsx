@@ -38,44 +38,19 @@ export type CVData = {
 };
 
 const defaultData: CVData = {
-  fullName: "Jonathan Deskman",
-  jobTitle: "Executive Suite Manager",
-  email: "jonathan@example.com",
-  phone: "+1 (555) 123-4567",
-  address: "New York, NY",
-  linkedin: "linkedin.com/in/jdeskman",
-  website: "jdeskman.com",
-  github: "github.com/jdeskman",
-  nationality: "American",
+  fullName: "",
+  jobTitle: "",
+  email: "",
+  phone: "",
+  address: "",
+  linkedin: "",
+  website: "",
+  github: "",
+  nationality: "",
   summary: "",
-  experiences: [
-    {
-      id: "1",
-      startDate: "2018",
-      endDate: "PRESENT",
-      title: "Senior Architect",
-      company: "Metropolis Solutions Ltd.",
-      skills: ["Leadership", "Strategy"],
-    },
-    {
-      id: "2",
-      startDate: "2015",
-      endDate: "2018",
-      title: "Lead Developer",
-      company: "Digital Horizon Inc.",
-      skills: ["Frontend", "System Design"],
-    },
-  ],
-  education: [
-    {
-      id: "1",
-      startYear: "2011",
-      endYear: "2015",
-      institution: "University of Technology",
-      degree: "B.S. in Computer Science",
-    }
-  ],
-  globalSkills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+  experiences: [],
+  education: [],
+  globalSkills: [],
   selectedTemplate: "The Executive",
 };
 
