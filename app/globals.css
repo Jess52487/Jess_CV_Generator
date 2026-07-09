@@ -207,3 +207,121 @@
     height: 10px;
     width: 100%;
 }
+
+/* Filing Cabinet / Template Gallery Styles */
+.brushed-steel {
+    background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 50%, #e5e7eb 100%);
+    background-size: 400% 400%;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.3);
+    position: relative;
+}
+.brushed-steel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
+    opacity: 0.4;
+    pointer-events: none;
+}
+.template-paper-sheet {
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 0 1px rgba(0,0,0,0.1);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    aspect-ratio: 1 / 1.414;
+}
+.template-paper-sheet:hover {
+    transform: scale(1.05) rotate(-1deg);
+    z-index: 10;
+}
+.binder-clip {
+    background: #333;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.binder-clip::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 5px;
+    width: 30px;
+    height: 15px;
+    border: 2px solid #ccc;
+    border-bottom: none;
+    border-radius: 15px 15px 0 0;
+}
+.cabinet-shadow {
+    box-shadow: inset 0 20px 40px rgba(0,0,0,0.4);
+}
+.drawer-handle {
+    background: linear-gradient(to bottom, #d1d5db, #9ca3af);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3), inset 0 1px 1px white;
+}
+@keyframes slideIn {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.drawer-slide {
+    animation: slideIn 0.8s ease-out;
+}
+
+/* Clipboard / Export Module Styles */
+.wood-texture {
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+    background-color: #5d4037;
+}
+
+.paper-stack {
+    box-shadow: 
+        0 1px 1px rgba(0,0,0,0.1),
+        0 2px 2px rgba(0,0,0,0.1),
+        0 4px 4px rgba(0,0,0,0.1),
+        0 8px 8px rgba(0,0,0,0.1),
+        0 16px 16px rgba(0,0,0,0.1);
+}
+
+.rubber-stamp {
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 
+        0 6px 0 0 #005870,
+        0 8px 15px rgba(0,0,0,0.4);
+}
+
+.rubber-stamp:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 2px 0 0 #005870,
+        0 4px 8px rgba(0,0,0,0.3),
+        inset 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.metal-clip {
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    box-shadow: 
+        inset 1px 1px 2px rgba(255,255,255,0.8),
+        2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.perforated-line {
+    background-image: radial-gradient(circle, #bfc8cd 1px, transparent 1px);
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+    height: 1px;
+    width: 100%;
+}
+
+.clipboard-tilt {
+    transform: rotate(-1deg);
+}
+
+/* Skeuomorphic inner shadow for paper fields */
+.recessed-field {
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    border-bottom: 1px solid white;
+}
