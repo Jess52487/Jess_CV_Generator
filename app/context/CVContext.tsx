@@ -119,7 +119,7 @@ export function CVProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <CVContext.Provider value={{ data, setData, updateField }}>
+    <CVContext.Provider value={{ data, setData, updateField, addExperience, updateExperience, deleteExperience }}>
       {children}
     </CVContext.Provider>
   );
