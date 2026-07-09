@@ -1,38 +1,31 @@
+"use client";
+
+import Header from "../components/layout/Header";
+import SideNav from "../components/layout/SideNav";
+import Footer from "../components/layout/Footer";
+import { useCVContext } from "../context/CVContext";
+import { useRef } from "react";
+import generatePDF, { Resolution, Margin } from "react-to-pdf";
+
 export default function ExportClipboard() {
+  const { data } = useCVContext();
+  const targetRef = useRef<HTMLDivElement>(null);
+
+  const handleExport = () => {
+    generatePDF(targetRef, {
+      filename: `${data.fullName.replace(/\s+/g, '_')}_CV.pdf`,
+      resolution: Resolution.HIGH,
+      page: {
+        margin: Margin.MEDIUM,
+        format: 'a4',
+      }
+    });
+  };
+
   return (
     <>
-      {/* Top Navigation Anchor */}
-      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-[var(--spacing-desktop-margin)] h-20 bg-[var(--color-surface-container-high)] shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
-        <div className="font-[family-name:var(--font-headline-md)] text-[24px] font-bold text-[var(--color-on-surface)] tracking-widest uppercase">
-          CV GENERATOR
-        </div>
-        <nav className="hidden md:flex gap-8 items-center">
-          <a className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface-variant)] opacity-80 hover:text-[var(--color-primary)] transition-colors" href="#">Profile</a>
-          <a className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface-variant)] opacity-80 hover:text-[var(--color-primary)] transition-colors" href="#">Templates</a>
-          <a className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-primary)] border-b-4 border-[var(--color-primary)] pb-1 font-bold" href="#">Export</a>
-        </nav>
-        <button className="rubber-stamp bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] px-6 py-2 font-[family-name:var(--font-label-stamp)] text-[14px] rounded-sm uppercase tracking-wider">
-          Download
-        </button>
-      </header>
-
-      {/* Side Navigation Shell */}
-      <aside className="fixed left-0 top-20 h-[calc(100vh-80px)] w-20 flex flex-col items-center py-[var(--spacing-component-gap)] bg-[var(--color-secondary-container)] border-r border-[var(--color-outline-variant)] shadow-[4px_0_8px_rgba(0,0,0,0.2)] rounded-r-xl z-40">
-        <div className="mb-8 text-center px-2">
-          <div className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-secondary-container)] font-bold opacity-60">Desk</div>
-        </div>
-        <div className="flex flex-col gap-6">
-          <button className="w-12 h-12 flex items-center justify-center text-[var(--color-on-secondary-container)] hover:bg-[var(--color-secondary-fixed)] rounded-xl transition-all">
-            <span className="material-symbols-outlined">person</span>
-          </button>
-          <button className="w-12 h-12 flex items-center justify-center text-[var(--color-on-secondary-container)] hover:bg-[var(--color-secondary-fixed)] rounded-xl transition-all">
-            <span className="material-symbols-outlined">description</span>
-          </button>
-          <button className="w-12 h-12 flex items-center justify-center bg-[var(--color-secondary)] text-[var(--color-on-secondary)] rounded-xl shadow-inner -translate-x-1">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>ios_share</span>
-          </button>
-        </div>
-      </aside>
+      <Header />
+      <SideNav />
 
       {/* Main Content Canvas (The Desk Surface) */}
       <main className="pt-24 pb-20 px-4 md:pl-32 md:pr-12 min-h-screen flex items-center justify-center">
@@ -46,23 +39,27 @@ export default function ExportClipboard() {
               <div className="w-12 h-2 bg-[var(--color-outline-variant)] rounded-full opacity-30"></div>
             </div>
             
-            {/* CV Paper Document */}
-            <div className="paper-stack bg-white aspect-[210/297] w-full p-[var(--spacing-document-padding)] relative overflow-hidden flex flex-col gap-6">
+            {/* CV Paper Document (Target for PDF) */}
+            <div ref={targetRef} className="paper-stack bg-white aspect-[210/297] w-full p-[var(--spacing-document-padding)] relative overflow-hidden flex flex-col gap-6">
               {/* Subtle Paper Texture Overlay */}
               <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]"></div>
               
               {/* CV Content Header */}
               <div className="border-b-2 border-on-surface-variant/10 pb-4">
-                <h1 className="font-[family-name:var(--font-headline-lg)] text-[40px] text-[var(--color-on-surface)] mb-2">Julian Vane</h1>
-                <p className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-primary)] uppercase">Executive Creative Director</p>
+                <h1 className="font-[family-name:var(--font-headline-lg)] text-[40px] text-[var(--color-on-surface)] mb-2">
+                  {data.fullName || "Your Name Here"}
+                </h1>
+                <p className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-primary)] uppercase">
+                  {data.jobTitle || "Your Professional Title"}
+                </p>
               </div>
               
               {/* CV Content Body */}
               <div className="flex flex-col gap-8">
                 <section>
                   <h2 className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] mb-2 border-b border-on-surface-variant/5">Executive Summary</h2>
-                  <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)] italic">
-                    Visionary leader with 15+ years of experience in high-end design systems and digital craftsmanship. Specialized in bridging the gap between tactile aesthetics and functional utility.
+                  <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)] italic whitespace-pre-wrap">
+                    {data.summary || "Your professional summary will appear here."}
                   </p>
                 </section>
                 <div className="perforated-line"></div>
@@ -70,18 +67,17 @@ export default function ExportClipboard() {
                   <div>
                     <h2 className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] mb-2">Core Competencies</h2>
                     <ul className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)] space-y-1">
-                      <li>• Skeuomorphic Interface Design</li>
-                      <li>• Brand Identity Architecture</li>
-                      <li>• Professional Stationery Craft</li>
-                      <li>• Executive Suite UX</li>
+                      <li>• Strategic Leadership</li>
+                      <li>• System Architecture</li>
+                      <li>• Design Thinking</li>
+                      <li>• Executive Execution</li>
                     </ul>
                   </div>
                   <div>
-                    <h2 className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] mb-2">Education</h2>
+                    <h2 className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] mb-2">Selected Template</h2>
                     <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)]">
-                      <strong>Master of Fine Arts</strong><br />
-                      Design Academy Eindhoven<br />
-                      <span className="text-[12px] font-[family-name:var(--font-label-embossed)]">Class of 2008</span>
+                      <strong>{data.selectedTemplate}</strong><br />
+                      <span className="text-[12px] font-[family-name:var(--font-label-embossed)]">Active Layout</span>
                     </p>
                   </div>
                 </section>
@@ -89,20 +85,17 @@ export default function ExportClipboard() {
                 <section>
                   <h2 className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] mb-2">Work History</h2>
                   <div className="space-y-4">
-                    <div>
-                      <div className="flex justify-between items-baseline">
-                        <h3 className="font-[family-name:var(--font-body-lg)] text-[18px] font-bold">Virtual Desk Studio</h3>
-                        <span className="font-[family-name:var(--font-label-embossed)] text-[12px]">2018 — Present</span>
+                    {data.experiences.length > 0 ? data.experiences.map((exp) => (
+                      <div key={exp.id}>
+                        <div className="flex justify-between items-baseline">
+                          <h3 className="font-[family-name:var(--font-body-lg)] text-[18px] font-bold">{exp.title}</h3>
+                          <span className="font-[family-name:var(--font-label-embossed)] text-[12px]">{exp.startDate} — {exp.endDate}</span>
+                        </div>
+                        <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)]">{exp.company}</p>
                       </div>
-                      <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)]">Principal Systems Designer</p>
-                    </div>
-                    <div>
-                      <div className="flex justify-between items-baseline">
-                        <h3 className="font-[family-name:var(--font-body-lg)] text-[18px] font-bold">Paper & Ink Collective</h3>
-                        <span className="font-[family-name:var(--font-label-embossed)] text-[12px]">2012 — 2018</span>
-                      </div>
-                      <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)]">Lead Visual Strategist</p>
-                    </div>
+                    )) : (
+                      <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)] italic">No experience records added.</p>
+                    )}
                   </div>
                 </section>
               </div>
@@ -141,7 +134,10 @@ export default function ExportClipboard() {
               </div>
               
               {/* THE RUBBER STAMP BUTTON */}
-              <button className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-6 px-4 rounded-sm flex flex-col items-center justify-center gap-2 group relative">
+              <button 
+                onClick={handleExport}
+                className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-6 px-4 rounded-sm flex flex-col items-center justify-center gap-2 group relative cursor-pointer"
+              >
                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                 <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>download</span>
                 <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase">Export PDF</span>
@@ -168,14 +164,7 @@ export default function ExportClipboard() {
         </div>
       </main>
 
-      {/* Footer Static Anchor */}
-      <footer className="fixed bottom-0 left-0 w-full z-40 flex justify-between items-center px-[var(--spacing-desktop-margin)] py-2 h-12 bg-[var(--color-surface-container-lowest)] border-t-2 border-[var(--color-on-secondary-fixed-variant)] shadow-[0_-4px_12px_rgba(0,0,0,0.4)]">
-        <div className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] opacity-60">© 2026 VIRTUAL DESK STUDIO</div>
-        <div className="flex gap-6">
-          <a className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-surface-variant)] opacity-80 hover:opacity-100 transition-opacity" href="#">Terms</a>
-          <a className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-surface-variant)] opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy</a>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Decorative Office Elements (Desk Clutter) */}
       <div className="fixed bottom-12 right-12 w-48 h-64 -rotate-6 pointer-events-none opacity-40 hidden xl:block">
