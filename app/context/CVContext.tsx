@@ -86,7 +86,8 @@ export function CVProvider({ children }: { children: ReactNode }) {
     const saved = localStorage.getItem("jess-cv-data");
     if (saved) {
       try {
-        setDataState(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        setDataState({ ...defaultData, ...parsed });
       } catch (e) {
         console.error("Failed to parse saved CV data", e);
       }

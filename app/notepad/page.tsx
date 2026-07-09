@@ -270,7 +270,7 @@ export default function Notepad() {
                     )}
 
                     <div className="grid grid-cols-1 gap-4">
-                      {data.education.map((edu) => (
+                      {(data.education || []).map((edu) => (
                         <div key={edu.id} className="relative group bg-white border border-[var(--color-outline-variant)] p-4 rounded-sm shadow-sm flex flex-col md:flex-row justify-between md:items-center">
                           <div className="absolute right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
                             <button onClick={() => openEditEduForm(edu)} className="p-1.5 bg-gray-100 text-blue-600 rounded-sm shadow hover:bg-white" title="Edit"><span className="material-symbols-outlined text-[16px] block">edit</span></button>
@@ -310,7 +310,7 @@ export default function Notepad() {
                           className="w-full bg-white border border-[var(--color-outline-variant)] rounded-sm py-3 px-4 font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface)] focus:ring-2 focus:ring-[var(--color-primary-container)] outline-none"
                           placeholder="e.g. Project Management, Agile, UI/UX Design..."
                           rows={4}
-                          value={data.globalSkills.join(", ")}
+                          value={(data.globalSkills || []).join(", ")}
                           onChange={(e) => updateField("globalSkills", e.target.value.split(",").map(s => s.trim()).filter(s => s))}
                         ></textarea>
                         <p className="mt-3 font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)] italic">
@@ -319,9 +319,9 @@ export default function Notepad() {
                       </div>
 
                       {/* Display Badges */}
-                      {data.globalSkills.length > 0 && (
+                      {(data.globalSkills || []).length > 0 && (
                         <div className="flex flex-wrap gap-2 pt-4">
-                          {data.globalSkills.map((skill, i) => (
+                          {(data.globalSkills || []).map((skill, i) => (
                             <span key={i} className="px-3 py-1 bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] font-[family-name:var(--font-label-stamp)] text-sm rounded border border-[var(--color-primary)]/30">
                               {skill}
                             </span>
