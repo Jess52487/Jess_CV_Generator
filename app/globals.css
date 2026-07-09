@@ -1,5 +1,6 @@
 @import "tailwindcss";
-
+@source "./app";
+@source "./public";
 @theme inline {
   --color-error-container: #ffdad6;
   --color-secondary-fixed-dim: #e7bdb1;
@@ -132,4 +133,77 @@
 
 .perforation {
     border-bottom: 2px dotted #bfc8cd;
+}
+
+/* Legal Pad Paper Texture */
+.legal-pad-grain {
+    background-color: #ffffff;
+    background-image: 
+        linear-gradient(rgba(135, 206, 235, 0.2) 1px, transparent 1px);
+    background-size: 100% 28px; /* Matches line-height of body-lg */
+    position: relative;
+}
+
+.legal-pad-margin {
+    border-left: 2px solid rgba(255, 100, 100, 0.3);
+    margin-left: 40px;
+    height: 100%;
+}
+
+/* Skeuomorphic Depth */
+.embossed-text {
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3), 1px 1px 1px rgba(255,255,255,0.8);
+}
+
+.paper-shadow {
+    box-shadow: 
+        0 1px 1px rgba(0,0,0,0.1), 
+        0 10px 20px rgba(0,0,0,0.2),
+        0 15px 30px rgba(0,0,0,0.1);
+}
+
+.inner-indent {
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.08), inset -1px -1px 2px rgba(255,255,255,0.5);
+}
+
+/* Metallic Paperclip Button */
+.paperclip-btn {
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    border: 1px solid #d1d1d1;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1), -1px -1px 2px rgba(255,255,255,0.8);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.paperclip-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: translateX(-100%);
+}
+
+.paperclip-btn:hover::after {
+    transform: translateX(100%);
+    transition: transform 0.5s;
+}
+
+.paperclip-btn:active {
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2);
+    transform: translateY(1px);
+}
+
+/* Stamped Effect */
+.stamped {
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    transform: rotate(-0.5deg);
+}
+
+.perforated-top {
+    background-image: radial-gradient(circle, #3d1c10 2px, transparent 2.5px);
+    background-size: 15px 100%;
+    height: 10px;
+    width: 100%;
 }
