@@ -147,15 +147,15 @@ export default function ExportClipboard() {
             
             {/* Tool Tray */}
             <div className="flex gap-4">
-              <button className="flex-1 bg-[var(--color-surface-container-highest)] p-4 rounded shadow-[2px_2px_0_rgba(0,0,0,0.2)] border border-white/20 hover:translate-y-0.5 hover:shadow-none transition-all flex flex-col items-center gap-1">
+              <button onClick={() => { window.location.href='/notepad' }} className="flex-1 bg-[var(--color-surface-container-highest)] p-4 rounded shadow-[2px_2px_0_rgba(0,0,0,0.2)] border border-white/20 hover:translate-y-0.5 hover:shadow-none transition-all flex flex-col items-center gap-1 cursor-pointer">
                 <span className="material-symbols-outlined text-[var(--color-on-surface-variant)]">edit</span>
                 <span className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-surface-variant)]">Edit</span>
               </button>
-              <button className="flex-1 bg-[var(--color-surface-container-highest)] p-4 rounded shadow-[2px_2px_0_rgba(0,0,0,0.2)] border border-white/20 hover:translate-y-0.5 hover:shadow-none transition-all flex flex-col items-center gap-1">
+              <button onClick={() => { alert('Preview Mode: Document is ready to print!') }} className="flex-1 bg-[var(--color-surface-container-highest)] p-4 rounded shadow-[2px_2px_0_rgba(0,0,0,0.2)] border border-white/20 hover:translate-y-0.5 hover:shadow-none transition-all flex flex-col items-center gap-1 cursor-pointer">
                 <span className="material-symbols-outlined text-[var(--color-on-surface-variant)]">visibility</span>
                 <span className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-surface-variant)]">Preview</span>
               </button>
-              <button className="flex-1 bg-[var(--color-surface-container-highest)] p-4 rounded shadow-[2px_2px_0_rgba(0,0,0,0.2)] border border-white/20 hover:translate-y-0.5 hover:shadow-none transition-all flex flex-col items-center gap-1">
+              <button onClick={() => { window.location.href='/templates' }} className="flex-1 bg-[var(--color-surface-container-highest)] p-4 rounded shadow-[2px_2px_0_rgba(0,0,0,0.2)] border border-white/20 hover:translate-y-0.5 hover:shadow-none transition-all flex flex-col items-center gap-1 cursor-pointer">
                 <span className="material-symbols-outlined text-[var(--color-on-surface-variant)]">settings</span>
                 <span className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-surface-variant)]">Set</span>
               </button>

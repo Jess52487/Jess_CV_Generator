@@ -1,9 +1,32 @@
+"use client";
+
 import Header from "./components/layout/Header";
 import SideNav from "./components/layout/SideNav";
 import Footer from "./components/layout/Footer";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Dashboard() {
+  const router = useRouter();
+
+  // Local state to simulate deleting folders
+  const [folders, setFolders] = useState([
+    { id: 1, type: "PDF", name: "Executive_Dir_v2", time: "2 hours ago", color: "bg-[var(--color-on-secondary-fixed-variant)]", border: "border-[var(--color-primary)]", actionText: "Edit Suite" },
+    { id: 2, type: "Draft", name: "Tech_Lead_Google", time: "Oct 24, 2023", color: "bg-[var(--color-secondary)]", border: "border-[var(--color-secondary)]", actionText: "Continue Working" },
+    { id: 3, type: "Shared", name: "Creative_CV_Pink", time: "5 days ago", color: "bg-[var(--color-on-secondary-fixed-variant)]", border: "border-[var(--color-primary)]", actionText: "Share Link" }
+  ]);
+
+  const handleDelete = (id: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setFolders(folders.filter(f => f.id !== id));
+  };
+
+  const handleAction = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    router.push("/notepad");
+  };
+
   return (
     <>
       <Header />
@@ -33,46 +56,31 @@ export default function Dashboard() {
 
           {/* Bento Grid of Manila Folders */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-            {/* Folder 1 */}
-            <div className="manila-folder p-6 flex flex-col h-64 cursor-pointer hover:scale-[0.98] transition-transform">
-              <div className="flex justify-between items-start mb-4">
-                <span className="material-symbols-outlined text-[var(--color-on-secondary-container)]">folder_open</span>
-                <span className="font-[family-name:var(--font-label-embossed)] text-[12px] bg-[var(--color-on-secondary-fixed-variant)] text-[var(--color-surface)] px-2 py-0.5 rounded">PDF</span>
-              </div>
-              <div className="paper-sheet flex-grow p-4 mb-4 border-t-4 border-[var(--color-primary)]">
-                <h3 className="font-[family-name:var(--font-headline-md)] text-[var(--color-on-surface)] text-lg leading-tight mb-1">Executive_Dir_v2</h3>
-                <p className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-outline)] uppercase">Last edited: 2 hours ago</p>
-                <div className="mt-4 space-y-2">
-                  <div className="h-1 bg-[var(--color-surface-container-highest)] w-full rounded"></div>
-                  <div className="h-1 bg-[var(--color-surface-container-highest)] w-3/4 rounded"></div>
-                  <div className="h-1 bg-[var(--color-surface-container-highest)] w-5/6 rounded"></div>
+            {folders.map(folder => (
+              <div key={folder.id} className="manila-folder p-6 flex flex-col h-64 cursor-pointer hover:scale-[0.98] transition-transform" onClick={() => router.push("/notepad")}>
+                <div className="flex justify-between items-start mb-4">
+                  <span className="material-symbols-outlined text-[var(--color-on-secondary-container)]">folder_open</span>
+                  <span className={`font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-surface)] px-2 py-0.5 rounded ${folder.color}`}>{folder.type}</span>
+                </div>
+                <div className={`paper-sheet flex-grow p-4 mb-4 border-t-4 ${folder.border}`}>
+                  <h3 className="font-[family-name:var(--font-headline-md)] text-[var(--color-on-surface)] text-lg leading-tight mb-1">{folder.name}</h3>
+                  <p className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-outline)] uppercase">Last edited: {folder.time}</p>
+                  <div className="mt-4 space-y-2">
+                    <div className="h-1 bg-[var(--color-surface-container-highest)] w-full rounded"></div>
+                    <div className="h-1 bg-[var(--color-surface-container-highest)] w-3/4 rounded"></div>
+                    {folder.id === 1 && <div className="h-1 bg-[var(--color-surface-container-highest)] w-5/6 rounded"></div>}
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <button onClick={handleAction} className="text-[var(--color-primary)] hover:underline font-[family-name:var(--font-label-stamp)] text-[10px] uppercase">
+                    {folder.actionText}
+                  </button>
+                  <button onClick={(e) => handleDelete(folder.id, e)} className="material-symbols-outlined text-[var(--color-outline)] text-lg cursor-pointer hover:text-[var(--color-error)] transition-colors border-none bg-transparent">
+                    delete
+                  </button>
                 </div>
               </div>
-              <div className="flex justify-between items-center">
-                <button className="text-[var(--color-primary)] hover:underline font-[family-name:var(--font-label-stamp)] text-[10px] uppercase">Edit Suite</button>
-                <span className="material-symbols-outlined text-[var(--color-outline)] text-lg cursor-pointer hover:text-[var(--color-error)] transition-colors">delete</span>
-              </div>
-            </div>
-
-            {/* Folder 2 */}
-            <div className="manila-folder p-6 flex flex-col h-64 cursor-pointer hover:scale-[0.98] transition-transform">
-              <div className="flex justify-between items-start mb-4">
-                <span className="material-symbols-outlined text-[var(--color-on-secondary-container)]">folder_open</span>
-                <span className="font-[family-name:var(--font-label-embossed)] text-[12px] bg-[var(--color-secondary)] text-[var(--color-on-secondary)] px-2 py-0.5 rounded">Draft</span>
-              </div>
-              <div className="paper-sheet flex-grow p-4 mb-4 border-t-4 border-[var(--color-secondary)]">
-                <h3 className="font-[family-name:var(--font-headline-md)] text-[var(--color-on-surface)] text-lg leading-tight mb-1">Tech_Lead_Google</h3>
-                <p className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-outline)] uppercase">Last edited: Oct 24, 2023</p>
-                <div className="mt-4 space-y-2">
-                  <div className="h-1 bg-[var(--color-surface-container-highest)] w-full rounded"></div>
-                  <div className="h-1 bg-[var(--color-surface-container-highest)] w-1/2 rounded"></div>
-                </div>
-              </div>
-              <div className="flex justify-between items-center">
-                <button className="text-[var(--color-primary)] hover:underline font-[family-name:var(--font-label-stamp)] text-[10px] uppercase">Continue Working</button>
-                <span className="material-symbols-outlined text-[var(--color-outline)] text-lg cursor-pointer hover:text-[var(--color-error)] transition-colors">delete</span>
-              </div>
-            </div>
+            ))}
 
             {/* Create New Placeholder */}
             <Link href="/notepad">
@@ -96,7 +104,7 @@ export default function Dashboard() {
               </div>
               <div className="flex flex-col">
                 <span className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-surface-variant)] uppercase">Total Files</span>
-                <span className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-primary-fixed)] leading-tight">12/50</span>
+                <span className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-primary-fixed)] leading-tight">{folders.length}/50</span>
               </div>
             </div>
           </div>

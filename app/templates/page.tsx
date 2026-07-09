@@ -88,7 +88,7 @@ export default function TemplateGallery() {
 
             {/* Cabinet Bottom Details */}
             <div className="mt-16 pt-8 border-t border-black/10 flex justify-center">
-              <button className="px-12 py-4 bg-[var(--color-surface-container-high)] rounded-lg font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] shadow-md hover:shadow-lg transition-all border border-white/50 active:shadow-inner uppercase tracking-widest flex items-center gap-2">
+              <button onClick={() => alert("No more template records available in the physical archive at this time.")} className="px-12 py-4 bg-[var(--color-surface-container-high)] rounded-lg font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] shadow-md hover:shadow-lg transition-all border border-white/50 active:shadow-inner uppercase tracking-widest flex items-center gap-2 cursor-pointer">
                 <span className="material-symbols-outlined">sync</span>
                 Load More Records
               </button>

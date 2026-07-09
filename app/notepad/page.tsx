@@ -3,12 +3,17 @@
 import Header from "../components/layout/Header";
 import SideNav from "../components/layout/SideNav";
 import Footer from "../components/layout/Footer";
-import { useCVContext } from "../context/CVContext";
+import { useCVContext, Experience } from "../context/CVContext";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Notepad() {
-  const { data, updateField } = useCVContext();
+  const { data, updateField, addExperience, updateExperience, deleteExperience } = useCVContext();
   const router = useRouter();
+
+  // State for inline Experience Form
+  const [isEditingExp, setIsEditingExp] = useState(false);
+  const [currentExp, setCurrentExp] = useState<Experience | null>(null);
 
   const handleSave = () => {
     // Navigate to Templates after saving
@@ -19,6 +24,43 @@ export default function Notepad() {
     updateField("fullName", "");
     updateField("jobTitle", "");
     updateField("summary", "");
+    updateField("experiences", []);
+  };
+
+  const openNewExpForm = () => {
+    setCurrentExp({
+      id: Date.now().toString(),
+      title: "",
+      company: "",
+      startDate: "",
+      endDate: "",
+      skills: []
+    });
+    setIsEditingExp(true);
+  };
+
+  const openEditExpForm = (exp: Experience) => {
+    setCurrentExp({ ...exp });
+    setIsEditingExp(true);
+  };
+
+  const saveExpForm = () => {
+    if (currentExp) {
+      // Check if it already exists
+      const exists = data.experiences.some(e => e.id === currentExp.id);
+      if (exists) {
+        updateExperience(currentExp.id, currentExp);
+      } else {
+        addExperience(currentExp);
+      }
+    }
+    setIsEditingExp(false);
+    setCurrentExp(null);
+  };
+
+  const cancelExpForm = () => {
+    setIsEditingExp(false);
+    setCurrentExp(null);
   };
 
   return (
@@ -101,33 +143,97 @@ export default function Notepad() {
                 </div>
                 
                 {/* Section: Work History */}
-                <div className="pt-8">
+                <div className="pt-8 relative">
                   <div className="flex items-center justify-between border-b-2 border-dotted border-[var(--color-outline-variant)] pb-2 mb-8">
                     <h2 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-secondary)] uppercase font-bold">Experience History</h2>
-                    <button className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px]">
-                      <span className="material-symbols-outlined text-sm" data-icon="add">add</span>
-                      ATTACH NEW RECORD
-                    </button>
+                    {!isEditingExp && (
+                      <button onClick={openNewExpForm} className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px]">
+                        <span className="material-symbols-outlined text-sm" data-icon="add">add</span>
+                        ATTACH NEW RECORD
+                      </button>
+                    )}
                   </div>
                   
-                  {/* Bento-style Experience Cards */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {data.experiences.map((exp) => (
-                      <div key={exp.id} className="p-6 bg-[var(--color-surface-container-lowest)] border border-[var(--color-outline-variant)] rounded shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group cursor-pointer">
-                        <div className="absolute top-0 right-0 p-2 text-[var(--color-primary)] opacity-20 group-hover:opacity-100 transition-opacity">
-                          <span className="material-symbols-outlined" data-icon="edit">edit</span>
+                  {/* Inline Experience Form */}
+                  {isEditingExp && currentExp && (
+                    <div className="mb-8 p-6 bg-yellow-50 border border-yellow-200 shadow-lg rounded-sm relative transform rotate-1">
+                      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-4 bg-red-500/20 shadow-sm tape-strip"></div>
+                      <h3 className="font-[family-name:var(--font-headline-md)] text-lg mb-4 text-yellow-900 border-b border-yellow-200 pb-2">Record Entry Form</h3>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div className="space-y-1">
+                          <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-yellow-800">Job Title</label>
+                          <input type="text" className="w-full bg-white/50 border-b border-yellow-300 px-2 py-1 outline-none font-[family-name:var(--font-body-md)]" 
+                            value={currentExp.title} 
+                            onChange={e => setCurrentExp({...currentExp, title: e.target.value})} 
+                            placeholder="e.g. Director of Operations"
+                          />
                         </div>
-                        <p className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-primary)] mb-1">{exp.startDate} — {exp.endDate}</p>
-                        <h3 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-on-surface)]">{exp.title}</h3>
-                        <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)] mt-2 italic">{exp.company}</p>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {exp.skills.map(skill => (
-                            <span key={skill} className="text-[10px] uppercase font-bold px-2 py-0.5 bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] rounded-full">{skill}</span>
-                          ))}
+                        <div className="space-y-1">
+                          <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-yellow-800">Company</label>
+                          <input type="text" className="w-full bg-white/50 border-b border-yellow-300 px-2 py-1 outline-none font-[family-name:var(--font-body-md)]" 
+                            value={currentExp.company} 
+                            onChange={e => setCurrentExp({...currentExp, company: e.target.value})} 
+                            placeholder="e.g. Acme Corp"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-yellow-800">Start Date</label>
+                          <input type="text" className="w-full bg-white/50 border-b border-yellow-300 px-2 py-1 outline-none font-[family-name:var(--font-body-md)]" 
+                            value={currentExp.startDate} 
+                            onChange={e => setCurrentExp({...currentExp, startDate: e.target.value})} 
+                            placeholder="e.g. 2018"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-yellow-800">End Date</label>
+                          <input type="text" className="w-full bg-white/50 border-b border-yellow-300 px-2 py-1 outline-none font-[family-name:var(--font-body-md)]" 
+                            value={currentExp.endDate} 
+                            onChange={e => setCurrentExp({...currentExp, endDate: e.target.value})} 
+                            placeholder="e.g. Present"
+                          />
+                        </div>
+                        <div className="md:col-span-2 space-y-1">
+                          <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-yellow-800">Key Skills (comma separated)</label>
+                          <input type="text" className="w-full bg-white/50 border-b border-yellow-300 px-2 py-1 outline-none font-[family-name:var(--font-body-md)]" 
+                            value={currentExp.skills.join(", ")} 
+                            onChange={e => setCurrentExp({...currentExp, skills: e.target.value.split(",").map(s => s.trim()).filter(s => s)})} 
+                            placeholder="e.g. Leadership, Strategy, Operations"
+                          />
                         </div>
                       </div>
-                    ))}
-                  </div>
+                      <div className="flex justify-end gap-4 mt-6">
+                        <button onClick={cancelExpForm} className="text-yellow-800 font-[family-name:var(--font-label-stamp)] text-xs uppercase px-4 py-2 hover:bg-yellow-200/50 rounded transition-colors">Discard</button>
+                        <button onClick={saveExpForm} className="bg-yellow-800 text-yellow-50 font-[family-name:var(--font-label-stamp)] text-xs uppercase px-6 py-2 rounded shadow hover:bg-yellow-900 transition-colors">Attach Record</button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Bento-style Experience Cards */}
+                  {!isEditingExp && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {data.experiences.map((exp) => (
+                        <div key={exp.id} className="p-6 bg-[var(--color-surface-container-lowest)] border border-[var(--color-outline-variant)] rounded shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                          <div className="absolute top-0 right-0 p-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onClick={() => openEditExpForm(exp)} className="text-[var(--color-primary)] hover:text-[var(--color-surface-tint)]">
+                              <span className="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+                            </button>
+                            <button onClick={() => deleteExperience(exp.id)} className="text-[var(--color-error)] hover:text-red-700">
+                              <span className="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+                            </button>
+                          </div>
+                          <p className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-primary)] mb-1">{exp.startDate} — {exp.endDate}</p>
+                          <h3 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-on-surface)]">{exp.title}</h3>
+                          <p className="font-[family-name:var(--font-body-md)] text-[16px] text-[var(--color-on-surface-variant)] mt-2 italic">{exp.company}</p>
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            {exp.skills.map(skill => (
+                              <span key={skill} className="text-[10px] uppercase font-bold px-2 py-0.5 bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] rounded-full">{skill}</span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 
                 {/* Action Buttons Section */}

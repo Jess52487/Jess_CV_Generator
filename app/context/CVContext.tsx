@@ -48,6 +48,9 @@ type CVContextType = {
   data: CVData;
   setData: (data: CVData) => void;
   updateField: (field: keyof CVData, value: any) => void;
+  addExperience: (exp: Experience) => void;
+  updateExperience: (id: string, exp: Experience) => void;
+  deleteExperience: (id: string) => void;
 };
 
 const CVContext = createContext<CVContextType | undefined>(undefined);
@@ -76,6 +79,36 @@ export function CVProvider({ children }: { children: ReactNode }) {
   const updateField = (field: keyof CVData, value: any) => {
     setDataState((prev) => {
       const updated = { ...prev, [field]: value };
+      localStorage.setItem("jess-cv-data", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const addExperience = (exp: Experience) => {
+    setDataState((prev) => {
+      const updated = { ...prev, experiences: [...prev.experiences, exp] };
+      localStorage.setItem("jess-cv-data", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const updateExperience = (id: string, updatedExp: Experience) => {
+    setDataState((prev) => {
+      const updated = { 
+        ...prev, 
+        experiences: prev.experiences.map(e => e.id === id ? updatedExp : e) 
+      };
+      localStorage.setItem("jess-cv-data", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const deleteExperience = (id: string) => {
+    setDataState((prev) => {
+      const updated = { 
+        ...prev, 
+        experiences: prev.experiences.filter(e => e.id !== id) 
+      };
       localStorage.setItem("jess-cv-data", JSON.stringify(updated));
       return updated;
     });
