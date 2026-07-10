@@ -7,7 +7,7 @@ import { useCVContext, Experience, Education } from "../context/CVContext";
 import { useRouter } from "next/navigation";
 import { useState, useMemo } from "react";
 
-type Tab = "Profile" | "Experience" | "Education" | "Skills";
+type Tab = "Profile" | "Experience" | "Education" | "Skills" | "References";
 
 export default function Notepad() {
   const { 
@@ -145,8 +145,8 @@ export default function Notepad() {
         <div className="max-w-4xl w-full relative">
           
           {/* Manila Folder Tabs */}
-          <div className="flex gap-1 pl-4 relative z-10 mb-[-1px]">
-            {(["Profile", "Experience", "Education", "Skills"] as Tab[]).map((tab) => (
+          <div className="flex gap-1 pl-4 relative z-10 mb-[-1px] overflow-x-auto">
+            {(["Profile", "Experience", "Education", "Skills", "References"] as Tab[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -509,14 +509,14 @@ export default function Notepad() {
 
                       <div className="bg-[var(--color-surface-container-low)] p-6 rounded-sm border border-[var(--color-outline-variant)]">
                         <label className="block font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface-variant)] uppercase embossed-text mb-4">
-                          Master Skills List (Comma Separated)
+                          Master Skills List (One per line)
                         </label>
                         <textarea 
                           className="w-full bg-white border border-[var(--color-outline-variant)] rounded-sm py-3 px-4 font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface)] focus:ring-2 focus:ring-[var(--color-primary-container)] outline-none"
-                          placeholder="e.g. Project Management, Agile, UI/UX Design..."
-                          rows={4}
-                          value={(data.globalSkills || []).join(", ")}
-                          onChange={(e) => updateField("globalSkills", e.target.value.split(",").map(s => s.trim()).filter(s => s))}
+                          placeholder="e.g. Project Management&#10;Agile&#10;UI/UX Design (Figma, Sketch)"
+                          rows={6}
+                          value={(data.globalSkills || []).join("\n")}
+                          onChange={(e) => updateField("globalSkills", e.target.value.split("\n").map(s => s.trim()).filter(s => s))}
                         ></textarea>
                         <p className="mt-3 font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)] italic">
                           These skills will appear in a dedicated section on your generated CV. This is optional if you prefer only listing skills under specific job roles.
@@ -533,6 +533,35 @@ export default function Notepad() {
                           ))}
                         </div>
                       )}
+                    </div>
+                  </div>
+                )}
+                
+                {/* --- REFERENCES TAB --- */}
+                {activeTab === "References" && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div>
+                      <h2 className="font-[family-name:var(--font-headline-md)] text-[var(--color-primary)] text-2xl mb-2 flex items-center gap-2">
+                        <span className="material-symbols-outlined text-[28px]">groups</span>
+                        References
+                      </h2>
+                      <p className="font-[family-name:var(--font-body-md)] text-[var(--color-on-surface-variant)] text-sm mb-6 max-w-xl">
+                        Add references here. This is completely optional. If provided, they will be listed at the end of your CV.
+                      </p>
+
+                      <div className="bg-[var(--color-surface-container-low)] p-6 rounded-sm border border-[var(--color-outline-variant)]">
+                        <label className="block font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface-variant)] uppercase embossed-text mb-4">
+                          References Details
+                        </label>
+                        <textarea 
+                          className="w-full bg-white border border-[var(--color-outline-variant)] rounded-sm py-3 px-4 font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface)] focus:ring-2 focus:ring-[var(--color-primary-container)] outline-none text-justify"
+                          style={{ fontFamily: "'Times New Roman', Times, serif" }}
+                          placeholder="e.g. Available upon request&#10;Or list full names and contact info..."
+                          rows={8}
+                          value={data.references || ""}
+                          onChange={(e) => updateField("references", e.target.value)}
+                        ></textarea>
+                      </div>
                     </div>
                   </div>
                 )}

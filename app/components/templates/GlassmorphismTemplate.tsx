@@ -73,7 +73,7 @@ export default function GlassmorphismTemplate({ data }: { data: CVData }) {
             {data.globalSkills && data.globalSkills.length > 0 && (
               <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-2xl shadow-lg">
                 <h2 className="text-lg font-bold uppercase tracking-widest mb-4 text-white/90 border-b border-white/20 pb-2 inline-block">Skills</h2>
-                <ol className="list-decimal pl-5 text-sm font-medium space-y-2 text-white/90">
+                <ol className="list-decimal list-inside pl-5 text-sm font-medium space-y-2 text-white/90">
                   {data.globalSkills.map(skill => (
                     <li key={skill}>{skill}</li>
                   ))}
@@ -99,6 +99,16 @@ export default function GlassmorphismTemplate({ data }: { data: CVData }) {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {/* References */}
+            {data.references && (
+              <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-2xl shadow-lg mt-6">
+                <h2 className="text-lg font-bold uppercase tracking-widest mb-4 text-white/90 border-b border-white/20 pb-2 inline-block">References</h2>
+                <p className="text-sm leading-relaxed text-justify text-white/90 whitespace-pre-wrap">
+                  {data.references}
+                </p>
               </div>
             )}
 

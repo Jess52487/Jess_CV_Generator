@@ -79,7 +79,7 @@ export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
         <div>
           <h2 className="text-sm uppercase tracking-widest text-[#0f172a] mb-6 border-b border-[#cbd5e1] pb-2">Skills</h2>
           {data.globalSkills && data.globalSkills.length > 0 ? (
-            <ol className="list-decimal pl-5 text-sm text-[#334155] space-y-2">
+            <ol className="list-decimal list-inside pl-5 text-sm text-[#334155] space-y-2">
               {data.globalSkills.map(skill => (
                 <li key={skill}>{skill}</li>
               ))}
@@ -88,6 +88,16 @@ export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
             <p className="italic text-[#94a3b8] text-sm">No skills added.</p>
           )}
         </div>
+
+        {/* References */}
+        {data.references && (
+          <div className="mt-8">
+            <h2 className="text-sm uppercase tracking-widest text-[#0f172a] mb-6 border-b border-[#cbd5e1] pb-2">References</h2>
+            <p className="text-sm text-[#334155] leading-relaxed text-justify whitespace-pre-wrap">
+              {data.references}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

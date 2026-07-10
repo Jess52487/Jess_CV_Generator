@@ -34,6 +34,7 @@ export type CVData = {
   experiences: Experience[];
   education: Education[];
   globalSkills: string[];
+  references?: string;
   selectedTemplate: string;
 };
 
@@ -57,6 +58,7 @@ const defaultData: CVData = {
   experiences: [],
   education: [],
   globalSkills: [],
+  references: "",
   selectedTemplate: "The Executive",
 };
 

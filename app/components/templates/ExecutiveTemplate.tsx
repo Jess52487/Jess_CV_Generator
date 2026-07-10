@@ -42,7 +42,7 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
       {data.globalSkills && data.globalSkills.length > 0 && (
         <div className="mb-8 px-8">
           <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-6 font-bold text-center text-[#111827]">Skills</h2>
-          <ol className="list-decimal pl-5 text-[#1f2937] font-semibold space-y-1">
+          <ol className="list-decimal list-inside pl-5 text-[#1f2937] font-semibold space-y-1">
             {data.globalSkills.map((skill, idx) => (
               <li key={idx}>{skill}</li>
             ))}
@@ -93,6 +93,16 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* References */}
+      {data.references && (
+        <div className="mt-8 pt-4 border-t-2 border-[#1f2937]">
+          <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-4 font-bold text-center text-[#111827]">References</h2>
+          <p className="text-sm leading-relaxed text-justify whitespace-pre-wrap" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
+            {data.references}
+          </p>
         </div>
       )}
     </div>

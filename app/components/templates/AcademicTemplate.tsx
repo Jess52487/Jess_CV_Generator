@@ -81,11 +81,21 @@ export default function AcademicTemplate({ data }: { data: CVData }) {
       {data.globalSkills && data.globalSkills.length > 0 && (
         <div className="mb-8">
           <h2 className="text-lg uppercase font-bold border-b border-black mb-3">Skills</h2>
-          <ol className="list-decimal pl-5 text-md space-y-1">
+          <ol className="list-decimal list-inside pl-5 text-md space-y-1">
             {data.globalSkills.map(skill => (
               <li key={skill}>{skill}</li>
             ))}
           </ol>
+        </div>
+      )}
+
+      {/* References */}
+      {data.references && (
+        <div className="mt-8 border-t border-black pt-4">
+          <h2 className="text-lg uppercase font-bold mb-3">References</h2>
+          <p className="text-md leading-relaxed text-justify whitespace-pre-wrap">
+            {data.references}
+          </p>
         </div>
       )}
     </div>

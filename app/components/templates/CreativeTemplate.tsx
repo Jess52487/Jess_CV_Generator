@@ -36,7 +36,7 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
 
           <div>
             <h2 className="text-xs uppercase tracking-widest text-[#94a3b8] font-bold mb-4">Skills</h2>
-            <ol className="list-decimal pl-4 gap-2 flex flex-col text-[#334155] text-xs font-semibold">
+            <ol className="list-decimal list-inside pl-4 gap-2 flex flex-col text-[#334155] text-xs font-semibold">
               {data.globalSkills && data.globalSkills.length > 0 ? (
                 data.globalSkills.map(skill => (
                   <li key={skill} className="pl-1">{skill}</li>
@@ -101,6 +101,16 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
                   </div>
                 ))}
               </div>
+            </>
+          )}
+
+          {/* References */}
+          {data.references && (
+            <>
+              <h2 className="text-sm font-black uppercase tracking-widest text-[#0f172a] mb-6 border-b border-[#e2e8f0] pb-2 mt-12">References</h2>
+              <p className="text-[#475569] text-xs leading-relaxed text-justify whitespace-pre-wrap" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
+                {data.references}
+              </p>
             </>
           )}
         </div>

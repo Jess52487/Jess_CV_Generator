@@ -81,7 +81,7 @@ export default function FreshStartTemplate({ data }: { data: CVData }) {
                 <span className="w-8 h-8 rounded-full bg-[#f59e0b]/10 flex items-center justify-center text-[#f59e0b]">⚡</span>
                 Skills
               </h2>
-              <ol className="list-decimal pl-5 text-sm font-medium text-[#475569] space-y-2">
+              <ol className="list-decimal list-inside pl-5 text-sm font-medium text-[#475569] space-y-2">
                 {data.globalSkills.map(skill => (
                   <li key={skill}>{skill}</li>
                 ))}
@@ -108,6 +108,16 @@ export default function FreshStartTemplate({ data }: { data: CVData }) {
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* References */}
+          {data.references && (
+            <div className="mt-10">
+              <h2 className="text-sm font-bold text-[#0f172a] uppercase tracking-widest mb-6">References</h2>
+              <p className="text-xs text-[#64748b] leading-relaxed text-justify whitespace-pre-wrap">
+                {data.references}
+              </p>
             </div>
           )}
 

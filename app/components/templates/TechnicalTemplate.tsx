@@ -44,7 +44,7 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
       {data.globalSkills && data.globalSkills.length > 0 && (
         <div className="mb-10">
           <h2 className="text-xl font-bold mb-3 text-[#22c55e]">{'// Skills'}</h2>
-          <ol className="list-decimal pl-5 text-sm text-[#4ade80] font-mono leading-relaxed space-y-1">
+          <ol className="list-decimal list-inside pl-5 text-sm text-[#4ade80] font-mono leading-relaxed space-y-1">
             {data.globalSkills.map(s => <li key={s}>{s}</li>)}
           </ol>
         </div>
@@ -93,6 +93,16 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* References */}
+      {data.references && (
+        <div className="mt-8 pt-6 border-t border-[#166534]">
+          <h2 className="text-xl font-bold mb-4 text-[#22c55e]">{'// References'}</h2>
+          <p className="text-sm text-[#4ade80] font-mono leading-relaxed whitespace-pre-wrap">
+            {data.references}
+          </p>
         </div>
       )}
     </div>
