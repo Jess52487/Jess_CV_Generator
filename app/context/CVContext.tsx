@@ -73,6 +73,7 @@ type CVContextType = {
   savedCVs: SavedCV[];
   finalizeDraft: () => void;
   deleteSavedCV: (id: string) => void;
+  purgeAllData: () => void;
 };
 
 const CVContext = createContext<CVContextType | undefined>(undefined);
@@ -205,6 +206,13 @@ export const CVProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const purgeAllData = () => {
+    setDataState(defaultData);
+    setSavedCVs([]);
+    localStorage.removeItem("jess-cv-data");
+    localStorage.removeItem("jess-cv-history");
+  };
+
   if (!isLoaded) {
     return null; // Or a loading spinner
   }
@@ -214,7 +222,7 @@ export const CVProvider = ({ children }: { children: ReactNode }) => {
       data, setData, updateField, 
       addExperience, updateExperience, deleteExperience,
       addEducation, updateEducation, deleteEducation,
-      savedCVs, finalizeDraft, deleteSavedCV
+      savedCVs, finalizeDraft, deleteSavedCV, purgeAllData
     }}>
       {children}
     </CVContext.Provider>

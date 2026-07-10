@@ -10,12 +10,13 @@ import TemplateRenderer from "../components/templates/TemplateRenderer";
 import { useRouter } from "next/navigation";
 
 export default function ExportClipboard() {
-  const { savedCVs, deleteSavedCV } = useCVContext();
+  const { savedCVs, deleteSavedCV, purgeAllData } = useCVContext();
   const targetRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   // Selected CV from history
   const [selectedCVId, setSelectedCVId] = useState<string | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
 
   // Automatically select the most recent CV if none is selected
   useEffect(() => {
@@ -28,16 +29,29 @@ export default function ExportClipboard() {
 
   const activeCV = savedCVs.find(cv => cv.id === selectedCVId);
 
-  const handleExport = () => {
-    if (!activeCV) return;
-    generatePDF(targetRef, {
-      filename: `${activeCV.data.fullName.replace(/\s+/g, '_')}_CV.pdf`,
-      resolution: Resolution.HIGH,
-      page: {
-        margin: Margin.MEDIUM,
-        format: 'a4',
-      }
-    });
+  const handleExport = async () => {
+    if (!activeCV || isExporting) return;
+    setIsExporting(true);
+
+    try {
+      await generatePDF(targetRef, {
+        filename: `${activeCV.data.fullName.replace(/\s+/g, '_') || 'My'}_CV.pdf`,
+        resolution: Resolution.HIGH,
+        page: {
+          margin: Margin.MEDIUM,
+          format: 'a4',
+        }
+      });
+      
+      // Successfully exported. Reset everything for privacy.
+      purgeAllData();
+      alert("Success! Your CV has been downloaded.\n\nFor your privacy and security, all your data has now been permanently cleared from this device.");
+    } catch (error) {
+      console.error("Export failed", error);
+      alert("Failed to export PDF.");
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   const handleDelete = (e: React.MouseEvent, id: string) => {
@@ -160,16 +174,19 @@ export default function ExportClipboard() {
                   ))}
                 </div>
 
-                {/* Export Button Area */}
                 <div className="p-6 bg-[var(--color-surface-container-low)] border-t border-[var(--color-outline-variant)]">
                   <button 
                     onClick={handleExport}
-                    disabled={!activeCV}
+                    disabled={!activeCV || isExporting}
                     className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-4 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                    <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>download</span>
-                    <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase font-bold">Export PDF</span>
+                    <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+                      {isExporting ? 'hourglass_empty' : 'download'}
+                    </span>
+                    <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase font-bold">
+                      {isExporting ? 'Exporting...' : 'Export PDF'}
+                    </span>
                   </button>
                 </div>
               </div>
