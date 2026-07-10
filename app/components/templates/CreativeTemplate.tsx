@@ -25,25 +25,28 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
           </div>
           
           <div className="mb-12">
-            <h2 className="text-xs uppercase tracking-widest text-[#94a3b8] font-bold mb-4">Profile</h2>
-            <p className="text-sm leading-relaxed text-[#475569]">
+            <h2 className="text-xs uppercase tracking-widest text-[#94a3b8] font-bold mb-4">Summary</h2>
+            <p 
+              className="text-sm leading-relaxed text-[#475569] text-justify"
+              style={{ fontFamily: "'Times New Roman', Times, serif" }}
+            >
               {data.summary || "Your professional summary goes here."}
             </p>
           </div>
 
           <div>
-            <h2 className="text-xs uppercase tracking-widest text-[#94a3b8] font-bold mb-4">Core Skills</h2>
-            <div className="flex flex-col gap-3">
+            <h2 className="text-xs uppercase tracking-widest text-[#94a3b8] font-bold mb-4">Skills</h2>
+            <ol className="list-decimal pl-4 gap-2 flex flex-col text-[#334155] text-xs font-semibold">
               {data.globalSkills && data.globalSkills.length > 0 ? (
                 data.globalSkills.map(skill => (
-                  <span key={skill} className="text-xs font-semibold text-[#334155] bg-[#f1f5f9] px-3 py-1.5 rounded-sm inline-block w-fit">{skill}</span>
+                  <li key={skill} className="pl-1">{skill}</li>
                 ))
               ) : (
                 data.experiences.flatMap(e => e.skills).filter((v, i, a) => a.indexOf(v) === i).map(skill => (
-                  <span key={skill} className="text-xs font-semibold text-[#334155] bg-[#f1f5f9] px-3 py-1.5 rounded-sm inline-block w-fit">{skill}</span>
+                  <li key={skill} className="pl-1">{skill}</li>
                 ))
               )}
-            </div>
+            </ol>
           </div>
         </div>
 

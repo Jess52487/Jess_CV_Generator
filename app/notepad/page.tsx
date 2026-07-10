@@ -261,7 +261,8 @@ export default function Notepad() {
                         <label className="block font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface-variant)] uppercase embossed-text">Professional Summary</label>
                         <div className="relative group">
                           <textarea 
-                            className="w-full bg-[var(--color-surface-container-low)] border-none rounded-sm py-3 px-4 font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface)] inner-indent focus:ring-2 focus:ring-[var(--color-primary-container)] placeholder:opacity-40 transition-all resize-none leading-[28px] outline-none" 
+                            className="w-full bg-[var(--color-surface-container-low)] border-none rounded-sm py-3 px-4 text-[18px] text-[var(--color-on-surface)] inner-indent focus:ring-2 focus:ring-[var(--color-primary-container)] placeholder:opacity-40 transition-all resize-none leading-[28px] outline-none text-justify" 
+                            style={{ fontFamily: "'Times New Roman', Times, serif" }}
                             placeholder="Describe your career achievements here..." 
                             rows={6}
                             value={data.summary || ""}
@@ -436,7 +437,7 @@ export default function Notepad() {
                           </div>
                           <div className="md:col-span-2 space-y-1">
                             <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-blue-800">Add a description to your education (Optional)</label>
-                            <textarea className="w-full bg-white/50 border border-blue-300 rounded px-2 py-1 outline-none font-[family-name:var(--font-body-md)]" value={currentEdu.description || ""} onChange={e => setCurrentEdu({...currentEdu, description: e.target.value})} placeholder="e.g. Graduated Summa Cum Laude. Key coursework included..." rows={3}></textarea>
+                            <textarea className="w-full bg-white/50 border border-blue-300 rounded px-2 py-1 outline-none font-[family-name:var(--font-body-md)] text-justify" value={currentEdu.description || ""} onChange={e => setCurrentEdu({...currentEdu, description: e.target.value})} placeholder="e.g. Graduated Summa Cum Laude. Key coursework included..." rows={3}></textarea>
                           </div>
                         </div>
                         <div className="flex justify-end gap-4 mt-6">

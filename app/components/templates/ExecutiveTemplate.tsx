@@ -28,21 +28,25 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
       {/* Summary */}
       {data.summary && (
         <div className="mb-12 px-8">
-          <p className="text-center italic text-[#374151] leading-loose text-lg">
-            "{data.summary}"
+          <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-6 font-bold text-center text-[#111827]">Summary</h2>
+          <p 
+            className="text-[#374151] leading-loose text-lg text-justify"
+            style={{ fontFamily: "'Times New Roman', Times, serif" }}
+          >
+            {data.summary}
           </p>
         </div>
       )}
 
       {/* Global Skills (Optional) */}
       {data.globalSkills && data.globalSkills.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-6 font-bold text-center text-[#111827]">Core Competencies</h2>
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 px-8">
-            {data.globalSkills.map(skill => (
-              <span key={skill} className="text-md text-[#1f2937] font-semibold">{skill}</span>
+        <div className="mb-8 px-8">
+          <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-6 font-bold text-center text-[#111827]">Skills</h2>
+          <ol className="list-decimal pl-5 text-[#1f2937] font-semibold space-y-1">
+            {data.globalSkills.map((skill, idx) => (
+              <li key={idx}>{skill}</li>
             ))}
-          </div>
+          </ol>
         </div>
       )}
 

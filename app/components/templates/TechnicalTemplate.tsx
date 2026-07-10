@@ -32,7 +32,10 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
       {/* Summary */}
       <div className="mb-10">
         <h2 className="text-xl font-bold mb-3 text-[#22c55e]">{'// Summary'}</h2>
-        <p className="text-sm leading-relaxed text-[#4ade80]">
+        <p 
+          className="text-sm leading-relaxed text-[#4ade80] text-justify"
+          style={{ fontFamily: "'Times New Roman', Times, serif" }}
+        >
           {data.summary || "No description provided."}
         </p>
       </div>
@@ -40,16 +43,16 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
       {/* Global Skills (Optional) */}
       {data.globalSkills && data.globalSkills.length > 0 && (
         <div className="mb-10">
-          <h2 className="text-xl font-bold mb-3 text-[#22c55e]">{'// Dependencies'}</h2>
-          <div className="text-sm text-[#4ade80] font-mono leading-relaxed">
-            [ {data.globalSkills.map(s => `"${s}"`).join(", ")} ]
-          </div>
+          <h2 className="text-xl font-bold mb-3 text-[#22c55e]">{'// Skills'}</h2>
+          <ol className="list-decimal pl-5 text-sm text-[#4ade80] font-mono leading-relaxed space-y-1">
+            {data.globalSkills.map(s => <li key={s}>{s}</li>)}
+          </ol>
         </div>
       )}
 
       {/* Experience */}
       <div>
-        <h2 className="text-xl font-bold mb-6 text-[#22c55e]">{'// Execution_Log'}</h2>
+        <h2 className="text-xl font-bold mb-6 text-[#22c55e]">{'// Experience'}</h2>
         <div className="space-y-8">
           {data.experiences.map(exp => (
             <div key={exp.id} className="border border-[#14532d] bg-[#000000]/30 p-6 rounded-sm">
@@ -73,9 +76,9 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
       </div>
 
       {/* Education (Optional) */}
-      {data.education && data.education.length > 0 && (
-        <div className="mt-10">
-          <h2 className="text-xl font-bold mb-6 text-[#22c55e]">{'// Init_Scripts'}</h2>
+      {(data.education || []).length > 0 && (
+        <div className="mt-12">
+          <h2 className="text-xl font-bold mb-6 text-[#22c55e]">{'// Education'}</h2>
           <div className="space-y-6">
             {data.education.map(edu => (
               <div key={edu.id} className="border-l-2 border-[#166534] pl-4">
