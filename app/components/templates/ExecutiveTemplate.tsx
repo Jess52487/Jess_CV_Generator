@@ -3,92 +3,68 @@ import { CVData } from "../../context/CVContext";
 
 export default function ExecutiveTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-[family-name:var(--font-executive)] text-[#111827] leading-relaxed bg-[#ffffff] min-h-full flex-grow p-12">
+    <div className="font-sans text-[14.5px] leading-[1.15] text-[#111827] bg-[#ffffff] min-h-full flex-grow p-[15mm] flex flex-col text-left">
       {/* Header */}
-      <div className="text-center mb-10 border-b-4 border-[#1f2937] pb-8">
-        <h1 className="text-5xl font-extrabold uppercase tracking-widest text-[#111827] mb-2">
-          {data.fullName || "Your Name"}
-        </h1>
-        <p className="text-2xl text-[#4b5563] font-light tracking-widest uppercase mb-4">
-          {data.jobTitle || "Professional Title"}
-        </p>
-        
-        {/* Contact Info Row */}
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-[#374151] font-medium mt-4">
-          {data.email && <span className="flex items-center gap-1">✉ {data.email}</span>}
-          {data.phone && <span className="flex items-center gap-1">☏ {data.phone}</span>}
-          {data.address && <span className="flex items-center gap-1">⌂ {data.address}</span>}
-          {data.linkedin && <span className="flex items-center gap-1">in/ {data.linkedin.replace('https://', '').replace('www.', '')}</span>}
-          {data.website && <span className="flex items-center gap-1">↗ {data.website.replace('https://', '').replace('www.', '')}</span>}
-          {data.github && <span className="flex items-center gap-1">&lt;/&gt; {data.github.replace('https://', '').replace('www.', '')}</span>}
-          {data.nationality && <span className="flex items-center gap-1">⚐ {data.nationality}</span>}
+      <div className="border-b-[3px] border-[#1f2937] pb-4 mb-[12px]">
+        <h1 className="text-[32px] font-bold uppercase tracking-wide mb-[4px]">{data.fullName || "Your Name"}</h1>
+        <div className="flex justify-between items-end">
+          <p className="text-[18px] font-medium text-[#4b5563] uppercase tracking-widest">{data.jobTitle || "Your Title"}</p>
+          <div className="text-[12px] text-right font-medium text-[#6b7280] space-y-[2px]">
+            {data.email && <div>{data.email}</div>}
+            {data.phone && <div>{data.phone}</div>}
+            {data.address && <div>{data.address}</div>}
+            {data.linkedin && <div>{data.linkedin.replace('https://', '').replace('www.', '').replace('linkedin.com/in/', '')}</div>}
+            {data.website && <div>{data.website.replace('https://', '').replace('www.', '')}</div>}
+            {data.github && <div>{data.github.replace('https://', '').replace('www.', '').replace('github.com/', '')}</div>}
+          </div>
         </div>
       </div>
 
       {/* Summary */}
       {data.summary && (
-        <div className="mb-12 px-8">
-          <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-6 font-bold text-center text-[#111827]">Summary</h2>
-          <p 
-            className="text-[#374151] leading-loose text-lg text-justify"
-            style={{ fontFamily: "'Times New Roman', Times, serif" }}
-          >
-            {data.summary}
-          </p>
-        </div>
-      )}
-
-      {/* Global Skills (Optional) */}
-      {data.globalSkills && data.globalSkills.length > 0 && (
-        <div className="mb-8 px-8">
-          <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-6 font-bold text-center text-[#111827]">Skills</h2>
-          <ol className="list-decimal list-outside pl-5 text-[#1f2937] font-semibold space-y-1">
-            {data.globalSkills.filter(s => s.trim() !== "").map((skill, idx) => (
-              <li key={idx}>{skill}</li>
-            ))}
-          </ol>
+        <div className="mb-[12px]">
+          <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Summary</h2>
+          <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap">{data.summary}</p>
         </div>
       )}
 
       {/* Experience */}
-      <div className="mb-8 mt-12">
-        <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-8 font-bold text-center text-[#111827]">Professional Experience</h2>
-        <div className="space-y-8">
+      <div className="mb-[12px]">
+        <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Experience</h2>
+        <div className="space-y-[8px]">
           {data.experiences.map(exp => (
-            <div key={exp.id} className="mb-6">
-              <div className="flex justify-between items-baseline mb-2">
-                <h3 className="text-xl font-bold text-[#111827]">{exp.title}</h3>
-                <span className="text-sm text-[#4b5563] italic font-medium">{exp.startDate} – {exp.endDate}</span>
+            <div key={exp.id}>
+              <div className="flex justify-between items-baseline mb-[2px]">
+                <h3 className="text-[16px] font-bold text-[#1f2937]">{exp.title}</h3>
+                <span className="text-[14.5px] text-[#4b5563] font-medium ml-4 shrink-0">{exp.startDate} – {exp.endDate}</span>
               </div>
-              <p className="font-semibold text-[#1f2937] text-lg mb-3">{exp.company}</p>
+              <p className="text-[14.5px] text-[#4b5563] font-bold mb-[4px]">{exp.company}</p>
               {exp.skills.length > 0 && (
-                <p className="text-sm text-[#4b5563] leading-relaxed mt-2">
-                  <span className="font-bold text-[#111827] uppercase text-xs tracking-wider mr-2">Key Competencies:</span> 
-                  {exp.skills.join(" • ")}
-                </p>
+                <ul className="list-disc list-outside pl-[20px] text-[14.5px] space-y-[4px]">
+                  {exp.skills.map(skill => (
+                    <li key={skill}>{skill}</li>
+                  ))}
+                </ul>
               )}
             </div>
           ))}
-          {data.experiences.length === 0 && (
-            <p className="text-[#9ca3af] italic text-center">No experience records available.</p>
-          )}
         </div>
       </div>
 
-      {/* Education (Optional) */}
+      {/* Education */}
       {(data.education || []).length > 0 && (
-        <div className="mb-8 mt-12">
-          <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-8 font-bold text-center text-[#111827]">Academic Profile</h2>
-          <div className="space-y-6">
+        <div className="mb-[12px]">
+          <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Education</h2>
+          <div className="space-y-[8px]">
             {(data.education || []).map(edu => (
-              <div key={edu.id} className="mb-4">
-                <div className="flex justify-between items-baseline mb-1">
-                  <h3 className="text-lg font-bold text-[#111827]">{edu.institution}</h3>
-                  <span className="text-sm text-[#4b5563] font-medium whitespace-nowrap ml-4">{edu.startYear} – {edu.endYear}</span>
+              <div key={edu.id}>
+                <div className="flex justify-between items-baseline mb-[2px]">
+                  <h3 className="text-[16px] font-bold text-[#1f2937]">{edu.institution}</h3>
+                  <span className="text-[14.5px] text-[#4b5563] font-medium ml-4 shrink-0">{edu.startYear} – {edu.endYear}</span>
                 </div>
-                <p className="text-md text-[#4b5563] italic">{edu.degree}</p>
+                <p className="text-[14.5px] text-[#4b5563] font-bold">{edu.degree}</p>
                 {edu.description && (
-                  <p className="text-sm text-[#374151] mt-2 leading-relaxed">{edu.description}</p>
+                  <p className="text-[14.5px] mt-[4px] whitespace-pre-wrap">{edu.description}</p>
                 )}
               </div>
             ))}
@@ -96,11 +72,23 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
         </div>
       )}
 
+      {/* Skills */}
+      {data.globalSkills && data.globalSkills.length > 0 && (
+        <div className="mb-[12px]">
+          <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Skills</h2>
+          <ul className="list-disc list-outside pl-[20px] text-[14.5px] space-y-[4px]">
+            {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
+              <li key={skill}>{skill}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* References */}
       {data.references && (
-        <div className="mt-8 pt-4 border-t-2 border-[#1f2937]">
-          <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-4 font-bold text-center text-[#111827]">References</h2>
-          <p className="text-sm leading-relaxed text-justify whitespace-pre-wrap" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
+        <div className="mb-[12px]">
+          <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">References</h2>
+          <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap">
             {data.references}
           </p>
         </div>

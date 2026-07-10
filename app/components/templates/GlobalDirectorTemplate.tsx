@@ -3,101 +3,100 @@ import { CVData } from "../../context/CVContext";
 
 export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-serif text-[#1e293b] bg-[#fafafa] min-h-full flex-grow p-12 border-8 border-double border-[#94a3b8]">
-      {/* Header */}
-      <div className="text-center mb-10">
-        <h1 className="text-4xl font-light uppercase tracking-[0.3em] mb-3 text-[#0f172a]">{data.fullName || "Your Name"}</h1>
-        <p className="text-md uppercase tracking-[0.2em] text-[#64748b] border-b border-[#cbd5e1] inline-block pb-2 px-8 mb-6">{data.jobTitle || "Your Title"}</p>
-        
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs uppercase tracking-widest text-[#475569]">
-          {data.email && <span>{data.email}</span>}
-          {data.phone && <span>| {data.phone}</span>}
-          {data.address && <span>| {data.address}</span>}
-          {data.linkedin && <span>| {data.linkedin.replace('https://', '').replace('www.', '').replace('linkedin.com/in/', '')}</span>}
-          {data.website && <span>| {data.website.replace('https://', '').replace('www.', '')}</span>}
-          {data.github && <span>| {data.github.replace('https://', '').replace('www.', '').replace('github.com/', '')}</span>}
-          {data.nationality && <span>| {data.nationality}</span>}
+    <div className="font-sans text-[14.5px] leading-[1.15] text-[#1e293b] bg-[#fafafa] min-h-full flex-grow p-[15mm] border-l-[8px] border-r-[8px] border-double border-[#94a3b8] text-left">
+      <div className="max-w-[700px] mx-auto">
+        {/* Header Block */}
+        <div className="border-b-[4px] border-double border-[#94a3b8] pb-[12px] mb-[12px] text-center">
+          <h1 className="text-[32px] font-bold text-[#0f172a] uppercase tracking-widest mb-[4px]">{data.fullName || "Your Name"}</h1>
+          <p className="text-[18px] text-[#475569] font-medium tracking-[0.2em] uppercase mb-[8px]">{data.jobTitle || "Your Title"}</p>
+          
+          <div className="flex flex-wrap justify-center items-center gap-x-[12px] gap-y-[4px] text-[12px] font-bold text-[#64748b] uppercase">
+            {data.email && <span>{data.email}</span>}
+            {data.phone && <span>{data.phone}</span>}
+            {data.address && <span>{data.address}</span>}
+            {data.linkedin && <span>{data.linkedin.replace('https://', '').replace('www.', '').replace('linkedin.com/in/', '')}</span>}
+          </div>
         </div>
-      </div>
 
-      {/* Summary */}
-      {data.summary && (
-        <div className="mb-10 px-6">
-          <h2 className="text-sm uppercase tracking-widest text-[#0f172a] text-center mb-4">Summary</h2>
-          <p className="text-sm text-justify leading-loose text-[#334155]" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
-            {data.summary}
-          </p>
-        </div>
-      )}
+        {/* Summary */}
+        {data.summary && (
+          <div className="mb-[12px]">
+            <h2 className="text-[18px] uppercase font-bold tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#cbd5e1] pb-[4px]">Executive Summary</h2>
+            <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap">{data.summary}</p>
+          </div>
+        )}
 
-      {/* Experience */}
-      <div className="mb-10">
-        <h2 className="text-sm uppercase tracking-widest text-[#0f172a] text-center mb-6 border-b border-[#cbd5e1] pb-2">Experience</h2>
-        <div className="space-y-8 px-4">
-          {data.experiences.map(exp => (
-            <div key={exp.id} className="relative">
-              <div className="flex justify-between items-baseline mb-1">
-                <h3 className="text-lg font-normal text-[#0f172a]">{exp.title}</h3>
-                <span className="text-xs tracking-widest text-[#64748b]">{exp.startDate} – {exp.endDate}</span>
+        <div className="flex flex-row gap-[24px]">
+          {/* Main Content */}
+          <div className="w-[65%] flex flex-col gap-[12px]">
+            {/* Experience */}
+            <div className="mb-[12px]">
+              <h2 className="text-[18px] uppercase font-bold tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#cbd5e1] pb-[4px]">Professional Experience</h2>
+              <div className="space-y-[12px]">
+                {data.experiences.map(exp => (
+                  <div key={exp.id}>
+                    <div className="flex justify-between items-baseline mb-[2px]">
+                      <h3 className="text-[16px] font-bold text-[#0f172a]">{exp.title}</h3>
+                      <span className="text-[14.5px] text-[#64748b] font-medium shrink-0 ml-[10px]">{exp.startDate} – {exp.endDate}</span>
+                    </div>
+                    <p className="text-[14.5px] font-bold text-[#475569] mb-[4px]">{exp.company}</p>
+                    {exp.skills.length > 0 && (
+                      <ul className="list-disc list-outside pl-[20px] text-[14.5px] space-y-[4px]">
+                        {exp.skills.map(skill => (
+                          <li key={skill}>{skill}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
               </div>
-              <p className="text-sm uppercase tracking-widest text-[#475569] mb-3">{exp.company}</p>
-              {exp.skills.length > 0 && (
-                <ul className="list-disc pl-5 text-xs text-[#334155] leading-relaxed space-y-1 text-justify">
-                  {exp.skills.map(skill => (
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="w-[35%] flex flex-col gap-[12px]">
+            {/* Education */}
+            {(data.education || []).length > 0 && (
+              <div className="mb-[12px]">
+                <h2 className="text-[18px] uppercase font-bold tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#cbd5e1] pb-[4px]">Education</h2>
+                <div className="space-y-[12px]">
+                  {(data.education || []).map(edu => (
+                    <div key={edu.id}>
+                      <h3 className="text-[16px] font-bold text-[#0f172a]">{edu.institution}</h3>
+                      <p className="text-[14.5px] font-bold text-[#475569]">{edu.degree}</p>
+                      <span className="text-[12px] font-bold text-[#64748b] block mt-[2px]">{edu.startYear} – {edu.endYear}</span>
+                      {edu.description && (
+                        <p className="text-[14.5px] mt-[4px] whitespace-pre-wrap">{edu.description}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Skills */}
+            {data.globalSkills && data.globalSkills.length > 0 && (
+              <div className="mb-[12px]">
+                <h2 className="text-[18px] uppercase font-bold tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#cbd5e1] pb-[4px]">Core Competencies</h2>
+                <ul className="list-disc list-outside pl-[20px] text-[14.5px] space-y-[4px]">
+                  {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
                     <li key={skill}>{skill}</li>
                   ))}
                 </ul>
-              )}
-            </div>
-          ))}
-          {data.experiences.length === 0 && (
-            <p className="text-center italic text-[#94a3b8] text-sm">No experience records available.</p>
-          )}
-        </div>
-      </div>
-
-      {/* Education & Skills Split */}
-      <div className="grid grid-cols-2 gap-10 px-4">
-        {/* Education */}
-        <div>
-          <h2 className="text-sm uppercase tracking-widest text-[#0f172a] mb-6 border-b border-[#cbd5e1] pb-2">Education</h2>
-          <div className="space-y-6">
-            {(data.education || []).map(edu => (
-              <div key={edu.id}>
-                <h3 className="text-md font-normal text-[#0f172a] mb-1">{edu.institution}</h3>
-                <p className="text-xs uppercase tracking-widest text-[#475569] mb-1">{edu.degree}</p>
-                <p className="text-xs text-[#64748b] mb-2">{edu.startYear} – {edu.endYear}</p>
-                {edu.description && (
-                  <p className="text-xs leading-relaxed text-[#334155] text-justify">{edu.description}</p>
-                )}
               </div>
-            ))}
+            )}
+
+            {/* References */}
+            {data.references && (
+              <div className="mb-[12px]">
+                <h2 className="text-[18px] uppercase font-bold tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#cbd5e1] pb-[4px]">References</h2>
+                <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap">
+                  {data.references}
+                </p>
+              </div>
+            )}
           </div>
         </div>
-
-        {/* Skills */}
-        <div>
-          <h2 className="text-sm uppercase tracking-widest text-[#0f172a] mb-6 border-b border-[#cbd5e1] pb-2">Skills</h2>
-          {data.globalSkills && data.globalSkills.length > 0 ? (
-            <ol className="list-decimal list-outside pl-5 text-sm text-[#334155] space-y-2">
-              {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
-                <li key={skill}>{skill}</li>
-              ))}
-            </ol>
-          ) : (
-            <p className="italic text-[#94a3b8] text-sm">No skills added.</p>
-          )}
-        </div>
-
-        {/* References */}
-        {data.references && (
-          <div className="mt-8">
-            <h2 className="text-sm uppercase tracking-widest text-[#0f172a] mb-6 border-b border-[#cbd5e1] pb-2">References</h2>
-            <p className="text-sm text-[#334155] leading-relaxed text-justify whitespace-pre-wrap">
-              {data.references}
-            </p>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -3,92 +3,78 @@ import { CVData } from "../../context/CVContext";
 
 export default function TechnicalTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-[family-name:var(--font-technical)] text-[#22c55e] bg-[#111827] p-12 min-h-full flex-grow">
-      {/* Header */}
-      <div className="mb-10 pb-4 border-b border-[#166534]">
-        <h1 className="text-3xl font-bold mb-1 text-[#4ade80]">
-          <span className="text-[#22c55e]">const</span> user <span className="text-[#22c55e]">=</span> "{data.fullName || "Your Name"}";
-        </h1>
-        <p className="text-[#22c55e] text-lg font-mono">
-          <span className="text-[#166534]">{'/*'}</span> {data.jobTitle || "Your Title"} <span className="text-[#166534]">{'*/'}</span>
-        </p>
-
-        {/* Contact Info Array */}
-        <div className="mt-4 text-sm text-[#4ade80]">
-          <span className="text-[#22c55e]">const</span> contact <span className="text-[#22c55e]">=</span> {'{'}
-          <div className="pl-4 border-l border-[#166534] ml-2 mt-1 space-y-1">
-            {data.email && <div>email: <span className="text-[#86efac]">"{data.email}"</span>,</div>}
-            {data.phone && <div>phone: <span className="text-[#86efac]">"{data.phone}"</span>,</div>}
-            {data.address && <div>location: <span className="text-[#86efac]">"{data.address}"</span>,</div>}
-            {data.linkedin && <div>linkedin: <span className="text-[#86efac]">"{data.linkedin.replace('https://', '').replace('www.', '')}"</span>,</div>}
-            {data.website && <div>website: <span className="text-[#86efac]">"{data.website.replace('https://', '').replace('www.', '')}"</span>,</div>}
-            {data.github && <div>github: <span className="text-[#86efac]">"{data.github.replace('https://', '').replace('www.', '')}"</span>,</div>}
-            {data.nationality && <div>nationality: <span className="text-[#86efac]">"{data.nationality}"</span>,</div>}
-          </div>
-          {'};'}
+    <div className="font-sans text-[14.5px] leading-[1.15] text-[#22c55e] bg-[#111827] min-h-full flex-grow p-[15mm] text-left">
+      {/* Header Info */}
+      <div className="border-b-[2px] border-[#166534] pb-[12px] mb-[12px]">
+        <h1 className="text-[32px] font-bold mb-[4px] tracking-tight">{`const name = "${data.fullName || 'User'}";`}</h1>
+        <p className="text-[18px] text-[#4ade80] mb-[8px]">{`const role = "${data.jobTitle || 'Developer'}";`}</p>
+        <div className="text-[12px] text-[#16a34a] font-mono grid grid-cols-2 gap-[4px]">
+          {data.email && <div>{`email: "${data.email}"`}</div>}
+          {data.phone && <div>{`phone: "${data.phone}"`}</div>}
+          {data.linkedin && <div>{`linkedin: "${data.linkedin.replace('https://', '').replace('www.', '').replace('linkedin.com/in/', '')}"`}</div>}
+          {data.github && <div>{`github: "${data.github.replace('https://', '').replace('www.', '').replace('github.com/', '')}"`}</div>}
+          {data.website && <div>{`website: "${data.website.replace('https://', '').replace('www.', '')}"`}</div>}
+          {data.address && <div>{`location: "${data.address}"`}</div>}
         </div>
       </div>
 
       {/* Summary */}
-      <div className="mb-10">
-        <h2 className="text-xl font-bold mb-3 text-[#22c55e]">{'// Summary'}</h2>
-        <p 
-          className="text-sm leading-relaxed text-[#4ade80] text-justify"
-          style={{ fontFamily: "'Times New Roman', Times, serif" }}
-        >
-          {data.summary || "No description provided."}
-        </p>
-      </div>
+      {data.summary && (
+        <div className="mb-[12px]">
+          <h2 className="text-[18px] font-bold mb-[8px] text-[#22c55e]">{'// Summary'}</h2>
+          <p className="text-[14.5px] leading-[1.15] font-mono text-[#4ade80] whitespace-pre-wrap">{data.summary}</p>
+        </div>
+      )}
 
-      {/* Global Skills (Optional) */}
+      {/* Skills */}
       {data.globalSkills && data.globalSkills.length > 0 && (
-        <div className="mb-10">
-          <h2 className="text-xl font-bold mb-3 text-[#22c55e]">{'// Skills'}</h2>
-          <ol className="list-decimal list-outside pl-5 text-sm text-[#4ade80] font-mono leading-relaxed space-y-1">
-            {data.globalSkills.filter(s => s.trim() !== "").map(s => <li key={s}>{s}</li>)}
-          </ol>
+        <div className="mb-[12px]">
+          <h2 className="text-[18px] font-bold mb-[8px] text-[#22c55e]">{'// Core_Dependencies'}</h2>
+          <ul className="list-disc list-outside pl-[20px] text-[14.5px] text-[#4ade80] font-mono space-y-[4px]">
+            {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
+              <li key={skill}>{skill}</li>
+            ))}
+          </ul>
         </div>
       )}
 
       {/* Experience */}
-      <div>
-        <h2 className="text-xl font-bold mb-6 text-[#22c55e]">{'// Experience'}</h2>
-        <div className="space-y-8">
+      <div className="mb-[12px]">
+        <h2 className="text-[18px] font-bold mb-[8px] text-[#22c55e]">{'// Work_History'}</h2>
+        <div className="space-y-[12px]">
           {data.experiences.map(exp => (
-            <div key={exp.id} className="border border-[#14532d] bg-[#000000]/30 p-6 rounded-sm">
-              <div className="flex justify-between items-baseline mb-3">
-                <h3 className="text-lg font-bold text-[#86efac]">{`{ process: "${exp.title}" }`}</h3>
-                <span className="text-sm text-[#16a34a]">{`[ ${exp.startDate} - ${exp.endDate} ]`}</span>
+            <div key={exp.id} className="border-l-[2px] border-[#166534] pl-[12px]">
+              <div className="flex justify-between items-baseline mb-[2px]">
+                <h3 className="text-[16px] font-bold text-[#86efac]">{exp.title}</h3>
+                <span className="text-[14.5px] text-[#16a34a] font-mono shrink-0 ml-[10px]">{`[ ${exp.startDate} - ${exp.endDate} ]`}</span>
               </div>
-              <p className="text-md text-[#22c55e] mb-3">{`@ ${exp.company}`}</p>
+              <p className="text-[14.5px] text-[#22c55e] mb-[4px]">{`@ ${exp.company}`}</p>
               {exp.skills.length > 0 && (
-                <div className="text-sm text-[#4ade80] mt-3">
-                  <span className="opacity-70">deps: </span>
-                  [{exp.skills.map(s => `"${s}"`).join(", ")}]
-                </div>
+                <ul className="list-disc list-outside pl-[20px] text-[14.5px] font-mono text-[#4ade80] space-y-[4px]">
+                  {exp.skills.map(skill => (
+                    <li key={skill}>{skill}</li>
+                  ))}
+                </ul>
               )}
             </div>
           ))}
-          {data.experiences.length === 0 && (
-            <p className="text-[#166534] text-md">{'< empty process list >'}</p>
-          )}
         </div>
       </div>
 
-      {/* Education (Optional) */}
+      {/* Education */}
       {(data.education || []).length > 0 && (
-        <div className="mt-12">
-          <h2 className="text-xl font-bold mb-6 text-[#22c55e]">{'// Education'}</h2>
-          <div className="space-y-6">
-            {data.education.map(edu => (
-              <div key={edu.id} className="border-l-2 border-[#166534] pl-4">
-                <div className="flex justify-between items-baseline mb-1">
-                  <h3 className="text-md font-bold text-[#86efac]">{edu.institution}</h3>
-                  <span className="text-xs text-[#16a34a]">{`[ ${edu.startYear} - ${edu.endYear} ]`}</span>
+        <div className="mb-[12px]">
+          <h2 className="text-[18px] font-bold mb-[8px] text-[#22c55e]">{'// Education'}</h2>
+          <div className="space-y-[12px]">
+            {(data.education || []).map(edu => (
+              <div key={edu.id} className="border-l-[2px] border-[#166534] pl-[12px]">
+                <div className="flex justify-between items-baseline mb-[2px]">
+                  <h3 className="text-[16px] font-bold text-[#86efac]">{edu.institution}</h3>
+                  <span className="text-[14.5px] text-[#16a34a] font-mono shrink-0 ml-[10px]">{`[ ${edu.startYear} - ${edu.endYear} ]`}</span>
                 </div>
-                <p className="text-sm text-[#22c55e] mb-1">{`> emit: ${edu.degree}`}</p>
+                <p className="text-[14.5px] text-[#22c55e] mb-[4px]">{`> emit: ${edu.degree}`}</p>
                 {edu.description && (
-                  <p className="text-xs text-[#16a34a] whitespace-pre-wrap">{`// ${edu.description}`}</p>
+                  <p className="text-[14.5px] text-[#16a34a] font-mono whitespace-pre-wrap">{`// ${edu.description}`}</p>
                 )}
               </div>
             ))}
@@ -98,9 +84,9 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
 
       {/* References */}
       {data.references && (
-        <div className="mt-8 pt-6 border-t border-[#166534]">
-          <h2 className="text-xl font-bold mb-4 text-[#22c55e]">{'// References'}</h2>
-          <p className="text-sm text-[#4ade80] font-mono leading-relaxed whitespace-pre-wrap">
+        <div className="mt-[12px] pt-[8px] border-t-[2px] border-[#166534]">
+          <h2 className="text-[18px] font-bold mb-[8px] text-[#22c55e]">{'// References'}</h2>
+          <p className="text-[14.5px] font-mono text-[#4ade80] leading-[1.15] whitespace-pre-wrap">
             {data.references}
           </p>
         </div>

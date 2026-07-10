@@ -3,109 +3,110 @@ import { CVData } from "../../context/CVContext";
 
 export default function AvantGardeTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-[#111827] bg-[#fdfbf7] min-h-full flex-grow p-0 flex flex-col relative overflow-clip">
-      {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#000000] rounded-full translate-x-1/2 -translate-y-1/2 opacity-5"></div>
-      
-      {/* Header - Asymmetrical */}
-      <div className="pt-20 pb-12 px-16 flex justify-between items-end border-b-2 border-black/10 relative z-10">
-        <div className="max-w-[60%]">
-          <h1 className="text-6xl font-black tracking-tighter uppercase leading-[0.8] mb-4">{data.fullName || "Your Name"}</h1>
-          <p className="text-xl font-light tracking-[0.3em] uppercase">{data.jobTitle || "Your Title"}</p>
-        </div>
+    <div className="font-sans text-[14.5px] leading-[1.15] text-black bg-[#f4f4f0] min-h-full flex-grow p-[15mm] text-left">
+      <div className="border-[8px] border-black p-[20px] h-full flex flex-col relative overflow-clip">
         
-        <div className="text-right text-[10px] font-bold tracking-[0.2em] uppercase space-y-1 bg-black text-white p-4">
-          {data.email && <div>{data.email}</div>}
-          {data.phone && <div>{data.phone}</div>}
-          {data.address && <div>{data.address}</div>}
-          {data.linkedin && <div>{data.linkedin.replace('https://', '').replace('www.', '').replace('linkedin.com/in/', '')}</div>}
-          {data.website && <div>{data.website.replace('https://', '').replace('www.', '')}</div>}
-          {data.github && <div>{data.github.replace('https://', '').replace('www.', '').replace('github.com/', '')}</div>}
-        </div>
-      </div>
+        {/* Background Decorative Element */}
+        <div className="absolute top-[-50px] right-[-50px] w-[200px] h-[200px] rounded-full bg-[#ff3366] opacity-20 pointer-events-none"></div>
 
-      <div className="flex-grow flex relative z-10">
-        {/* Left Column - Very wide for content */}
-        <div className="w-[65%] p-16 border-r-2 border-black/10">
-          
-          {/* Summary */}
-          {data.summary && (
-            <div className="mb-16">
-              <h2 className="text-[10px] font-black tracking-[0.4em] uppercase mb-6 text-black/40">Summary</h2>
-              <p className="text-xl font-light leading-relaxed text-justify" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
-                {data.summary}
-              </p>
-            </div>
-          )}
-
-          {/* Experience */}
-          <div>
-            <h2 className="text-[10px] font-black tracking-[0.4em] uppercase mb-10 text-black/40">Experience</h2>
-            <div className="space-y-12">
-              {data.experiences.map(exp => (
-                <div key={exp.id} className="relative">
-                  <div className="absolute -left-16 top-1 text-[10px] font-bold tracking-widest text-black/30 transform -rotate-90 origin-top-right whitespace-nowrap">
-                    {exp.startDate} — {exp.endDate}
-                  </div>
-                  <h3 className="text-2xl font-bold tracking-tight uppercase mb-1">{exp.title}</h3>
-                  <p className="text-sm font-medium tracking-widest uppercase mb-4 text-black/60">{exp.company}</p>
-                  {exp.skills.length > 0 && (
-                    <ul className="list-disc pl-5 text-sm leading-relaxed text-justify">
-                      {exp.skills.map(skill => (
-                        <li key={skill}>{skill}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Header */}
+        <div className="flex flex-col items-start border-b-[4px] border-black pb-[12px] mb-[12px]">
+          <h1 className="text-[32px] font-black uppercase tracking-tighter leading-none mb-[4px]">{data.fullName || "Your Name"}</h1>
+          <p className="text-[18px] font-bold text-[#ff3366] tracking-widest uppercase">{data.jobTitle || "Your Title"}</p>
         </div>
 
-        {/* Right Column */}
-        <div className="w-[35%] p-16 bg-black/5">
-          {/* Education */}
-          {(data.education || []).length > 0 && (
-            <div className="mb-16">
-              <h2 className="text-[10px] font-black tracking-[0.4em] uppercase mb-8 text-black/40">Education</h2>
-              <div className="space-y-8">
-                {(data.education || []).map(edu => (
-                  <div key={edu.id}>
-                    <h3 className="text-lg font-bold tracking-tight uppercase leading-tight mb-2">{edu.institution}</h3>
-                    <p className="text-xs font-bold tracking-widest uppercase text-black/60 mb-2">{edu.degree}</p>
-                    <div className="text-[10px] font-bold tracking-widest mb-2 border-t border-black/20 pt-2 inline-block">
-                      {edu.startYear} — {edu.endYear}
+        <div className="flex flex-row gap-[24px]">
+          {/* Main Content */}
+          <div className="w-[65%] flex flex-col gap-[12px] z-10 relative">
+            
+            {/* Summary */}
+            {data.summary && (
+              <div className="mb-[12px]">
+                <h2 className="text-[18px] font-black uppercase tracking-widest text-black mb-[8px] border-b-[2px] border-black pb-[4px]">Summary</h2>
+                <p className="text-[14.5px] leading-[1.15] font-medium whitespace-pre-wrap">{data.summary}</p>
+              </div>
+            )}
+
+            {/* Experience */}
+            <div className="mb-[12px]">
+              <h2 className="text-[18px] font-black uppercase tracking-widest text-black mb-[8px] border-b-[2px] border-black pb-[4px]">Experience</h2>
+              <div className="space-y-[12px]">
+                {data.experiences.map(exp => (
+                  <div key={exp.id} className="relative pl-[15px] border-l-[4px] border-black">
+                    <div className="absolute w-[12px] h-[12px] bg-[#ff3366] -left-[8px] top-[4px] rounded-sm transform rotate-45"></div>
+                    <div className="flex justify-between items-baseline mb-[2px]">
+                      <h3 className="text-[16px] font-black">{exp.title}</h3>
+                      <span className="text-[14.5px] font-bold bg-black text-white px-[6px] py-[2px] shrink-0 ml-[10px]">{exp.startDate} – {exp.endDate}</span>
                     </div>
-                    {edu.description && (
-                      <p className="text-xs leading-relaxed text-justify mt-2">{edu.description}</p>
+                    <p className="text-[14.5px] font-bold text-gray-600 mb-[4px] uppercase">{exp.company}</p>
+                    {exp.skills.length > 0 && (
+                      <ul className="list-disc list-outside pl-[20px] text-[14.5px] font-medium space-y-[4px]">
+                        {exp.skills.map(skill => (
+                          <li key={skill}>{skill}</li>
+                        ))}
+                      </ul>
                     )}
                   </div>
                 ))}
               </div>
             </div>
-          )}
 
-          {/* Skills */}
-          {data.globalSkills && data.globalSkills.length > 0 && (
-            <div>
-              <h2 className="text-[10px] font-black tracking-[0.4em] uppercase mb-8 text-black/40">Skills</h2>
-              <ol className="list-decimal list-outside pl-5 text-sm font-bold tracking-wider uppercase space-y-3">
-                {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
-                  <li key={skill} className="border-b border-black/10 pb-1">{skill}</li>
-                ))}
-              </ol>
+            {/* Education */}
+            {(data.education || []).length > 0 && (
+              <div className="mb-[12px]">
+                <h2 className="text-[18px] font-black uppercase tracking-widest text-black mb-[8px] border-b-[2px] border-black pb-[4px]">Education</h2>
+                <div className="space-y-[12px]">
+                  {(data.education || []).map(edu => (
+                    <div key={edu.id} className="relative pl-[15px] border-l-[4px] border-[#ff3366]">
+                      <h3 className="text-[14.5px] font-black">{edu.institution}</h3>
+                      <p className="text-[14.5px] font-bold text-gray-600 mb-[2px]">{edu.degree}</p>
+                      <span className="text-[12px] font-bold tracking-widest uppercase mb-[2px] block">{edu.startYear} – {edu.endYear}</span>
+                      {edu.description && (
+                        <p className="text-[14.5px] mt-[4px] font-medium whitespace-pre-wrap">{edu.description}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <div className="w-[35%] flex flex-col gap-[12px] z-10 relative border-l-[2px] border-dashed border-black/30 pl-[24px]">
+            {/* Contact */}
+            <div className="mb-[12px]">
+              <h2 className="text-[18px] font-black uppercase tracking-widest text-black mb-[8px] border-b-[2px] border-black pb-[4px]">Contact</h2>
+              <div className="space-y-[6px] text-[12px] font-bold text-black/70 uppercase">
+                {data.email && <div className="break-words">{data.email}</div>}
+                {data.phone && <div>{data.phone}</div>}
+                {data.address && <div>{data.address}</div>}
+                {data.linkedin && <div className="break-words">{data.linkedin.replace('https://', '').replace('www.', '').replace('linkedin.com/in/', '')}</div>}
+                {data.website && <div className="break-words">{data.website.replace('https://', '').replace('www.', '')}</div>}
+              </div>
             </div>
-          )}
-          
-          {/* References */}
-          {data.references && (
-            <div className="mt-8">
-              <h2 className="text-[10px] font-black tracking-[0.4em] uppercase mb-4 text-black/40">References</h2>
-              <p className="text-sm leading-relaxed text-justify whitespace-pre-wrap font-bold">
-                {data.references}
-              </p>
-            </div>
-          )}
+
+            {/* Skills */}
+            {data.globalSkills && data.globalSkills.length > 0 && (
+              <div className="mb-[12px]">
+                <h2 className="text-[18px] font-black uppercase tracking-widest text-black mb-[8px] border-b-[2px] border-black pb-[4px]">Skills</h2>
+                <ul className="list-disc list-outside pl-[20px] text-[14.5px] font-bold tracking-wider uppercase space-y-[4px]">
+                  {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
+                    <li key={skill} className="border-b border-black/10 pb-[2px]">{skill}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {/* References */}
+            {data.references && (
+              <div className="mb-[12px]">
+                <h2 className="text-[18px] font-black uppercase tracking-widest text-black mb-[8px] border-b-[2px] border-black pb-[4px]">References</h2>
+                <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap font-bold">
+                  {data.references}
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
