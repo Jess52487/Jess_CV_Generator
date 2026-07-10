@@ -90,7 +90,7 @@ export default function AvantGardeTemplate({ data }: { data: CVData }) {
             <div>
               <h2 className="text-[10px] font-black tracking-[0.4em] uppercase mb-8 text-black/40">Skills</h2>
               <ol className="list-decimal list-outside pl-5 text-sm font-bold tracking-wider uppercase space-y-3">
-                {data.globalSkills.map(skill => (
+                {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
                   <li key={skill} className="border-b border-black/10 pb-1">{skill}</li>
                 ))}
               </ol>

@@ -80,7 +80,7 @@ export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
           <h2 className="text-sm uppercase tracking-widest text-[#0f172a] mb-6 border-b border-[#cbd5e1] pb-2">Skills</h2>
           {data.globalSkills && data.globalSkills.length > 0 ? (
             <ol className="list-decimal list-outside pl-5 text-sm text-[#334155] space-y-2">
-              {data.globalSkills.map(skill => (
+              {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
                 <li key={skill}>{skill}</li>
               ))}
             </ol>

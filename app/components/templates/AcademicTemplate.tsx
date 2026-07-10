@@ -82,7 +82,7 @@ export default function AcademicTemplate({ data }: { data: CVData }) {
         <div className="mb-8">
           <h2 className="text-lg uppercase font-bold border-b border-black mb-3">Skills</h2>
           <ol className="list-decimal list-outside pl-5 text-md space-y-1">
-            {data.globalSkills.map(skill => (
+            {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
               <li key={skill}>{skill}</li>
             ))}
           </ol>

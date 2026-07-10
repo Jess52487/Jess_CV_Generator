@@ -43,7 +43,7 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
         <div className="mb-8 px-8">
           <h2 className="text-xl uppercase tracking-widest border-b-2 border-[#d1d5db] pb-3 mb-6 font-bold text-center text-[#111827]">Skills</h2>
           <ol className="list-decimal list-outside pl-5 text-[#1f2937] font-semibold space-y-1">
-            {data.globalSkills.map((skill, idx) => (
+            {data.globalSkills.filter(s => s.trim() !== "").map((skill, idx) => (
               <li key={idx}>{skill}</li>
             ))}
           </ol>

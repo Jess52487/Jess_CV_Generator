@@ -516,7 +516,7 @@ export default function Notepad() {
                           placeholder="e.g. Extensive experience in modern web development using React and Node.js.&#10;Strong background in Agile methodologies and team leadership."
                           rows={6}
                           value={(data.globalSkills || []).join("\n")}
-                          onChange={(e) => updateField("globalSkills", e.target.value.split("\n").map(s => s.trim()).filter(s => s))}
+                          onChange={(e) => updateField("globalSkills", e.target.value.split("\n"))}
                         ></textarea>
                         <p className="mt-3 font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)] italic">
                           These skills will appear in a dedicated section on your generated CV. This is optional if you prefer only listing skills under specific job roles.

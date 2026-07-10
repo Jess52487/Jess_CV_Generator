@@ -82,7 +82,7 @@ export default function FreshStartTemplate({ data }: { data: CVData }) {
                 Skills
               </h2>
               <ol className="list-decimal list-outside pl-5 text-sm font-medium text-[#475569] space-y-2">
-                {data.globalSkills.map(skill => (
+                {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
                   <li key={skill}>{skill}</li>
                 ))}
               </ol>

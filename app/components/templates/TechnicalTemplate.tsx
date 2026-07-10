@@ -45,7 +45,7 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
         <div className="mb-10">
           <h2 className="text-xl font-bold mb-3 text-[#22c55e]">{'// Skills'}</h2>
           <ol className="list-decimal list-outside pl-5 text-sm text-[#4ade80] font-mono leading-relaxed space-y-1">
-            {data.globalSkills.map(s => <li key={s}>{s}</li>)}
+            {data.globalSkills.filter(s => s.trim() !== "").map(s => <li key={s}>{s}</li>)}
           </ol>
         </div>
       )}
