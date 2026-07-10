@@ -10,7 +10,7 @@ import TemplateRenderer from "../components/templates/TemplateRenderer";
 import { useRouter } from "next/navigation";
 
 export default function ExportClipboard() {
-  const { savedCVs, deleteSavedCV, purgeAllData } = useCVContext();
+  const { savedCVs, deleteSavedCV, purgeAllData, setData } = useCVContext();
   const targetRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -180,7 +180,22 @@ export default function ExportClipboard() {
                   ))}
                 </div>
 
-                <div className="p-6 bg-[var(--color-surface-container-low)] border-t border-[var(--color-outline-variant)]">
+                <div className="p-6 bg-[var(--color-surface-container-low)] border-t border-[var(--color-outline-variant)] flex flex-col gap-3">
+                  <button 
+                    onClick={() => {
+                      if (activeCV) {
+                        setData(activeCV.data);
+                        router.push('/notepad');
+                      }
+                    }}
+                    disabled={!activeCV || isExporting}
+                    className="w-full bg-[var(--color-secondary)] text-[var(--color-on-secondary)] py-3 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90 shadow-md"
+                  >
+                    <span className="material-symbols-outlined text-2xl">edit_document</span>
+                    <span className="font-[family-name:var(--font-label-stamp)] text-[16px] tracking-widest uppercase font-bold">
+                      Edit Draft
+                    </span>
+                  </button>
                   <button 
                     onClick={handleExport}
                     disabled={!activeCV || isExporting}

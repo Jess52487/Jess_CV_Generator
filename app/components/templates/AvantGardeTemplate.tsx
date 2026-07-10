@@ -41,7 +41,7 @@ export default function AvantGardeTemplate({ data }: { data: CVData }) {
                     <p className="text-[14.5px] font-bold text-gray-600 mb-[4px] uppercase">{exp.company}</p>
                     {exp.skills.length > 0 && (
                       <ul className="list-disc list-outside pl-[20px] text-[14.5px] font-medium space-y-[4px]">
-                        {exp.skills.map(skill => (
+                        {exp.skills.filter(s => s.trim() !== "").map(skill => (
                           <li key={skill}>{skill}</li>
                         ))}
                       </ul>

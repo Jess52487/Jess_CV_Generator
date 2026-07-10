@@ -368,7 +368,17 @@ export default function Notepad() {
                             </label>
                             <input type="text" disabled={expIsPresent} className={`w-full border-b border-yellow-300 px-2 py-1 outline-none font-[family-name:var(--font-body-md)] ${expIsPresent ? 'bg-yellow-200/50 text-yellow-700/50 cursor-not-allowed' : 'bg-white/50'}`} value={expIsPresent ? "Present" : currentExp.endDate} onChange={e => setCurrentExp({...currentExp, endDate: e.target.value})} placeholder="e.g. Present"/>
                           </div>
-                          <div className="md:col-span-2 space-y-1"><label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-yellow-800">Key Skills (comma separated)</label><input type="text" className="w-full bg-white/50 border-b border-yellow-300 px-2 py-1 outline-none font-[family-name:var(--font-body-md)]" value={currentExp.skills.join(", ")} onChange={e => setCurrentExp({...currentExp, skills: e.target.value.split(",").map(s => s.trim()).filter(s => s)})} placeholder="Leadership, Strategy"/></div>
+                          <div className="md:col-span-2 space-y-1">
+                            <label className="text-xs uppercase font-[family-name:var(--font-label-stamp)] text-yellow-800">
+                              Key Skills (Press Enter for new item)
+                            </label>
+                            <textarea 
+                              className="w-full bg-white/50 border-b border-yellow-300 px-2 py-1 outline-none font-[family-name:var(--font-body-md)] min-h-[80px]" 
+                              value={currentExp.skills.join("\n")} 
+                              onChange={e => setCurrentExp({...currentExp, skills: e.target.value.split("\n")})} 
+                              placeholder="e.g. Led a team of 5 developers to deliver a critical project on time.&#10;Mentored junior engineers."
+                            />
+                          </div>
                         </div>
                         <div className="flex justify-end gap-4 mt-6">
                           <button onClick={cancelExpForm} className="text-sm font-[family-name:var(--font-label-stamp)] text-yellow-800 hover:text-yellow-900 uppercase">Cancel</button>

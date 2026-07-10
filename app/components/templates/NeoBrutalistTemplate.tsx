@@ -49,7 +49,7 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
                     <p className="text-[14.5px] font-bold uppercase mb-[4px]">{exp.company}</p>
                     {exp.skills.length > 0 && (
                       <ul className="list-disc list-outside pl-[20px] text-[14.5px] font-bold space-y-[4px]">
-                        {exp.skills.map(skill => (
+                        {exp.skills.filter(s => s.trim() !== "").map(skill => (
                           <li key={skill}>{skill}</li>
                         ))}
                       </ul>

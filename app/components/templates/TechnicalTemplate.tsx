@@ -51,7 +51,7 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
               <p className="text-[14.5px] text-[#22c55e] mb-[4px]">{`@ ${exp.company}`}</p>
               {exp.skills.length > 0 && (
                 <ul className="list-disc list-outside pl-[20px] text-[14.5px] font-mono text-[#4ade80] space-y-[4px]">
-                  {exp.skills.map(skill => (
+                  {exp.skills.filter(s => s.trim() !== "").map(skill => (
                     <li key={skill}>{skill}</li>
                   ))}
                 </ul>
