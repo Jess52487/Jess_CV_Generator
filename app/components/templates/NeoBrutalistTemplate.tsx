@@ -85,7 +85,7 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
             {data.globalSkills && data.globalSkills.length > 0 && (
               <div>
                 <h2 className="text-xl font-black uppercase border-b-4 border-black pb-2 mb-4">Skills</h2>
-                <ol className="list-decimal list-inside pl-6 text-sm font-bold space-y-2 uppercase">
+                <ol className="list-decimal list-outside pl-6 text-sm font-bold space-y-2 uppercase">
                   {data.globalSkills.map(skill => (
                     <li key={skill} className="border-b-2 border-dotted border-black">{skill}</li>
                   ))}

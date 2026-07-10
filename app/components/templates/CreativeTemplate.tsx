@@ -36,7 +36,7 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
 
           <div>
             <h2 className="text-xs uppercase tracking-widest text-[#94a3b8] font-bold mb-4">Skills</h2>
-            <ol className="list-decimal list-inside pl-4 gap-2 flex flex-col text-[#334155] text-xs font-semibold">
+            <ol className="list-decimal list-outside pl-4 gap-2 flex flex-col text-[#334155] text-xs font-semibold">
               {data.globalSkills && data.globalSkills.length > 0 ? (
                 data.globalSkills.map(skill => (
                   <li key={skill} className="pl-1">{skill}</li>

@@ -509,11 +509,11 @@ export default function Notepad() {
 
                       <div className="bg-[var(--color-surface-container-low)] p-6 rounded-sm border border-[var(--color-outline-variant)]">
                         <label className="block font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface-variant)] uppercase embossed-text mb-4">
-                          Master Skills List (One per line)
+                          Master Skills List (Press Enter for new item)
                         </label>
                         <textarea 
                           className="w-full bg-white border border-[var(--color-outline-variant)] rounded-sm py-3 px-4 font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface)] focus:ring-2 focus:ring-[var(--color-primary-container)] outline-none"
-                          placeholder="e.g. Project Management&#10;Agile&#10;UI/UX Design (Figma, Sketch)"
+                          placeholder="e.g. Extensive experience in modern web development using React and Node.js.&#10;Strong background in Agile methodologies and team leadership."
                           rows={6}
                           value={(data.globalSkills || []).join("\n")}
                           onChange={(e) => updateField("globalSkills", e.target.value.split("\n").map(s => s.trim()).filter(s => s))}
