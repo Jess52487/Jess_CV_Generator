@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-serif text-[#1e293b] bg-[#fafafa] h-full p-12 border-8 border-double border-[#94a3b8]">
+    <div className="font-serif text-[#1e293b] bg-[#fafafa] min-h-full flex-grow p-12 border-8 border-double border-[#94a3b8]">
       {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-4xl font-light uppercase tracking-[0.3em] mb-3 text-[#0f172a]">{data.fullName || "Your Name"}</h1>

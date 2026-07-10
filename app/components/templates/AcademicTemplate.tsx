@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function AcademicTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-[family-name:'Times_New_Roman',Times,serif] text-black bg-white h-full p-12 leading-relaxed">
+    <div className="font-[family-name:'Times_New_Roman',Times,serif] text-black bg-white min-h-full flex-grow p-12 leading-relaxed">
       {/* Header */}
       <div className="text-center mb-8 border-b border-black pb-6">
         <h1 className="text-3xl font-bold uppercase tracking-wider mb-2">{data.fullName || "Your Name"}</h1>

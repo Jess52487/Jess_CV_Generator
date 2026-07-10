@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function TechnicalTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-[family-name:var(--font-technical)] text-[#22c55e] bg-[#111827] p-12 h-full">
+    <div className="font-[family-name:var(--font-technical)] text-[#22c55e] bg-[#111827] p-12 min-h-full flex-grow">
       {/* Header */}
       <div className="mb-10 pb-4 border-b border-[#166534]">
         <h1 className="text-3xl font-bold mb-1 text-[#4ade80]">

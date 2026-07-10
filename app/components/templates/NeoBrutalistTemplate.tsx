@@ -3,8 +3,8 @@ import { CVData } from "../../context/CVContext";
 
 export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-mono text-black bg-[#ffdb58] h-full p-8 leading-tight">
-      <div className="border-4 border-black h-full bg-white relative shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+    <div className="font-mono text-black bg-[#ffdb58] min-h-full flex-grow p-8 leading-tight">
+      <div className="border-4 border-black min-h-full flex-grow bg-white relative shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col">
         
         {/* Header Block */}
         <div className="border-b-4 border-black p-8 bg-[#ff6b6b]">

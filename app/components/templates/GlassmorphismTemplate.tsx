@@ -3,12 +3,12 @@ import { CVData } from "../../context/CVContext";
 
 export default function GlassmorphismTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-white h-full p-8 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #4f46e5 0%, #ec4899 100%)" }}>
+    <div className="font-sans text-white min-h-full flex-grow p-8 relative overflow-clip" style={{ background: "linear-gradient(135deg, #4f46e5 0%, #ec4899 100%)" }}>
       {/* Background blobs for glass effect */}
       <div className="absolute top-[-10%] left-[-10%] w-[300px] h-[300px] rounded-full bg-white opacity-20 blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-yellow-300 opacity-20 blur-3xl pointer-events-none"></div>
       
-      <div className="flex flex-col h-full gap-6 relative z-10">
+      <div className="flex flex-col min-h-full flex-grow gap-6 relative z-10">
         
         {/* Header Block - Glass */}
         <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-2xl shadow-xl flex flex-col md:flex-row justify-between items-center gap-6">

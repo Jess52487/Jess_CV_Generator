@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function FreshStartTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-[#4b5563] bg-[#f8fafc] h-full p-10 leading-relaxed">
+    <div className="font-sans text-[#4b5563] bg-[#f8fafc] min-h-full flex-grow p-10 leading-relaxed">
       {/* Header */}
       <div className="bg-white rounded-2xl p-8 mb-8 shadow-sm border border-[#e2e8f0] flex flex-col md:flex-row items-center justify-between gap-6">
         <div>

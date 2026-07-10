@@ -3,12 +3,12 @@ import { CVData } from "../../context/CVContext";
 
 export default function CreativeTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-[family-name:var(--font-creative)] text-[#1e293b] bg-[#ffffff] h-full p-10">
+    <div className="font-[family-name:var(--font-creative)] text-[#1e293b] bg-[#ffffff] min-h-full flex-grow p-10">
       {/* 2-Column Grid */}
       <div className="grid grid-cols-3 gap-10">
         
         {/* Left Sidebar */}
-        <div className="col-span-1 border-r border-[#e2e8f0] pr-8 h-full">
+        <div className="col-span-1 border-r border-[#e2e8f0] pr-8 min-h-full flex-grow">
           <div className="mb-12 pt-4">
             <h1 className="text-3xl font-bold tracking-tight leading-none mb-3 text-[#0f172a]">{data.fullName || "Your Name"}</h1>
             <p className="text-sm font-medium text-[#2563eb] uppercase tracking-widest mb-6">{data.jobTitle || "Your Title"}</p>

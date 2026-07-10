@@ -107,8 +107,14 @@ export default function ExportClipboard() {
               </div>
               
               {/* CV Paper Document (Target for PDF) */}
-              <div ref={targetRef} className="paper-stack bg-white aspect-[210/297] w-full relative overflow-hidden flex flex-col p-0 m-0 print:m-0">
-                {activeCV ? <TemplateRenderer data={activeCV.data} /> : <div className="flex-1 flex items-center justify-center text-gray-400">Select a CV</div>}
+              <div className="w-full overflow-x-auto pb-4 custom-scrollbar">
+                <div 
+                  ref={targetRef} 
+                  className="paper-stack bg-white relative flex flex-col p-0 m-0 print:m-0 mx-auto shadow-sm"
+                  style={{ width: '794px', minHeight: '1123px' }}
+                >
+                  {activeCV ? <TemplateRenderer data={activeCV.data} /> : <div className="flex-1 flex items-center justify-center text-gray-400 min-h-[500px]">Select a CV</div>}
+                </div>
               </div>
             </div>
 
