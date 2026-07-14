@@ -31,7 +31,7 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
               <div className="mb-[12px]">
                 <h2 className="text-[18px] font-black uppercase border-b-[4px] border-black pb-[4px] mb-[8px]">Summary</h2>
                 <div className="bg-[#f2f4f6] border-[2px] border-black p-[10px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                  <p className="text-[14.5px] leading-[1.15] font-bold whitespace-pre-wrap">{data.summary}</p>
+                  <p className="text-[14.5px] leading-[1.15] font-bold whitespace-pre-wrap text-justify">{data.summary}</p>
                 </div>
               </div>
             )}
@@ -50,7 +50,7 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
                     {exp.skills.length > 0 && (
                       <ul className="flex flex-col space-y-[4px] text-[14.5px] font-bold space-y-[4px]">
                         {exp.skills.filter(s => s && s.trim().length > 0).map(skill => (
-                          <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
+                          <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                         ))}
                       </ul>
                     )}
@@ -73,7 +73,7 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
                       <p className="text-[14.5px] font-bold mb-[2px]">{edu.degree}</p>
                       <span className="text-[12px] font-bold uppercase border-[2px] border-black px-[4px] bg-white inline-block mb-[2px]">{edu.startYear} – {edu.endYear}</span>
                       {edu.description && (
-                        <p className="text-[14.5px] mt-[4px] font-bold whitespace-pre-wrap">{edu.description}</p>
+                        <p className="text-[14.5px] mt-[4px] font-bold whitespace-pre-wrap text-justify">{edu.description}</p>
                       )}
                     </div>
                   ))}
@@ -87,7 +87,7 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
                 <h2 className="text-[18px] font-black uppercase border-b-[4px] border-black pb-[4px] mb-[8px]">Skills</h2>
                 <ul className="flex flex-col space-y-[4px] text-[14.5px] font-bold space-y-[4px] uppercase">
                   {data.globalSkills.filter(s => s && s.trim().length > 0).map(skill => (
-                    <li key={skill} className="flex items-start border-b-[2px] border-dotted border-black"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
+                    <li key={skill} className="flex items-start border-b-[2px] border-dotted border-black"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                   ))}
                 </ul>
               </div>
@@ -97,7 +97,7 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
             {data.references && (
               <div className="mb-[12px]">
                 <h2 className="text-[18px] font-black uppercase border-b-[4px] border-black pb-[4px] mb-[8px]">References</h2>
-                <p className="text-[14.5px] font-bold whitespace-pre-wrap">
+                <p className="text-[14.5px] font-bold whitespace-pre-wrap text-justify">
                   {data.references}
                 </p>
               </div>

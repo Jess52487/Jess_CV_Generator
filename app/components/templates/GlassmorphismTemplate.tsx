@@ -27,7 +27,7 @@ export default function GlassmorphismTemplate({ data }: { data: CVData }) {
             {data.summary && (
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-[12px] rounded-lg shadow-inner mb-[12px]">
                 <h2 className="text-[18px] font-bold uppercase tracking-widest mb-[8px] text-white/90 border-b border-white/20 pb-[4px] inline-block">Summary</h2>
-                <p className="text-[14.5px] leading-[1.15] text-white/90 whitespace-pre-wrap">{data.summary}</p>
+                <p className="text-[14.5px] leading-[1.15] text-white/90 whitespace-pre-wrap text-justify">{data.summary}</p>
               </div>
             )}
 
@@ -45,7 +45,7 @@ export default function GlassmorphismTemplate({ data }: { data: CVData }) {
                     {exp.skills.length > 0 && (
                       <ul className="flex flex-col space-y-[4px] text-[14.5px] text-white/80 space-y-[4px]">
                         {exp.skills.filter(s => s && s.trim().length > 0).map(skill => (
-                          <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
+                          <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                         ))}
                       </ul>
                     )}
@@ -63,7 +63,7 @@ export default function GlassmorphismTemplate({ data }: { data: CVData }) {
                 <h2 className="text-[18px] font-bold uppercase tracking-widest mb-[8px] text-white/90 border-b border-white/20 pb-[4px] inline-block">Skills</h2>
                 <ul className="flex flex-col space-y-[4px] text-[14.5px] font-medium space-y-[4px] text-white/90">
                   {data.globalSkills.filter(s => s && s.trim().length > 0).map(skill => (
-                    <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
+                    <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                   ))}
                 </ul>
               </div>
@@ -82,7 +82,7 @@ export default function GlassmorphismTemplate({ data }: { data: CVData }) {
                         {edu.startYear} – {edu.endYear}
                       </div>
                       {edu.description && (
-                        <p className="text-[14.5px] mt-[4px] whitespace-pre-wrap text-white/90">{edu.description}</p>
+                        <p className="text-[14.5px] mt-[4px] whitespace-pre-wrap text-justify text-white/90">{edu.description}</p>
                       )}
                     </div>
                   ))}
@@ -94,7 +94,7 @@ export default function GlassmorphismTemplate({ data }: { data: CVData }) {
             {data.references && (
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-[12px] rounded-lg shadow-inner mb-[12px]">
                 <h2 className="text-[18px] font-bold uppercase tracking-widest mb-[8px] text-white/90 border-b border-white/20 pb-[4px] inline-block">References</h2>
-                <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap text-white/90">
+                <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap text-justify text-white/90">
                   {data.references}
                 </p>
               </div>

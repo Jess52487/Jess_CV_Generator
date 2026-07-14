@@ -24,7 +24,7 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
       {data.summary && (
         <div className="mb-[12px]">
           <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Summary</h2>
-          <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap">{data.summary}</p>
+          <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap text-justify">{data.summary}</p>
         </div>
       )}
 
@@ -42,7 +42,7 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
               {exp.skills.length > 0 && (
                 <ul className="flex flex-col space-y-[4px] text-[14.5px] space-y-[4px]">
                   {exp.skills.filter(s => s && s.trim().length > 0).map(skill => (
-                    <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
+                    <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                   ))}
                 </ul>
               )}
@@ -64,7 +64,7 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
                 </div>
                 <p className="text-[14.5px] text-[#4b5563] font-bold">{edu.degree}</p>
                 {edu.description && (
-                  <p className="text-[14.5px] mt-[4px] whitespace-pre-wrap">{edu.description}</p>
+                  <p className="text-[14.5px] mt-[4px] whitespace-pre-wrap text-justify">{edu.description}</p>
                 )}
               </div>
             ))}
@@ -78,7 +78,7 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
           <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Skills</h2>
           <ul className="flex flex-col space-y-[4px] text-[14.5px] space-y-[4px]">
             {data.globalSkills.filter(s => s && s.trim().length > 0).map(skill => (
-              <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
+              <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
             ))}
           </ul>
         </div>
@@ -88,7 +88,7 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
       {data.references && (
         <div className="mb-[12px]">
           <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">References</h2>
-          <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap">
+          <p className="text-[14.5px] leading-[1.15] whitespace-pre-wrap text-justify">
             {data.references}
           </p>
         </div>
