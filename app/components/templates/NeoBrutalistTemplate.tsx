@@ -48,9 +48,9 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
                     </div>
                     <p className="text-[14.5px] font-bold uppercase mb-[4px]">{exp.company}</p>
                     {exp.skills.length > 0 && (
-                      <ul className="list-disc list-outside pl-[20px] text-[14.5px] font-bold space-y-[4px]">
-                        {exp.skills.filter(s => s.trim() !== "").map(skill => (
-                          <li key={skill}>{skill}</li>
+                      <ul className="flex flex-col space-y-[4px] text-[14.5px] font-bold space-y-[4px]">
+                        {exp.skills.filter(s => s && s.trim().length > 0).map(skill => (
+                          <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
                         ))}
                       </ul>
                     )}
@@ -85,9 +85,9 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
             {data.globalSkills && data.globalSkills.length > 0 && (
               <div className="mb-[12px]">
                 <h2 className="text-[18px] font-black uppercase border-b-[4px] border-black pb-[4px] mb-[8px]">Skills</h2>
-                <ul className="list-disc list-outside pl-[20px] text-[14.5px] font-bold space-y-[4px] uppercase">
-                  {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
-                    <li key={skill} className="border-b-[2px] border-dotted border-black">{skill}</li>
+                <ul className="flex flex-col space-y-[4px] text-[14.5px] font-bold space-y-[4px] uppercase">
+                  {data.globalSkills.filter(s => s && s.trim().length > 0).map(skill => (
+                    <li key={skill} className="flex items-start border-b-[2px] border-dotted border-black"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
                   ))}
                 </ul>
               </div>

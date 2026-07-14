@@ -30,9 +30,9 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
       {data.globalSkills && data.globalSkills.length > 0 && (
         <div className="mb-[12px]">
           <h2 className="text-[18px] font-bold mb-[8px] text-[#22c55e]">{'// Core_Dependencies'}</h2>
-          <ul className="list-disc list-outside pl-[20px] text-[14.5px] text-[#4ade80] font-mono space-y-[4px]">
-            {data.globalSkills.filter(s => s.trim() !== "").map(skill => (
-              <li key={skill}>{skill}</li>
+          <ul className="flex flex-col space-y-[4px] text-[14.5px] text-[#4ade80] font-mono space-y-[4px]">
+            {data.globalSkills.filter(s => s && s.trim().length > 0).map(skill => (
+              <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
             ))}
           </ul>
         </div>
@@ -50,9 +50,9 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
               </div>
               <p className="text-[14.5px] text-[#22c55e] mb-[4px]">{`@ ${exp.company}`}</p>
               {exp.skills.length > 0 && (
-                <ul className="list-disc list-outside pl-[20px] text-[14.5px] font-mono text-[#4ade80] space-y-[4px]">
-                  {exp.skills.filter(s => s.trim() !== "").map(skill => (
-                    <li key={skill}>{skill}</li>
+                <ul className="flex flex-col space-y-[4px] text-[14.5px] font-mono text-[#4ade80] space-y-[4px]">
+                  {exp.skills.filter(s => s && s.trim().length > 0).map(skill => (
+                    <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap">{skill}</span></li>
                   ))}
                 </ul>
               )}

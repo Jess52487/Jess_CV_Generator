@@ -125,7 +125,7 @@ export default function Notepad() {
     }
     
     // Filter out skills already in the globalSkills array
-    const currentSkillsLwr = (data.globalSkills || []).map(s => s.toLowerCase());
+    const currentSkillsLwr = (data.globalSkills || []).filter(s => s && s.trim().length > 0).map(s => s.toLowerCase());
     return suggestions.filter(s => !currentSkillsLwr.includes(s.toLowerCase())).slice(0, 8);
   }, [data.jobTitle, data.globalSkills]);
 
@@ -400,7 +400,7 @@ export default function Notepad() {
                             <span className="font-[family-name:var(--font-label-embossed)] text-[12px] bg-[var(--color-surface-container-high)] px-2 py-1 rounded-sm border border-[var(--color-outline-variant)]">
                               {exp.startDate} - {exp.endDate}
                             </span>
-                            <span className="font-[family-name:var(--font-label-stamp)] text-[10px] text-[var(--color-on-surface-variant)] uppercase">{exp.skills.length} Skills Logged</span>
+                            <span className="font-[family-name:var(--font-label-stamp)] text-[10px] text-[var(--color-on-surface-variant)] uppercase">{exp.skills.filter(s => s && s.trim().length > 0).length} Skills Logged</span>
                           </div>
                         </div>
                       ))}
@@ -536,7 +536,7 @@ export default function Notepad() {
                       {/* Display Badges */}
                       {(data.globalSkills || []).length > 0 && (
                         <div className="flex flex-wrap gap-2 pt-4">
-                          {(data.globalSkills || []).map((skill, i) => (
+                          {(data.globalSkills || []).filter(s => s && s.trim().length > 0).map((skill, i) => (
                             <span key={i} className="px-3 py-1 bg-[var(--color-primary)] text-white font-[family-name:var(--font-label-stamp)] text-sm rounded-full shadow-sm">
                               {skill}
                             </span>
