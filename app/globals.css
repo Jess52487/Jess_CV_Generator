@@ -432,6 +432,14 @@
     padding: 15mm !important; 
   }
   
+  /* Remove any remaining shadows or borders that might leak into the print fragments */
+  .paper-stack, 
+  .template-root,
+  .cv-document-wrapper {
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+  }
   .paper-stack {
     background-image: none !important; /* Remove visual gaps */
   }
@@ -442,3 +450,4 @@
     break-inside: avoid;
   }
 }
+
