@@ -16,7 +16,6 @@ export default function ExportClipboard() {
 
   // Selected CV from history
   const [selectedCVId, setSelectedCVId] = useState<string | null>(null);
-  const [isExporting, setIsExporting] = useState(false);
 
   // Automatically select the most recent CV if none is selected
   useEffect(() => {
@@ -32,9 +31,6 @@ export default function ExportClipboard() {
   const handleExport = useReactToPrint({
     contentRef: targetRef,
     documentTitle: activeCV ? `${(activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_')}_CV` : "My_CV",
-    onBeforePrint: () => setIsExporting(true),
-    onAfterPrint: () => setIsExporting(false),
-    onPrintError: () => setIsExporting(false),
   });
 
   const handleDelete = (e: React.MouseEvent, id: string) => {
@@ -181,7 +177,7 @@ export default function ExportClipboard() {
                   </button>
                   <button 
                     onClick={() => handleExport()}
-                    disabled={!activeCV || isExporting}
+                    disabled={!activeCV}
                     className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-4 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
