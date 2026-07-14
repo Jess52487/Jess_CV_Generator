@@ -73,6 +73,7 @@ export default function Onboarding() {
               src="/onboarding-graphic.png" 
               alt="Professional Resume Builder Illustration" 
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover relative z-10 hover:scale-105 transition-transform duration-700"
               priority
             />
