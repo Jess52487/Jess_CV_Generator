@@ -10,12 +10,8 @@ import { useState } from "react";
 export default function Dashboard() {
   const router = useRouter();
 
-  // Local state to simulate deleting folders
-  const [folders, setFolders] = useState([
-    { id: 1, type: "PDF", name: "Executive_Dir_v2", time: "2 hours ago", color: "bg-[var(--color-on-secondary-fixed-variant)]", border: "border-[var(--color-primary)]", actionText: "Edit Suite" },
-    { id: 2, type: "Draft", name: "Tech_Lead_Google", time: "Oct 24, 2023", color: "bg-[var(--color-secondary)]", border: "border-[var(--color-secondary)]", actionText: "Continue Working" },
-    { id: 3, type: "Shared", name: "Creative_CV_Pink", time: "5 days ago", color: "bg-[var(--color-on-secondary-fixed-variant)]", border: "border-[var(--color-primary)]", actionText: "Share Link" }
-  ]);
+  // Local state for folders (starts empty)
+  const [folders, setFolders] = useState<any[]>([]);
 
   const handleDelete = (id: number, e: React.MouseEvent) => {
     e.stopPropagation();
