@@ -42,8 +42,8 @@ export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
                     <p className="text-[14.5px] font-bold text-[#475569] mb-[4px]">{exp.company}</p>
                     {exp.skills.length > 0 && (
                       <ul className="flex flex-col space-y-[4px] text-[14.5px] space-y-[4px]">
-                        {exp.skills.filter(s => s && s.trim().length > 0).map(skill => (
-                          <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
+                        {exp.skills.filter(s => s && s.trim().length > 0).map((skill, i) => (
+                          <li key={\-\} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                         ))}
                       </ul>
                     )}
@@ -79,8 +79,8 @@ export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
               <div className="mb-[12px]">
                 <h2 className="text-[18px] uppercase font-bold tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#cbd5e1] pb-[4px]">Core Competencies</h2>
                 <ul className="flex flex-col space-y-[4px] text-[14.5px] space-y-[4px]">
-                  {data.globalSkills.filter(s => s && s.trim().length > 0).map(skill => (
-                    <li key={skill} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
+                  {data.globalSkills.filter(s => s && s.trim().length > 0).map((skill, i) => (
+                    <li key={\-\} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                   ))}
                 </ul>
               </div>
