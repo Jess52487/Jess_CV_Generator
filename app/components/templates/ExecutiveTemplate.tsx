@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function ExecutiveTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-[14.5px] leading-[1.15] text-[#111827] bg-[#ffffff] min-h-full flex-grow p-[15mm] flex flex-col text-justify">
+    <div className="template-root font-sans text-[14.5px] leading-[1.15] text-[#111827] bg-[#ffffff] min-h-full flex-grow p-[15mm] flex flex-col text-justify">
       {/* Header */}
       <div className="border-b-[3px] border-[#1f2937] pb-4 mb-[12px]">
         <h1 className="text-[32px] font-bold uppercase tracking-wide mb-[4px]">{data.fullName || "Your Name"}</h1>

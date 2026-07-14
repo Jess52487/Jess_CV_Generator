@@ -358,3 +358,85 @@
 
 
 @media print { .avoid-page-break { page-break-inside: avoid; break-inside: avoid; } }
+
+/* ==== PDF EXPORT & PAGINATION FIXES ==== */
+
+/* Simulate A4 pages visually on screen */
+.cv-document-wrapper {
+  transform-origin: top center;
+  transition: transform 0.3s ease;
+  width: 210mm;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1024px) {
+  .cv-document-wrapper { transform: scale(0.85); }
+}
+@media screen and (max-width: 768px) {
+  .cv-document-wrapper { transform: scale(0.65); }
+}
+@media screen and (max-width: 480px) {
+  .cv-document-wrapper { transform: scale(0.45); }
+}
+
+.paper-stack {
+  width: 210mm !important;
+  min-height: 297mm !important;
+  /* Visual gap simulation for A4 pages (297mm) */
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0mm,
+    transparent 296mm,
+    #9ca3af 296mm,
+    #e5e7eb 296.5mm,
+    transparent 297mm
+  );
+  background-size: 100% 297mm;
+  background-repeat: repeat-y;
+  background-color: white;
+}
+
+/* Force Block Layout for Print Engine (Fixes Squash Bug) */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm;
+  }
+  
+  html, body {
+    width: 210mm;
+    height: auto;
+    overflow: visible !important;
+    background-color: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Override scaling and visual gaps during actual print */
+  .cv-document-wrapper {
+    transform: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Remove flexbox constraints to allow native A4 splitting */
+  .paper-stack, 
+  .paper-stack > div,
+  .template-root {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  
+  .paper-stack {
+    background-image: none !important; /* Remove visual gaps */
+  }
+
+  /* Keep components strictly contained to avoid cutting in half */
+  .break-inside-avoid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}

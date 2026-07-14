@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-[14.5px] leading-[1.15] text-[#1e293b] bg-[#fafafa] min-h-full flex-grow p-[15mm] border-l-[8px] border-r-[8px] border-double border-[#94a3b8] text-justify">
+    <div className="template-root font-sans text-[14.5px] leading-[1.15] text-[#1e293b] bg-[#fafafa] min-h-full flex-grow p-[15mm] border-l-[8px] border-r-[8px] border-double border-[#94a3b8] text-justify">
       <div className="max-w-[700px] mx-auto">
         {/* Header Block */}
         <div className="border-b-[4px] border-double border-[#94a3b8] pb-[12px] mb-[12px] text-center">

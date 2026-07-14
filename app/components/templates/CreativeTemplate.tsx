@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function CreativeTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-[14.5px] leading-[1.15] text-[#1e293b] bg-[#ffffff] min-h-full flex-grow p-[15mm] text-justify">
+    <div className="template-root font-sans text-[14.5px] leading-[1.15] text-[#1e293b] bg-[#ffffff] min-h-full flex-grow p-[15mm] text-justify">
       <div className="flex flex-col gap-[12px]">
         {/* Header Block */}
         <div className="bg-[#f8fafc] p-[15px] border-l-[4px] border-[#3b82f6] mb-[12px]">
