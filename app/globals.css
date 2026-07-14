@@ -394,7 +394,7 @@
   }
   
   html, body {
-    width: 210mm;
+    width: 100% !important;
     height: auto;
     overflow: visible !important;
     background-color: white !important;
@@ -409,11 +409,12 @@
     margin: 0 !important;
   }
 
-  /* Remove flexbox constraints to allow native A4 splitting */
+    /* Remove flexbox constraints to allow native A4 splitting */
   .paper-stack, 
   .paper-stack > div {
     display: block !important;
     height: auto !important;
+    width: 100% !important;
     max-height: none !important;
     min-height: 0 !important;
     overflow: visible !important;
@@ -450,4 +451,6 @@
     break-inside: avoid;
   }
 }
+
+
 
