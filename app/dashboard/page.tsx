@@ -30,9 +30,9 @@ export default function Dashboard() {
 
       <div className="lamp-light"></div>
 
-      <main className="pt-32 pb-24 px-[var(--spacing-desktop-margin)] flex justify-center min-h-screen relative z-20 md:pl-32">
+      <main className="pt-32 pb-24 px-4 md:px-[var(--spacing-desktop-margin)] flex justify-center min-h-screen relative z-20 md:pl-32">
         {/* Main Portfolio Content */}
-        <div className="leather-portfolio w-full max-w-5xl rounded-lg p-8 md:p-12 relative flex flex-col">
+        <div className="leather-portfolio w-full max-w-5xl rounded-lg p-4 md:p-12 relative flex flex-col">
           <div className="stitch-border absolute inset-4 pointer-events-none rounded"></div>
 
           {/* Portfolio Header */}

@@ -54,7 +54,7 @@ export default function Onboarding() {
       </div>
       
       {/* The Central Document (Stationery Paper) */}
-      <div className="document-paper bg-white w-full max-w-4xl aspect-[1/1.414] flex flex-col z-20 overflow-hidden transform md:scale-95 lg:scale-100 transition-transform duration-500" ref={docRef}>
+      <div className="document-paper bg-white w-full max-w-4xl min-h-[85vh] md:min-h-0 md:aspect-[1/1.414] flex flex-col z-20 overflow-hidden transform md:scale-95 lg:scale-100 transition-transform duration-500 my-8 md:my-0" ref={docRef}>
         {/* Clipboard Header */}
         <div className="clipboard-clamp h-16 w-1/3 mx-auto flex items-center justify-center rounded-b-xl mb-8 relative">
           <div className="w-8 h-8 rounded-full border-2 border-gray-500/30 flex items-center justify-center">

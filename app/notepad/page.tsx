@@ -145,12 +145,12 @@ export default function Notepad() {
         <div className="max-w-4xl w-full relative">
           
           {/* Manila Folder Tabs */}
-          <div className="flex gap-1 pl-4 relative z-10 mb-[-1px] overflow-x-auto">
+          <div className="flex gap-1 pl-4 relative z-10 mb-[-1px] overflow-x-auto pb-1 no-scrollbar">
             {(["Profile", "Experience", "Education", "Skills", "References"] as Tab[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-3 rounded-t-lg font-[family-name:var(--font-label-stamp)] text-sm uppercase tracking-wider font-bold border-t border-l border-r border-[#d1d5db] transition-all
+                className={`shrink-0 whitespace-nowrap px-4 md:px-6 py-2 md:py-3 rounded-t-lg font-[family-name:var(--font-label-stamp)] text-sm uppercase tracking-wider font-bold border-t border-l border-r border-[#d1d5db] transition-all
                   ${activeTab === tab 
                     ? "bg-white text-[var(--color-primary)] border-b-white z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] relative" 
                     : "bg-[#f3e5ab] text-[#78716c] hover:bg-[#e7d590] z-0"}`}

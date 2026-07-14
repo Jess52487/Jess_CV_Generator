@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,7 +9,7 @@ export default function SideNav() {
   const getNavClass = (path: string) => {
     const isActive = pathname === path;
     if (isActive) {
-      return "w-12 h-12 flex items-center justify-center bg-[var(--color-secondary)] text-[var(--color-on-secondary)] rounded-l-full shadow-inner -translate-x-1 transition-transform cursor-pointer";
+      return "w-12 h-12 flex items-center justify-center bg-[var(--color-secondary)] text-[var(--color-on-secondary)] rounded-t-xl md:rounded-t-none md:rounded-l-full shadow-inner -translate-y-1 md:translate-y-0 md:-translate-x-1 transition-transform cursor-pointer";
     }
     return "w-12 h-12 flex items-center justify-center text-[var(--color-on-secondary-container)] hover:bg-[var(--color-secondary-fixed)] rounded-xl transition-all group cursor-pointer";
   };
@@ -20,12 +20,12 @@ export default function SideNav() {
   };
 
   return (
-    <aside className="fixed left-0 top-20 h-[calc(100vh-80px)] w-20 flex flex-col items-center py-[var(--spacing-component-gap)] bg-[var(--color-secondary-container)] rounded-r-xl border-r border-[var(--color-outline-variant)] shadow-[4px_0_8px_rgba(0,0,0,0.2)] z-40">
-      <div className="mb-8 flex flex-col items-center px-2 text-center">
+    <aside className="fixed bottom-0 md:bottom-auto left-0 md:top-20 w-full h-16 md:h-[calc(100vh-80px)] md:w-20 flex flex-row md:flex-col justify-around md:justify-start items-center md:py-[var(--spacing-component-gap)] bg-[var(--color-secondary-container)] rounded-t-xl md:rounded-t-none md:rounded-r-xl border-t md:border-t-0 md:border-r border-[var(--color-outline-variant)] shadow-[0_-4px_8px_rgba(0,0,0,0.2)] md:shadow-[4px_0_8px_rgba(0,0,0,0.2)] z-50">
+      <div className="hidden md:flex mb-8 flex-col items-center px-2 text-center">
         <span className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-secondary)] block">Project</span>
         <span className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-secondary-container)] font-bold">Desk</span>
       </div>
-      <div className="flex flex-col gap-8 w-full items-center">
+      <div className="flex flex-row md:flex-col gap-4 md:gap-8 w-full md:w-auto items-center justify-around md:justify-center px-4 md:px-0">
         <Link href="/notepad">
           <div className={getNavClass('/notepad')}>
             <span className={getIconClass('/notepad')} style={pathname === '/notepad' ? { fontVariationSettings: "'FILL' 1" } : {}}>person</span>
