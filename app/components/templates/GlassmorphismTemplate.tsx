@@ -45,7 +45,7 @@ export default function GlassmorphismTemplate({ data }: { data: CVData }) {
                     {exp.skills.length > 0 && (
                       <ul className="flex flex-col space-y-[4px] text-[14.5px] text-white/80 space-y-[4px]">
                         {exp.skills.filter(s => s && s.trim().length > 0).map((skill, i) => (
-                          <li key={\-\} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
+                          <li key={`${skill}-${i}`} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                         ))}
                       </ul>
                     )}
@@ -63,7 +63,7 @@ export default function GlassmorphismTemplate({ data }: { data: CVData }) {
                 <h2 className="text-[18px] font-bold uppercase tracking-widest mb-[8px] text-white/90 border-b border-white/20 pb-[4px] inline-block">Skills</h2>
                 <ul className="flex flex-col space-y-[4px] text-[14.5px] font-medium space-y-[4px] text-white/90">
                   {data.globalSkills.filter(s => s && s.trim().length > 0).map((skill, i) => (
-                    <li key={\-\} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
+                    <li key={`${skill}-${i}`} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                   ))}
                 </ul>
               </div>

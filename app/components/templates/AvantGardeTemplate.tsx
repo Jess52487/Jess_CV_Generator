@@ -42,7 +42,7 @@ export default function AvantGardeTemplate({ data }: { data: CVData }) {
                     {exp.skills.length > 0 && (
                       <ul className="flex flex-col space-y-[4px] text-[14.5px] font-medium space-y-[4px]">
                         {exp.skills.filter(s => s && s.trim().length > 0).map((skill, i) => (
-                          <li key={\-\} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
+                          <li key={`${skill}-${i}`} className="flex items-start"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                         ))}
                       </ul>
                     )}
@@ -91,7 +91,7 @@ export default function AvantGardeTemplate({ data }: { data: CVData }) {
                 <h2 className="text-[18px] font-black uppercase tracking-widest text-black mb-[8px] border-b-[2px] border-black pb-[4px]">Skills</h2>
                 <ul className="flex flex-col space-y-[4px] text-[14.5px] font-bold tracking-wider uppercase space-y-[4px]">
                   {data.globalSkills.filter(s => s && s.trim().length > 0).map((skill, i) => (
-                    <li key={\-\} className="flex items-start border-b border-black/10 pb-[2px]"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
+                    <li key={`${skill}-${i}`} className="flex items-start border-b border-black/10 pb-[2px]"><span className="mr-[8px] mt-[5px] text-[10px] leading-none opacity-80">•</span><span className="flex-1 whitespace-pre-wrap text-justify">{skill}</span></li>
                   ))}
                 </ul>
               </div>
