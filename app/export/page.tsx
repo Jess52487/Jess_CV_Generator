@@ -31,6 +31,16 @@ export default function ExportClipboard() {
   const handleExport = useReactToPrint({
     contentRef: targetRef,
     documentTitle: activeCV ? `${(activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_')}_CV` : "My_CV",
+    onAfterPrint: () => {
+      // The browser's native print dialog doesn't tell us if they clicked "Save" or "Cancel".
+      // We must ask them to confirm before wiping their data for the next user.
+      setTimeout(() => {
+        if (confirm("Did you successfully download your PDF?\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
+          purgeAllData();
+          router.push('/');
+        }
+      }, 500);
+    },
   });
 
   const handleDelete = (e: React.MouseEvent, id: string) => {
