@@ -167,7 +167,7 @@ export default function ExportClipboard() {
                         router.push('/notepad');
                       }
                     }}
-                    disabled={!activeCV || isExporting}
+                    disabled={!activeCV}
                     className="w-full bg-[var(--color-secondary)] text-[var(--color-on-secondary)] py-3 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90 shadow-md"
                   >
                     <span className="material-symbols-outlined text-2xl">edit_document</span>
@@ -182,10 +182,10 @@ export default function ExportClipboard() {
                   >
                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                     <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-                      {isExporting ? 'hourglass_empty' : 'download'}
+                      download
                     </span>
-                    <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase font-bold">
-                      {isExporting ? 'Exporting...' : 'Export PDF'}
+                    <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase mt-1">
+                      Export PDF
                     </span>
                   </button>
                 </div>
