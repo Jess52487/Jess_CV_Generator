@@ -180,7 +180,7 @@ export default function ExportClipboard() {
                     </span>
                   </button>
                   <button 
-                    onClick={handleExport}
+                    onClick={() => handleExport()}
                     disabled={!activeCV || isExporting}
                     className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-4 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
