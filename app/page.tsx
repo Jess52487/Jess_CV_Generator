@@ -113,7 +113,7 @@ export default function Onboarding() {
           
           {/* Rubber Stamp CTA */}
           <div className="mt-auto mb-12 w-full flex justify-center">
-            <Link href="/dashboard">
+            <Link href="/notepad">
               <button className="stamp-button group bg-[var(--color-primary)] text-[var(--color-on-primary)] px-12 py-6 rounded-lg font-[family-name:var(--font-headline-md)] uppercase tracking-widest flex items-center gap-4 cursor-pointer relative overflow-hidden">
                 <span className="material-symbols-outlined text-3xl">ink_highlighter</span>
                 Create My CV
