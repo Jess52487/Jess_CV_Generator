@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function GlassmorphismTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-[14.5px] leading-[1.15] text-white bg-gradient-to-br from-[#4f46e5] via-[#7c3aed] to-[#db2777] min-h-full flex-grow p-[15mm] text-left">
+    <div className="font-sans text-[14.5px] leading-[1.15] text-white bg-gradient-to-br from-[#4f46e5] via-[#7c3aed] to-[#db2777] min-h-full flex-grow p-[15mm] text-justify">
       <div className="bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl p-[20px] h-full flex flex-col rounded-xl">
         
         {/* Header Block */}

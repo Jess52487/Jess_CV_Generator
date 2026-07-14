@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function AvantGardeTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-[14.5px] leading-[1.15] text-black bg-[#f4f4f0] min-h-full flex-grow p-[15mm] text-left">
+    <div className="font-sans text-[14.5px] leading-[1.15] text-black bg-[#f4f4f0] min-h-full flex-grow p-[15mm] text-justify">
       <div className="border-[8px] border-black p-[20px] h-full flex flex-col relative overflow-clip">
         
         {/* Background Decorative Element */}

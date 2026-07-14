@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-[14.5px] leading-[1.15] text-black bg-[#ffd803] min-h-full flex-grow p-[15mm] text-left">
+    <div className="font-sans text-[14.5px] leading-[1.15] text-black bg-[#ffd803] min-h-full flex-grow p-[15mm] text-justify">
       <div className="border-[4px] border-black bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-[20px] h-full flex flex-col">
         
         {/* Header Block */}

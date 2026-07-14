@@ -3,7 +3,7 @@ import { CVData } from "../../context/CVContext";
 
 export default function TechnicalTemplate({ data }: { data: CVData }) {
   return (
-    <div className="font-sans text-[14.5px] leading-[1.15] text-[#22c55e] bg-[#111827] min-h-full flex-grow p-[15mm] text-left">
+    <div className="font-sans text-[14.5px] leading-[1.15] text-[#22c55e] bg-[#111827] min-h-full flex-grow p-[15mm] text-justify">
       {/* Header Info */}
       <div className="border-b-[2px] border-[#166534] pb-[12px] mb-[12px]">
         <h1 className="text-[32px] font-bold mb-[4px] tracking-tight">{`const name = "${data.fullName || 'User'}";`}</h1>
