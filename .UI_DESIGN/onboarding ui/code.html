@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Virtual Desk - Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@100..900&family=Space+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#2c160e",
+                        "surface-variant": "#e5e2e1",
+                        "secondary-fixed": "#ffdbd0",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "error": "#ba1a1a",
+                        "primary": "#0c6780",
+                        "on-tertiary-container": "#4f5151",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "secondary-fixed-dim": "#e7bdb1",
+                        "secondary": "#77574d",
+                        "on-secondary-fixed-variant": "#5d4037",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#005870",
+                        "on-secondary-container": "#795950",
+                        "surface-container-high": "#eae7e7",
+                        "primary-container": "#87ceeb",
+                        "on-primary-fixed": "#001f29",
+                        "background": "#fcf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "on-surface": "#1b1c1c",
+                        "on-background": "#1b1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#89d0ed",
+                        "error-container": "#ffdad6",
+                        "surface": "#fcf9f8",
+                        "outline": "#6f787d",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-primary-fixed-variant": "#004d62",
+                        "tertiary": "#5d5f5f",
+                        "primary-fixed": "#baeaff",
+                        "tertiary-container": "#c4c4c4",
+                        "surface-tint": "#0c6780",
+                        "secondary-container": "#fed3c7",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "inverse-surface": "#303030",
+                        "outline-variant": "#bfc8cd",
+                        "primary-fixed-dim": "#89d0ed",
+                        "on-surface-variant": "#3f484c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "desktop-margin": "64px",
+                        "tablet-margin": "32px",
+                        "gutter": "24px",
+                        "document-padding": "80px",
+                        "mobile-margin": "16px",
+                        "component-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["\"Source Serif 4\""],
+                        "label-embossed": ["Space Mono"],
+                        "body-md": ["\"Source Serif 4\""],
+                        "headline-md": ["\"Source Serif 4\""],
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "label-stamp": ["Space Mono"],
+                        "body-lg": ["\"Source Serif 4\""]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["30px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "label-embossed": ["12px", {"lineHeight": "14px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-stamp": ["14px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Mahogany Desk Background */
+        .desk-surface {
+            background-color: #2c160e;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px),
+                repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255,255,255,0.02) 100px, rgba(255,255,255,0.02) 200px);
+            background-size: 100% 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Wood Grain Texture Overlay */
+        .wood-grain {
+            background: url('https://www.transparenttextures.com/patterns/dark-wood.png');
+            opacity: 0.4;
+            mix-blend-mode: overlay;
+        }
+
+        /* Paper Texture & Skeuomorphism */
+        .document-paper {
+            background: #ffffff;
+            background-image: radial-gradient(#d1d1d1 1px, transparent 0);
+            background-size: 40px 40px;
+            background-position: -19px -19px;
+            box-shadow: 
+                0 1px 1px rgba(0,0,0,0.15), 
+                0 10px 20px rgba(0,0,0,0.2), 
+                0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        /* Metallic Clipboard Header */
+        .clipboard-clamp {
+            background: linear-gradient(145deg, #d1d5db, #9ca3af);
+            border-bottom: 2px solid #4b5563;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Rubber Stamp Button Effect */
+        .stamp-button {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: perspective(500px) rotateX(10deg);
+            box-shadow: 
+                0 10px 0 #084a5c,
+                0 15px 20px rgba(0,0,0,0.4);
+        }
+
+        .stamp-button:active {
+            transform: perspective(500px) rotateX(5deg) translateY(8px);
+            box-shadow: 
+                0 2px 0 #084a5c,
+                0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Inset Input Field Effect */
+        .indent-effect {
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.1),
+                0 1px 0 rgba(255,255,255,0.8);
+            background-color: rgba(0,0,0,0.03);
+        }
+
+        /* Pinned Photo Effect */
+        .pinned-photo {
+            transform: rotate(-2deg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 8px solid white;
+            border-bottom: 24px solid white;
+        }
+
+        .push-pin {
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #990000);
+            border-radius: 50%;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Perforated Line */
+        .perforated {
+            border-bottom: 2px dotted #ccc;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md">
+<main class="desk-surface min-h-screen flex items-center justify-center p-mobile-margin md:p-desktop-margin relative">
+<div class="wood-grain absolute inset-0 pointer-events-none"></div>
+<!-- Ambient Lighting Effects -->
+<div class="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-0 right-1/4 w-96 h-96 bg-black/20 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Decorative Elements on the Desk -->
+<!-- Pinned Photo -->
+<div class="hidden lg:block absolute right-12 top-24 z-10">
+<div class="pinned-photo relative w-64 h-80 bg-white">
+<div class="push-pin"></div>
+<div class="w-full h-full overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.3]" data-alt="A professional high-contrast photograph of a successful business professional looking at a bright city skyline through a glass window. The style is cinematic and aspirational, with soft morning sunlight illuminating the scene in a premium light-mode aesthetic. The composition is focused and inspiring, representing career growth and professional ambition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUO1zKExTnh0XiZfsJIt-5v1C-MnhodJQUN24CRCPat9Mq5KjddSgrUEXgJlFSdwqDZBaq-DOBWeMG7KnxCn1D7v3nCPRaGHFk8tWvirfqf_p80U2T9KSKgrHk01-k8WDMJI96NKib4nTdJGFaVI3D0yO9Xg6YVnz82hzACC5Yp7PG5_a5L0b01pk0xJlsRIa190wGvzzAjrgkmOfwVYTBkvHlmS_9X4dXutgSAWO0mI8iNB89jH-lGK__9boXAjIrEi9R970eTIus"/>
+</div>
+<div class="absolute bottom-2 left-4 font-label-stamp text-[10px] text-gray-500 uppercase tracking-widest">Growth Archive 2024</div>
+</div>
+</div>
+<!-- Fountain Pen Decor -->
+<div class="hidden xl:block absolute left-20 bottom-32 z-10 rotate-45 opacity-80 scale-125">
+<div class="w-4 h-48 bg-black rounded-full shadow-2xl relative">
+<div class="absolute top-0 w-4 h-8 bg-gradient-to-b from-gray-400 to-gray-600 rounded-t-full"></div>
+<div class="absolute bottom-0 w-6 h-1 bg-gray-500 -left-1"></div>
+</div>
+</div>
+<!-- The Central Document (Stationery Paper) -->
+<div class="document-paper w-full max-w-4xl aspect-[1/1.414] flex flex-col z-20 overflow-hidden transform md:scale-95 lg:scale-100 transition-transform duration-500">
+<!-- Clipboard Header -->
+<div class="clipboard-clamp h-16 w-1/3 mx-auto flex items-center justify-center rounded-b-xl mb-8 relative">
+<div class="w-8 h-8 rounded-full border-2 border-gray-500/30 flex items-center justify-center">
+<div class="w-2 h-2 bg-gray-600 rounded-full"></div>
+</div>
+<!-- Binder Clip Metaphor -->
+<div class="absolute -left-6 top-2 w-12 h-4 bg-gray-400/50 rounded-full blur-sm"></div>
+</div>
+<!-- Content Area -->
+<div class="flex-grow px-mobile-margin md:px-document-padding flex flex-col items-center text-center">
+<div class="mb-gutter">
+<span class="font-label-stamp text-label-stamp text-primary bg-primary-container/20 px-3 py-1 rounded-full border border-primary/20">
+                        VIRTUAL DESK SYSTEM v2.0
+                    </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-gutter leading-tight">
+                    Create Your <span class="italic text-primary border-b-2 border-primary/30">Professional</span> CV
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-12">
+                    Experience the tactile satisfaction of a physical workspace paired with digital precision. Build a career-defining portfolio that stands out from the noise.
+                </p>
+<!-- Input Indent Mimic -->
+<div class="w-full max-w-md space-y-6 mb-16">
+<div class="text-left">
+<label class="font-label-stamp text-[10px] text-on-surface-variant uppercase ml-2 mb-1 block">Full Name Signature</label>
+<div class="indent-effect p-4 rounded-lg flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="edit">edit</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-headline-md italic text-gray-700 placeholder:text-gray-300" placeholder="Johnathan Doe" type="text"/>
+</div>
+</div>
+</div>
+<!-- Features Bento-lite -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter w-full mb-16">
+<div class="perforated pb-4 text-left">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="history_edu">history_edu</span>
+<h3 class="font-label-stamp text-label-stamp mb-1">Authentic Prints</h3>
+<p class="text-[12px] text-on-surface-variant leading-relaxed">High-fidelity typography that feels pressed onto the paper surface.</p>
+</div>
+<div class="perforated pb-4 text-left">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="verified">verified</span>
+<h3 class="font-label-stamp text-label-stamp mb-1">ATS Proof</h3>
+<p class="text-[12px] text-on-surface-variant leading-relaxed">Smart structures hidden beneath the skeuomorphic beauty.</p>
+</div>
+<div class="perforated pb-4 text-left">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="font-label-stamp text-label-stamp mb-1">Instant Layout</h3>
+<p class="text-[12px] text-on-surface-variant leading-relaxed">Automated formatting that respects traditional design rules.</p>
+</div>
+</div>
+<!-- Rubber Stamp CTA -->
+<div class="mt-auto mb-12 w-full flex justify-center">
+<button class="stamp-button group bg-primary text-on-primary px-12 py-6 rounded-lg font-headline-md uppercase tracking-widest flex items-center gap-4 cursor-pointer">
+<span class="material-symbols-outlined text-3xl" data-icon="ink_highlighter" data-weight="fill">ink_highlighter</span>
+                        Create My CV
+                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg"></div>
+</button>
+</div>
+<div class="mb-8 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="font-label-stamp text-[10px] text-gray-400">READY FOR DISPATCH TO EXECUTIVE SUITE</span>
+</div>
+</div>
+<!-- Bottom Paper Detail -->
+<div class="h-2 w-full bg-gradient-to-t from-gray-200 to-transparent"></div>
+</div>
+<!-- Footer Text on the Wood -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6 opacity-40">
+<span class="font-label-stamp text-[12px] text-white tracking-[0.3em] uppercase">Privacy Protocol</span>
+<div class="h-1 w-1 rounded-full bg-white/50"></div>
+<span class="font-label-stamp text-[12px] text-white tracking-[0.3em] uppercase">Executive Terms</span>
+<div class="h-1 w-1 rounded-full bg-white/50"></div>
+<span class="font-label-stamp text-[12px] text-white tracking-[0.3em] uppercase">Contact Suite</span>
+</div>
+</main>
+<script>
+        // Micro-interaction for input hover shadow intensity
+        const inputs = document.querySelectorAll('.indent-effect');
+        inputs.forEach(input => {
+            input.addEventListener('focusin', () => {
+                input.style.boxShadow = 'inset 0 4px 6px rgba(0,0,0,0.15), 0 1px 0 rgba(255,255,255,1)';
+            });
+            input.addEventListener('focusout', () => {
+                input.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.8)';
+            });
+        });
+
+        // Subtle parallax movement for desk elements
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            
+            const pinned = document.querySelector('.pinned-photo');
+            if (pinned) {
+                pinned.style.transform = `rotate(-2deg) translate(${moveX}px, ${moveY}px)`;
+            }
+            
+            const doc = document.querySelector('.document-paper');
+            if (doc) {
+                doc.style.transform = `perspective(1000px) rotateY(${moveX * 0.2}deg) rotateX(${-moveY * 0.2}deg)`;
+            }
+        });
+    </script>
+</body></html>

@@ -1,87 +1,144 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
+import { useEffect, useRef } from "react";
 
 export default function Onboarding() {
-  const [mounted, setMounted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const photoRef = useRef<HTMLDivElement>(null);
+  const docRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMounted(true);
+    const handleMouseMove = (e: MouseEvent) => {
+      const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+      const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+      
+      if (photoRef.current) {
+          photoRef.current.style.transform = `rotate(-2deg) translate(${moveX}px, ${moveY}px)`;
+      }
+      
+      if (docRef.current) {
+          docRef.current.style.transform = `perspective(1000px) rotateY(${moveX * 0.2}deg) rotateX(${-moveY * 0.2}deg)`;
+      }
+    };
+    
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
-    <>
-      <Header />
+    <main className="desk-surface min-h-screen flex items-center justify-center p-[var(--spacing-mobile-margin)] md:p-[var(--spacing-desktop-margin)] relative" ref={containerRef}>
+      <div className="wood-grain absolute inset-0 pointer-events-none"></div>
+      {/* Ambient Lighting Effects */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-black/20 rounded-full blur-3xl pointer-events-none"></div>
       
-      {/* The lamp light effect matches the existing design pattern */}
-      <div className="lamp-light"></div>
-
-      {/* Spacing matches the dashboard and existing pages */}
-      <main className="pt-32 pb-24 px-[var(--spacing-desktop-margin)] flex justify-center min-h-screen relative z-20">
+      {/* Decorative Elements on the Desk */}
+      {/* Pinned Photo */}
+      <div className="hidden lg:block absolute right-12 top-24 z-10" ref={photoRef}>
+        <div className="pinned-photo relative w-64 h-80 bg-white">
+          <div className="push-pin"></div>
+          <div className="w-full h-full overflow-hidden">
+            <img className="w-full h-full object-cover grayscale-[0.3]" alt="A professional photograph" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUO1zKExTnh0XiZfsJIt-5v1C-MnhodJQUN24CRCPat9Mq5KjddSgrUEXgJlFSdwqDZBaq-DOBWeMG7KnxCn1D7v3nCPRaGHFk8tWvirfqf_p80U2T9KSKgrHk01-k8WDMJI96NKib4nTdJGFaVI3D0yO9Xg6YVnz82hzACC5Yp7PG5_a5L0b01pk0xJlsRIa190wGvzzAjrgkmOfwVYTBkvHlmS_9X4dXutgSAWO0mI8iNB89jH-lGK__9boXAjIrEi9R970eTIus"/>
+          </div>
+          <div className="absolute bottom-2 left-4 font-[family-name:var(--font-label-stamp)] text-[10px] text-gray-500 uppercase tracking-widest">Growth Archive 2024</div>
+        </div>
+      </div>
+      
+      {/* Fountain Pen Decor */}
+      <div className="hidden xl:block absolute left-20 bottom-32 z-10 rotate-45 opacity-80 scale-125">
+        <div className="w-4 h-48 bg-black rounded-full shadow-2xl relative">
+          <div className="absolute top-0 w-4 h-8 bg-gradient-to-b from-gray-400 to-gray-600 rounded-t-full"></div>
+          <div className="absolute bottom-0 w-6 h-1 bg-gray-500 -left-1"></div>
+        </div>
+      </div>
+      
+      {/* The Central Document (Stationery Paper) */}
+      <div className="document-paper w-full max-w-4xl aspect-[1/1.414] flex flex-col z-20 overflow-hidden transform md:scale-95 lg:scale-100 transition-transform duration-500" ref={docRef}>
+        {/* Clipboard Header */}
+        <div className="clipboard-clamp h-16 w-1/3 mx-auto flex items-center justify-center rounded-b-xl mb-8 relative">
+          <div className="w-8 h-8 rounded-full border-2 border-gray-500/30 flex items-center justify-center">
+            <div className="w-2 h-2 bg-gray-600 rounded-full"></div>
+          </div>
+          {/* Binder Clip Metaphor */}
+          <div className="absolute -left-6 top-2 w-12 h-4 bg-gray-400/50 rounded-full blur-sm"></div>
+        </div>
         
-        {/* Instead of a dark leather portfolio, we use a pristine, modern white container to satisfy the blue/white modern requirement, while sitting gracefully on the mahogany desk. */}
-        <div className={`w-full max-w-5xl bg-white rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-8 md:p-12 lg:p-16 relative flex flex-col lg:flex-row items-center gap-12 border border-blue-100 transition-all duration-1000 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ fontFamily: '"Inter", sans-serif' }}>
+        {/* Content Area */}
+        <div className="flex-grow px-[var(--spacing-mobile-margin)] md:px-[var(--spacing-document-padding)] flex flex-col items-center text-center">
+          <div className="mb-[var(--spacing-gutter)]">
+            <span className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-primary)] bg-[var(--color-primary-container)]/20 px-3 py-1 rounded-full border border-[var(--color-primary)]/20">
+              VIRTUAL DESK SYSTEM v2.0
+            </span>
+          </div>
+          <h1 className="font-[family-name:var(--font-headline-lg)] text-[30px] md:text-[40px] text-[var(--color-on-background)] mb-[var(--spacing-gutter)] leading-tight font-bold">
+            Create Your <span className="italic text-[var(--color-primary)] border-b-2 border-[var(--color-primary)]/30">Professional</span> CV
+          </h1>
+          <p className="font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface-variant)] max-w-xl mb-12">
+            Experience the tactile satisfaction of a physical workspace paired with digital precision. Build a career-defining portfolio that stands out from the noise.
+          </p>
           
-          {/* Subtle inner border to tie into the skeuomorphic feel but kept modern */}
-          <div className="absolute inset-4 border border-blue-50 pointer-events-none rounded"></div>
-
-          {/* Text Section */}
-          <div className="flex-1 flex flex-col items-start relative z-10">
-            <div className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 font-bold text-xs uppercase tracking-widest mb-6 border border-blue-200 shadow-sm">
-              Fast, Easy, and Professional
+          {/* Input Indent Mimic */}
+          <div className="w-full max-w-md space-y-6 mb-16">
+            <div className="text-left">
+              <label className="font-[family-name:var(--font-label-stamp)] text-[10px] text-[var(--color-on-surface-variant)] uppercase ml-2 mb-1 block">Full Name Signature</label>
+              <div className="indent-effect p-4 rounded-lg flex items-center gap-4 transition-shadow">
+                <span className="material-symbols-outlined text-[var(--color-primary)]">edit</span>
+                <input className="bg-transparent border-none focus:ring-0 w-full font-[family-name:var(--font-headline-md)] italic text-gray-700 placeholder:text-gray-300 outline-none" placeholder="Johnathan Doe" type="text" 
+                  onFocus={(e) => e.currentTarget.parentElement!.style.boxShadow = 'inset 0 4px 6px rgba(0,0,0,0.15), 0 1px 0 rgba(255,255,255,1)'}
+                  onBlur={(e) => e.currentTarget.parentElement!.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.8)'}
+                />
+              </div>
             </div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.15] mb-6 tracking-tight">
-              Create Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-500">Professional CV</span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-xl font-medium">
-              Build a professional, ATS-friendly CV in just a few minutes with our easy-to-use CV generator.
-            </p>
-            
+          </div>
+          
+          {/* Features Bento-lite */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--spacing-gutter)] w-full mb-16">
+            <div className="perforated pb-4 text-left">
+              <span className="material-symbols-outlined text-[var(--color-primary)] mb-2">history_edu</span>
+              <h3 className="font-[family-name:var(--font-label-stamp)] text-[14px] mb-1 font-bold">Authentic Prints</h3>
+              <p className="text-[12px] text-[var(--color-on-surface-variant)] leading-relaxed font-[family-name:var(--font-body-md)]">High-fidelity typography that feels pressed onto the paper surface.</p>
+            </div>
+            <div className="perforated pb-4 text-left">
+              <span className="material-symbols-outlined text-[var(--color-primary)] mb-2">verified</span>
+              <h3 className="font-[family-name:var(--font-label-stamp)] text-[14px] mb-1 font-bold">ATS Proof</h3>
+              <p className="text-[12px] text-[var(--color-on-surface-variant)] leading-relaxed font-[family-name:var(--font-body-md)]">Smart structures hidden beneath the skeuomorphic beauty.</p>
+            </div>
+            <div className="perforated pb-4 text-left">
+              <span className="material-symbols-outlined text-[var(--color-primary)] mb-2">auto_awesome</span>
+              <h3 className="font-[family-name:var(--font-label-stamp)] text-[14px] mb-1 font-bold">Instant Layout</h3>
+              <p className="text-[12px] text-[var(--color-on-surface-variant)] leading-relaxed font-[family-name:var(--font-body-md)]">Automated formatting that respects traditional design rules.</p>
+            </div>
+          </div>
+          
+          {/* Rubber Stamp CTA */}
+          <div className="mt-auto mb-12 w-full flex justify-center">
             <Link href="/dashboard">
-              <button className="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-[16px] uppercase tracking-widest shadow-[0_8px_20px_rgba(37,99,235,0.3)] hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(37,99,235,0.4)] transition-all flex items-center gap-3">
-                <span className="material-symbols-outlined text-xl">rocket_launch</span>
+              <button className="stamp-button group bg-[var(--color-primary)] text-[var(--color-on-primary)] px-12 py-6 rounded-lg font-[family-name:var(--font-headline-md)] uppercase tracking-widest flex items-center gap-4 cursor-pointer relative overflow-hidden">
+                <span className="material-symbols-outlined text-3xl">ink_highlighter</span>
                 Create My CV
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg"></div>
               </button>
             </Link>
-            
-            <div className="mt-8 flex items-center gap-4 text-sm text-gray-500 font-semibold">
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center"><span className="material-symbols-outlined text-blue-600 text-xs">person</span></div>
-                <div className="w-8 h-8 rounded-full bg-blue-200 border-2 border-white flex items-center justify-center"><span className="material-symbols-outlined text-blue-700 text-xs">person</span></div>
-                <div className="w-8 h-8 rounded-full bg-blue-300 border-2 border-white flex items-center justify-center"><span className="material-symbols-outlined text-blue-800 text-xs">person</span></div>
-              </div>
-              <p>Join professionals building their career</p>
-            </div>
           </div>
-
-          {/* Image Section */}
-          <div className="flex-1 w-full max-w-lg lg:max-w-xl relative z-10 flex justify-center">
-            <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/10 border-4 border-white bg-blue-50 flex items-center justify-center rotate-2 hover:rotate-0 transition-transform duration-500">
-              <Image 
-                src="/onboarding-graphic.png" 
-                alt="Professional Resume Builder Illustration" 
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover relative z-10"
-                priority
-              />
-            </div>
-            
-            {/* Decorative modern blobs matching the theme */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-            <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+          <div className="mb-8 flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse"></div>
+            <span className="font-[family-name:var(--font-label-stamp)] text-[10px] text-gray-400">READY FOR DISPATCH TO EXECUTIVE SUITE</span>
           </div>
-
         </div>
-      </main>
-
-      <Footer />
-    </>
+        
+        {/* Bottom Paper Detail */}
+        <div className="h-2 w-full bg-gradient-to-t from-gray-200 to-transparent mt-auto"></div>
+      </div>
+      
+      {/* Footer Text on the Wood */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 md:gap-6 opacity-40 w-full text-center">
+        <span className="font-[family-name:var(--font-label-stamp)] text-[10px] md:text-[12px] text-white tracking-[0.3em] uppercase">Privacy Protocol</span>
+        <div className="h-1 w-1 rounded-full bg-white/50 hidden md:block"></div>
+        <span className="font-[family-name:var(--font-label-stamp)] text-[10px] md:text-[12px] text-white tracking-[0.3em] uppercase">Executive Terms</span>
+        <div className="h-1 w-1 rounded-full bg-white/50 hidden md:block"></div>
+        <span className="font-[family-name:var(--font-label-stamp)] text-[10px] md:text-[12px] text-white tracking-[0.3em] uppercase">Contact Suite</span>
+      </div>
+    </main>
   );
 }
