@@ -5,7 +5,7 @@ import SideNav from "../components/layout/SideNav";
 import Footer from "../components/layout/Footer";
 import { useCVContext } from "../context/CVContext";
 import { useRef, useState, useEffect } from "react";
-import generatePDF, { Resolution, Margin } from "react-to-pdf";
+import { useReactToPrint } from "react-to-print";
 import TemplateRenderer from "../components/templates/TemplateRenderer";
 import { useRouter } from "next/navigation";
 
@@ -29,30 +29,13 @@ export default function ExportClipboard() {
 
   const activeCV = savedCVs.find(cv => cv.id === selectedCVId);
 
-  const handleExport = async () => {
-    if (!activeCV || isExporting) return;
-    setIsExporting(true);
-
-    try {
-      const safeName = (activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_');
-      
-      await generatePDF(targetRef, {
-        filename: `${safeName}_CV.pdf`,
-        resolution: Resolution.HIGH,
-        page: {
-          margin: Margin.NONE,
-          format: 'a4',
-        }
-      });
-      
-      alert("Success! Your CV has been downloaded successfully.");
-    } catch (error) {
-      console.error("Export failed", error);
-      alert("Failed to export PDF.");
-    } finally {
-      setIsExporting(false);
-    }
-  };
+  const handleExport = useReactToPrint({
+    contentRef: targetRef,
+    documentTitle: activeCV ? `${(activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_')}_CV` : "My_CV",
+    onBeforePrint: () => setIsExporting(true),
+    onAfterPrint: () => setIsExporting(false),
+    onPrintError: () => setIsExporting(false),
+  });
 
   const handleDelete = (e: React.MouseEvent, id: string) => {
     e.stopPropagation(); // Prevent selecting the CV when deleting

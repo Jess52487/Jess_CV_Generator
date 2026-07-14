@@ -356,3 +356,5 @@
 .push-pin { width: 14px; height: 14px; background: radial-gradient(circle at 30% 30%, #ff4d4d, #990000); border-radius: 50%; box-shadow: 2px 2px 4px rgba(0,0,0,0.4); position: absolute; top: -10px; left: 50%; transform: translateX(-50%); }
 .perforated { border-bottom: 2px dotted #ccc; }
 
+
+@media print { .avoid-page-break { page-break-inside: avoid; break-inside: avoid; } }

@@ -32,7 +32,7 @@ export default function AvantGardeTemplate({ data }: { data: CVData }) {
               <h2 className="text-[18px] font-black uppercase tracking-widest text-black mb-[8px] border-b-[2px] border-black pb-[4px]">Experience</h2>
               <div className="space-y-[12px]">
                 {data.experiences.map(exp => (
-                  <div key={exp.id} className="relative pl-[15px] border-l-[4px] border-black">
+                  <div key={exp.id} className="break-inside-avoid print:break-inside-avoid relative pl-[15px] border-l-[4px] border-black">
                     <div className="absolute w-[12px] h-[12px] bg-[#ff3366] -left-[8px] top-[4px] rounded-sm transform rotate-45"></div>
                     <div className="flex justify-between items-baseline mb-[2px]">
                       <h3 className="text-[16px] font-black">{exp.title}</h3>
@@ -57,7 +57,7 @@ export default function AvantGardeTemplate({ data }: { data: CVData }) {
                 <h2 className="text-[18px] font-black uppercase tracking-widest text-black mb-[8px] border-b-[2px] border-black pb-[4px]">Education</h2>
                 <div className="space-y-[12px]">
                   {(data.education || []).map(edu => (
-                    <div key={edu.id} className="relative pl-[15px] border-l-[4px] border-[#ff3366]">
+                    <div key={edu.id} className="break-inside-avoid print:break-inside-avoid relative pl-[15px] border-l-[4px] border-[#ff3366]">
                       <h3 className="text-[14.5px] font-black">{edu.institution}</h3>
                       <p className="text-[14.5px] font-bold text-gray-600 mb-[2px]">{edu.degree}</p>
                       <span className="text-[12px] font-bold tracking-widest uppercase mb-[2px] block">{edu.startYear} – {edu.endYear}</span>

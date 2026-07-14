@@ -35,7 +35,7 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
               <h2 className="text-[18px] font-black uppercase tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#e2e8f0] pb-[4px]">Experience</h2>
               <div className="space-y-[12px]">
                 {data.experiences.map(exp => (
-                  <div key={exp.id} className="relative pl-[15px] border-l-[2px] border-[#e2e8f0]">
+                  <div key={exp.id} className="break-inside-avoid print:break-inside-avoid relative pl-[15px] border-l-[2px] border-[#e2e8f0]">
                     <div className="absolute w-[8px] h-[8px] bg-[#3b82f6] rounded-full -left-[5px] top-[6px]"></div>
                     <div className="flex justify-between items-baseline mb-[2px]">
                       <h3 className="text-[16px] font-bold text-[#1e293b]">{exp.title}</h3>
@@ -75,7 +75,7 @@ export default function CreativeTemplate({ data }: { data: CVData }) {
                 <h2 className="text-[18px] font-black uppercase tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#e2e8f0] pb-[4px]">Education</h2>
                 <div className="space-y-[12px]">
                   {(data.education || []).map(edu => (
-                    <div key={edu.id} className="relative pl-[12px] border-l-[2px] border-[#cbd5e1]">
+                    <div key={edu.id} className="break-inside-avoid print:break-inside-avoid relative pl-[12px] border-l-[2px] border-[#cbd5e1]">
                       <div className="absolute w-[6px] h-[6px] bg-[#94a3b8] rounded-full -left-[4px] top-[6px]"></div>
                       <h3 className="text-[14.5px] font-bold text-[#1e293b] leading-tight mb-[2px]">{edu.institution}</h3>
                       <span className="text-[12px] font-bold text-[#64748b] block mb-[2px]">{edu.startYear} – {edu.endYear}</span>

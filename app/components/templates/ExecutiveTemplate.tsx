@@ -33,7 +33,7 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
         <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Experience</h2>
         <div className="space-y-[8px]">
           {data.experiences.map(exp => (
-            <div key={exp.id}>
+            <div key={exp.id} className="break-inside-avoid print:break-inside-avoid mb-[8px]">
               <div className="flex justify-between items-baseline mb-[2px]">
                 <h3 className="text-[16px] font-bold text-[#1f2937]">{exp.title}</h3>
                 <span className="text-[14.5px] text-[#4b5563] font-medium ml-4 shrink-0">{exp.startDate} – {exp.endDate}</span>
@@ -57,7 +57,7 @@ export default function ExecutiveTemplate({ data }: { data: CVData }) {
           <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Education</h2>
           <div className="space-y-[8px]">
             {(data.education || []).map(edu => (
-              <div key={edu.id}>
+              <div key={edu.id} className="break-inside-avoid print:break-inside-avoid mb-[8px]">
                 <div className="flex justify-between items-baseline mb-[2px]">
                   <h3 className="text-[16px] font-bold text-[#1f2937]">{edu.institution}</h3>
                   <span className="text-[14.5px] text-[#4b5563] font-medium ml-4 shrink-0">{edu.startYear} – {edu.endYear}</span>

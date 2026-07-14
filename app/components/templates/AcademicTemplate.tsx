@@ -34,7 +34,7 @@ export default function AcademicTemplate({ data }: { data: CVData }) {
             <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Experience</h2>
             <div className="space-y-[12px]">
               {data.experiences.map(exp => (
-                <div key={exp.id}>
+                <div key={exp.id} className="break-inside-avoid print:break-inside-avoid mb-[8px]">
                   <div className="flex justify-between items-baseline mb-[2px]">
                     <h3 className="text-[16px] font-bold text-[#111827]">{exp.title}</h3>
                     <span className="text-[14.5px] text-[#4b5563] font-medium shrink-0 ml-[10px]">{exp.startDate} – {exp.endDate}</span>
@@ -61,7 +61,7 @@ export default function AcademicTemplate({ data }: { data: CVData }) {
               <h2 className="text-[18px] uppercase tracking-widest border-b-[2px] border-[#d1d5db] pb-[4px] mb-[8px] font-bold text-center text-[#111827]">Education</h2>
               <div className="space-y-[12px]">
                 {(data.education || []).map(edu => (
-                  <div key={edu.id}>
+                  <div key={edu.id} className="break-inside-avoid print:break-inside-avoid mb-[8px]">
                     <div className="flex justify-between items-baseline mb-[2px]">
                       <h3 className="text-[16px] font-bold text-[#111827]">{edu.institution}</h3>
                     </div>

@@ -43,7 +43,7 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
         <h2 className="text-[18px] font-bold mb-[8px] text-[#22c55e]">{'// Work_History'}</h2>
         <div className="space-y-[12px]">
           {data.experiences.map(exp => (
-            <div key={exp.id} className="border-l-[2px] border-[#166534] pl-[12px]">
+            <div key={exp.id} className="break-inside-avoid print:break-inside-avoid border-l-[2px] border-[#166534] pl-[12px]">
               <div className="flex justify-between items-baseline mb-[2px]">
                 <h3 className="text-[16px] font-bold text-[#86efac]">{exp.title}</h3>
                 <span className="text-[14.5px] text-[#16a34a] font-mono shrink-0 ml-[10px]">{`[ ${exp.startDate} - ${exp.endDate} ]`}</span>
@@ -67,7 +67,7 @@ export default function TechnicalTemplate({ data }: { data: CVData }) {
           <h2 className="text-[18px] font-bold mb-[8px] text-[#22c55e]">{'// Education'}</h2>
           <div className="space-y-[12px]">
             {(data.education || []).map(edu => (
-              <div key={edu.id} className="border-l-[2px] border-[#166534] pl-[12px]">
+              <div key={edu.id} className="break-inside-avoid print:break-inside-avoid border-l-[2px] border-[#166534] pl-[12px]">
                 <div className="flex justify-between items-baseline mb-[2px]">
                   <h3 className="text-[16px] font-bold text-[#86efac]">{edu.institution}</h3>
                   <span className="text-[14.5px] text-[#16a34a] font-mono shrink-0 ml-[10px]">{`[ ${edu.startYear} - ${edu.endYear} ]`}</span>

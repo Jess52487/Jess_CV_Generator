@@ -41,7 +41,7 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
               <h2 className="text-[18px] font-black uppercase border-b-[4px] border-black pb-[4px] mb-[8px]">Experience</h2>
               <div className="space-y-[12px]">
                 {data.experiences.map(exp => (
-                  <div key={exp.id} className="border-[2px] border-black p-[10px] bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                  <div key={exp.id} className="break-inside-avoid print:break-inside-avoid border-[2px] border-black p-[10px] bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                     <div className="flex justify-between items-baseline mb-[2px]">
                       <h3 className="text-[16px] font-black bg-[#ffd803] px-[4px] border-[2px] border-black inline-block">{exp.title}</h3>
                       <span className="text-[14.5px] font-bold border-b-[2px] border-dashed border-black shrink-0 ml-[10px]">{exp.startDate} – {exp.endDate}</span>
@@ -68,7 +68,7 @@ export default function NeoBrutalistTemplate({ data }: { data: CVData }) {
                 <h2 className="text-[18px] font-black uppercase border-b-[4px] border-black pb-[4px] mb-[8px]">Education</h2>
                 <div className="space-y-[12px]">
                   {(data.education || []).map(edu => (
-                    <div key={edu.id} className="border-[2px] border-black p-[10px] bg-[#bae8e8] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div key={edu.id} className="break-inside-avoid print:break-inside-avoid border-[2px] border-black p-[10px] bg-[#bae8e8] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                       <h3 className="text-[14.5px] font-black">{edu.institution}</h3>
                       <p className="text-[14.5px] font-bold mb-[2px]">{edu.degree}</p>
                       <span className="text-[12px] font-bold uppercase border-[2px] border-black px-[4px] bg-white inline-block mb-[2px]">{edu.startYear} – {edu.endYear}</span>

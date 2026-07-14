@@ -34,7 +34,7 @@ export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
               <h2 className="text-[18px] uppercase font-bold tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#cbd5e1] pb-[4px]">Professional Experience</h2>
               <div className="space-y-[12px]">
                 {data.experiences.map(exp => (
-                  <div key={exp.id}>
+                  <div key={exp.id} className="break-inside-avoid print:break-inside-avoid mb-[8px]">
                     <div className="flex justify-between items-baseline mb-[2px]">
                       <h3 className="text-[16px] font-bold text-[#0f172a]">{exp.title}</h3>
                       <span className="text-[14.5px] text-[#64748b] font-medium shrink-0 ml-[10px]">{exp.startDate} – {exp.endDate}</span>
@@ -61,7 +61,7 @@ export default function GlobalDirectorTemplate({ data }: { data: CVData }) {
                 <h2 className="text-[18px] uppercase font-bold tracking-widest text-[#0f172a] mb-[8px] border-b-[2px] border-[#cbd5e1] pb-[4px]">Education</h2>
                 <div className="space-y-[12px]">
                   {(data.education || []).map(edu => (
-                    <div key={edu.id}>
+                    <div key={edu.id} className="break-inside-avoid print:break-inside-avoid mb-[8px]">
                       <h3 className="text-[16px] font-bold text-[#0f172a]">{edu.institution}</h3>
                       <p className="text-[14.5px] font-bold text-[#475569]">{edu.degree}</p>
                       <span className="text-[12px] font-bold text-[#64748b] block mt-[2px]">{edu.startYear} – {edu.endYear}</span>
