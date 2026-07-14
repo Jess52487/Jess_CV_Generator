@@ -34,18 +34,18 @@ export default function ExportClipboard() {
     setIsExporting(true);
 
     try {
+      const safeName = (activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_');
+      
       await generatePDF(targetRef, {
-        filename: `${activeCV.data.fullName.replace(/\s+/g, '_') || 'My'}_CV.pdf`,
+        filename: `${safeName}_CV.pdf`,
         resolution: Resolution.HIGH,
         page: {
-          margin: Margin.MEDIUM,
+          margin: Margin.NONE,
           format: 'a4',
         }
       });
       
-      // Successfully exported. Reset everything for privacy.
-      purgeAllData();
-      alert("Success! Your CV has been downloaded.\n\nFor your privacy and security, all your data has now been permanently cleared from this device.");
+      alert("Success! Your CV has been downloaded successfully.");
     } catch (error) {
       console.error("Export failed", error);
       alert("Failed to export PDF.");
