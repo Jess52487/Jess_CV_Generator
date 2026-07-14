@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @source "./app";
 @source "./public";
 @theme inline {
@@ -359,6 +359,7 @@
 
 @media print { .avoid-page-break { page-break-inside: avoid; break-inside: avoid; } }
 
+
 /* ==== PDF EXPORT & PAGINATION FIXES ==== */
 
 /* Simulate A4 pages visually on screen */
@@ -382,17 +383,6 @@
 .paper-stack {
   width: 210mm !important;
   min-height: 297mm !important;
-  /* Visual gap simulation for A4 pages (297mm) */
-  background-image: linear-gradient(
-    to bottom,
-    transparent 0mm,
-    transparent 296mm,
-    #9ca3af 296mm,
-    #e5e7eb 296.5mm,
-    transparent 297mm
-  );
-  background-size: 100% 297mm;
-  background-repeat: repeat-y;
   background-color: white;
 }
 
@@ -400,7 +390,7 @@
 @media print {
   @page {
     size: A4 portrait;
-    margin: 15mm;
+    margin: 0; /* Hides browser headers and footers */
   }
   
   html, body {
@@ -421,13 +411,25 @@
 
   /* Remove flexbox constraints to allow native A4 splitting */
   .paper-stack, 
-  .paper-stack > div,
+  .paper-stack > div {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
   .template-root {
     display: block !important;
     height: auto !important;
     max-height: none !important;
     min-height: 0 !important;
     overflow: visible !important;
+    
+    /* Crucial fix to keep margins on every page while @page margin is 0 */
+    -webkit-box-decoration-break: clone !important;
+    box-decoration-break: clone !important;
+    padding: 15mm !important; 
   }
   
   .paper-stack {
