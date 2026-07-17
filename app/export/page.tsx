@@ -28,7 +28,7 @@ export default function ExportClipboard() {
 
   const activeCV = savedCVs.find(cv => cv.id === selectedCVId);
 
-  const handleExport = useReactToPrint({
+  const reactToPrintFn = useReactToPrint({
     contentRef: targetRef,
     documentTitle: activeCV ? `${(activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_')}_CV` : "My_CV",
     onAfterPrint: () => {
@@ -42,6 +42,21 @@ export default function ExportClipboard() {
       }, 500);
     },
   });
+
+  const handleExport = () => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.print();
+      setTimeout(() => {
+        if (confirm("Did you successfully download your PDF?\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
+          purgeAllData();
+          router.push('/');
+        }
+      }, 1500);
+    } else {
+      reactToPrintFn();
+    }
+  };
 
   const handleDelete = (e: React.MouseEvent, id: string) => {
     e.stopPropagation(); // Prevent selecting the CV when deleting
@@ -59,7 +74,7 @@ export default function ExportClipboard() {
       <SideNav />
 
       {/* Main Content Canvas (The Desk Surface) */}
-      <main className="pt-24 pb-20 px-4 md:pl-32 md:pr-12 min-h-screen flex items-center justify-center">
+      <main className="pt-24 pb-20 px-4 md:pl-32 md:pr-12 min-h-screen flex items-center justify-center print:p-0 print:m-0 print:block print:min-h-0">
         
         {savedCVs.length === 0 ? (
           /* --- EMPTY STATE --- */
@@ -89,9 +104,9 @@ export default function ExportClipboard() {
           <div className="relative max-w-6xl w-full flex flex-col xl:flex-row gap-12 items-start justify-center">
             
             {/* The Wood Clipboard (Left Side) */}
-            <div className="clipboard-tilt relative wood-texture p-6 md:p-10 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-4 border-[#3d2b1f] w-full max-w-[650px] transition-transform hover:rotate-0 duration-500 mx-auto xl:mx-0">
+            <div className="clipboard-tilt relative wood-texture p-6 md:p-10 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-4 border-[#3d2b1f] w-full max-w-[650px] transition-transform hover:rotate-0 duration-500 mx-auto xl:mx-0 print:shadow-none print:border-none print:p-0 print:bg-none print:w-auto print:max-w-none print:m-0">
               {/* Metal Clip */}
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-48 h-16 metal-clip rounded-t-lg z-20 flex items-center justify-center border-b-2 border-[var(--color-outline-variant)]">
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-48 h-16 metal-clip rounded-t-lg z-20 flex items-center justify-center border-b-2 border-[var(--color-outline-variant)] print:hidden">
                 <div className="w-12 h-2 bg-[var(--color-outline-variant)] rounded-full opacity-30"></div>
               </div>
               
@@ -109,7 +124,7 @@ export default function ExportClipboard() {
             </div>
 
             {/* Filing Cabinet / History Panel (Right Side) */}
-            <div className="flex-1 w-full flex flex-col gap-6">
+            <div className="flex-1 w-full flex flex-col gap-6 print:hidden">
               
               <div className="bg-[var(--color-surface-container)] rounded-xl shadow-xl border border-[var(--color-outline-variant)] overflow-hidden flex flex-col h-full max-h-[850px]">
                 {/* Panel Header */}

@@ -7,7 +7,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-[var(--spacing-desktop-margin)] h-20 bg-[var(--color-surface)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] bg-[url('https://www.transparenttextures.com/patterns/dark-wood.png')]">
+    <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-[var(--spacing-desktop-margin)] h-20 bg-[var(--color-surface)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] bg-[url('https://www.transparenttextures.com/patterns/dark-wood.png')] print:hidden">
       <div className="flex items-center gap-4">
         <h1 className="font-[family-name:var(--font-headline-md)] text-[24px] font-bold text-[var(--color-on-surface)] tracking-widest uppercase cursor-default">
           CV GENERATOR

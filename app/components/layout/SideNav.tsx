@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,7 +20,7 @@ export default function SideNav() {
   };
 
   return (
-    <aside className="fixed bottom-0 md:bottom-auto left-0 md:top-20 w-full h-16 md:h-[calc(100vh-80px)] md:w-20 flex flex-row md:flex-col justify-around md:justify-start items-center md:py-[var(--spacing-component-gap)] bg-[var(--color-secondary-container)] rounded-t-xl md:rounded-t-none md:rounded-r-xl border-t md:border-t-0 md:border-r border-[var(--color-outline-variant)] shadow-[0_-4px_8px_rgba(0,0,0,0.2)] md:shadow-[4px_0_8px_rgba(0,0,0,0.2)] z-50">
+    <aside className="fixed bottom-0 md:bottom-auto left-0 md:top-20 w-full h-16 md:h-[calc(100vh-80px)] md:w-20 flex flex-row md:flex-col justify-around md:justify-start items-center md:py-[var(--spacing-component-gap)] bg-[var(--color-secondary-container)] rounded-t-xl md:rounded-t-none md:rounded-r-xl border-t md:border-t-0 md:border-r border-[var(--color-outline-variant)] shadow-[0_-4px_8px_rgba(0,0,0,0.2)] md:shadow-[4px_0_8px_rgba(0,0,0,0.2)] z-50 print:hidden">
       <div className="hidden md:flex mb-8 flex-col items-center px-2 text-center">
         <span className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-secondary)] block">Project</span>
         <span className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-secondary-container)] font-bold">Desk</span>
