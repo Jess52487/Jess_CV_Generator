@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 @source "./app";
 @source "./public";
 @theme inline {
@@ -388,6 +388,10 @@
 
 /* Force Block Layout for Print Engine (Fixes Squash Bug) */
 @media print {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
   @page {
     size: A4 portrait;
     margin: 0; /* Hides browser headers and footers */

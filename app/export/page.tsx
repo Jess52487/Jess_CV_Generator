@@ -16,6 +16,7 @@ export default function ExportClipboard() {
 
   // Selected CV from history
   const [selectedCVId, setSelectedCVId] = useState<string | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
 
   // Automatically select the most recent CV if none is selected
   useEffect(() => {
@@ -43,19 +44,34 @@ export default function ExportClipboard() {
     },
   });
 
-  const handleExport = () => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile) {
-      window.print();
-      setTimeout(() => {
-        if (confirm("Did you successfully download your PDF?\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
-          purgeAllData();
-          router.push('/');
-        }
-      }, 1500);
-    } else {
-      reactToPrintFn();
+  const handleExport = async () => {
+    if (isExporting) return;
+    setIsExporting(true);
+
+    try {
+      await document.fonts.ready;
+    } catch (e) {
+      console.warn("Font loading timed out, proceeding with export", e);
     }
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    // Give the UI a moment to update the loading state before the main thread is locked
+    setTimeout(() => {
+      if (isMobile) {
+        window.print();
+        setTimeout(() => {
+          setIsExporting(false);
+          if (confirm("Did you successfully download your PDF?\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
+            purgeAllData();
+            router.push('/');
+          }
+        }, 1500);
+      } else {
+        reactToPrintFn();
+        setIsExporting(false);
+      }
+    }, 150);
   };
 
   const handleDelete = (e: React.MouseEvent, id: string) => {
@@ -101,18 +117,18 @@ export default function ExportClipboard() {
           </div>
         ) : (
           /* --- GALLERY / EXPORT WORKFLOW --- */
-          <div className="relative max-w-6xl w-full flex flex-col xl:flex-row gap-12 items-start justify-center">
+          <div className="relative max-w-6xl w-full flex flex-col xl:flex-row gap-12 items-start justify-center print:block print:max-w-none print:w-full print:overflow-visible">
             
             {/* The Wood Clipboard (Left Side) */}
-            <div className="clipboard-tilt relative wood-texture p-6 md:p-10 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-4 border-[#3d2b1f] w-full max-w-[650px] transition-transform hover:rotate-0 duration-500 mx-auto xl:mx-0 print:shadow-none print:border-none print:p-0 print:bg-none print:w-auto print:max-w-none print:m-0">
+            <div className="clipboard-tilt relative wood-texture p-6 md:p-10 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-4 border-[#3d2b1f] w-full max-w-[650px] transition-transform hover:rotate-0 duration-500 mx-auto xl:mx-0 print:shadow-none print:border-none print:p-0 print:bg-none print:w-full print:max-w-none print:m-0 print:block print:overflow-visible">
               {/* Metal Clip */}
               <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-48 h-16 metal-clip rounded-t-lg z-20 flex items-center justify-center border-b-2 border-[var(--color-outline-variant)] print:hidden">
                 <div className="w-12 h-2 bg-[var(--color-outline-variant)] rounded-full opacity-30"></div>
               </div>
               
               {/* CV Paper Document (Target for PDF) */}
-              <div className="w-full overflow-hidden flex justify-center pb-4 relative">
-                <div className="cv-document-wrapper">
+              <div className="w-full overflow-hidden flex justify-center pb-4 relative print:block print:overflow-visible print:pb-0">
+                <div className="cv-document-wrapper print:block print:overflow-visible">
                   <div 
                     ref={targetRef} 
                     className="paper-stack bg-white relative flex flex-col p-0 m-0 print:m-0 mx-auto shadow-sm"
@@ -201,19 +217,19 @@ export default function ExportClipboard() {
                       Edit Draft
                     </span>
                   </button>
-                  <button 
-                    onClick={() => handleExport()}
-                    disabled={!activeCV}
-                    className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-4 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                    <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-                      download
-                    </span>
-                    <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase mt-1">
-                      Export PDF
-                    </span>
-                  </button>
+                    <button 
+                      onClick={() => handleExport()}
+                      disabled={!activeCV || isExporting}
+                      className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-4 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                      <span className={`material-symbols-outlined text-3xl ${isExporting ? 'animate-spin' : ''}`} style={{ fontVariationSettings: "'FILL' 1" }}>
+                        {isExporting ? 'progress_activity' : 'download'}
+                      </span>
+                      <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase mt-1">
+                        {isExporting ? 'Preparing...' : 'Export PDF'}
+                      </span>
+                    </button>
                 </div>
               </div>
 
