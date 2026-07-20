@@ -5,6 +5,7 @@ import SideNav from "../components/layout/SideNav";
 import Footer from "../components/layout/Footer";
 import { useCVContext } from "../context/CVContext";
 import { useRef, useState, useEffect } from "react";
+import { useReactToPrint } from "react-to-print";
 import TemplateRenderer from "../components/templates/TemplateRenderer";
 import { useRouter } from "next/navigation";
 
@@ -28,6 +29,19 @@ export default function ExportClipboard() {
 
   const activeCV = savedCVs.find(cv => cv.id === selectedCVId);
 
+  const reactToPrintFn = useReactToPrint({
+    contentRef: targetRef,
+    documentTitle: activeCV ? `${(activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_')}_CV` : "My_CV",
+    onAfterPrint: () => {
+      setTimeout(() => {
+        if (confirm("Did you successfully download your PDF?\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
+          purgeAllData();
+          router.push('/');
+        }
+      }, 500);
+    },
+  });
+
   const handleExport = async () => {
     if (isExporting) return;
     setIsExporting(true);
@@ -38,58 +52,72 @@ export default function ExportClipboard() {
       console.warn("Font loading timed out, proceeding with export", e);
     }
 
-    try {
-      const element = targetRef.current;
-      let originalTransform = '';
-      
-      if (element) {
-         // Temporarily force wrapper to true 100% scale for WYSIWYG capture
-         const wrapper = element.closest('.cv-document-wrapper') as HTMLElement;
-         if (wrapper) {
-            originalTransform = wrapper.style.transform;
-            wrapper.style.transform = 'scale(1)';
-         }
-      }
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-      const filename = activeCV ? `${(activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_')}_CV.pdf` : "My_CV.pdf";
-      
-      // Dynamically import html2pdf to prevent Next.js SSR issues
-      const html2pdf = (await import('html2pdf.js')).default;
+    setTimeout(async () => {
+      if (isMobile) {
+        try {
+          const element = targetRef.current;
+          let originalTransform = '';
+          let originalMinHeight = '';
+          
+          if (element) {
+             const wrapper = element.closest('.cv-document-wrapper') as HTMLElement;
+             if (wrapper) {
+                originalTransform = wrapper.style.transform;
+                wrapper.style.transform = 'scale(1)';
+             }
+             // Remove forced min-height to ensure it only generates a 2nd page if content actually overflows
+             originalMinHeight = element.style.minHeight;
+             element.style.minHeight = 'auto';
+          }
 
-      const opt = {
-        margin:       0,
-        filename:     filename,
-        image:        { type: 'jpeg' as const, quality: 1 },
-        html2canvas:  { 
-          scale: 2, 
-          useCORS: true, 
-          windowWidth: 1024 // Force desktop viewport size for rendering
-        },
-        jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
-      };
+          const filename = activeCV ? `${(activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_')}_CV.pdf` : "My_CV.pdf";
+          
+          const html2pdf = (await import('html2pdf.js')).default;
 
-      if (element) {
-        await html2pdf().set(opt).from(element as HTMLElement).save();
-      }
-      // Restore layout styles
-      if (element) {
-         const wrapper = element.closest('.cv-document-wrapper') as HTMLElement;
-         if (wrapper) wrapper.style.transform = originalTransform;
-      }
+          const opt = {
+            margin:       0,
+            filename:     filename,
+            image:        { type: 'jpeg' as const, quality: 1 },
+            html2canvas:  { 
+              scale: 2, 
+              useCORS: true, 
+              windowWidth: 1024
+            },
+            jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const },
+            pagebreak:    { mode: 'css', avoid: 'all' }
+          };
 
-      setIsExporting(false);
-      setTimeout(() => {
-        if (confirm("PDF downloaded successfully!\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
-          purgeAllData();
-          router.push('/');
+          if (element) {
+            await html2pdf().set(opt).from(element as HTMLElement).save();
+          }
+
+          // Restore layout styles
+          if (element) {
+             const wrapper = element.closest('.cv-document-wrapper') as HTMLElement;
+             if (wrapper) wrapper.style.transform = originalTransform;
+             element.style.minHeight = originalMinHeight;
+          }
+
+          setIsExporting(false);
+          setTimeout(() => {
+            if (confirm("PDF downloaded successfully!\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
+              purgeAllData();
+              router.push('/');
+            }
+          }, 500);
+
+        } catch (e) {
+          console.error("PDF generation failed:", e);
+          setIsExporting(false);
+          alert("Failed to generate PDF. Please try again.");
         }
-      }, 500);
-
-    } catch (e) {
-      console.error("PDF generation failed:", e);
-      setIsExporting(false);
-      alert("Failed to generate PDF. Please try again.");
-    }
+      } else {
+        reactToPrintFn();
+        setIsExporting(false);
+      }
+    }, 150);
   };
 
   const handleDelete = (e: React.MouseEvent, id: string) => {
