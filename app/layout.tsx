@@ -1,10 +1,23 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { CVProvider } from "./context/CVContext";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  themeColor: '#3d2b1f',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: "CV Generator - Executive Dashboard",
   description: "Create professional CVs with an intuitive skeuomorphic design.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "CV Generator",
+  },
 };
 
 export default function RootLayout({
