@@ -5,6 +5,7 @@ import SideNav from "../components/layout/SideNav";
 import Footer from "../components/layout/Footer";
 import { useCVContext } from "../context/CVContext";
 import { useRef, useState, useEffect } from "react";
+import generatePDF, { Resolution } from "react-to-pdf";
 import { useReactToPrint } from "react-to-print";
 import TemplateRenderer from "../components/templates/TemplateRenderer";
 import { useRouter } from "next/navigation";
@@ -57,16 +58,61 @@ export default function ExportClipboard() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     
     // Give the UI a moment to update the loading state before the main thread is locked
-    setTimeout(() => {
+    setTimeout(async () => {
       if (isMobile) {
-        window.print();
-        setTimeout(() => {
-          setIsExporting(false);
-          if (confirm("Did you successfully download your PDF?\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
-            purgeAllData();
-            router.push('/');
+        try {
+          const element = targetRef.current;
+          let originalTransform = '';
+          let originalWidth = '';
+          let originalParentTransform = '';
+          
+          if (element) {
+             // Temporarily remove transform scaling from parent to ensure high resolution capture
+             const wrapper = element.closest('.cv-document-wrapper') as HTMLElement;
+             if (wrapper) {
+                originalParentTransform = wrapper.style.transform;
+                wrapper.style.transform = 'none';
+             }
           }
-        }, 1500);
+
+          const filename = activeCV ? `${(activeCV.data.fullName || "My_CV").trim().replace(/\s+/g, '_')}_CV.pdf` : "My_CV.pdf";
+          
+          await generatePDF(targetRef, {
+            filename: filename,
+            resolution: Resolution.HIGH,
+            page: {
+              margin: 0,
+              format: 'a4',
+              orientation: 'portrait',
+            },
+            canvas: {
+              mimeType: 'image/jpeg',
+              qualityRatio: 1
+            },
+            overrides: {
+              canvas: {
+                scale: 2
+              }
+            }
+          });
+
+          if (element) {
+             const wrapper = element.closest('.cv-document-wrapper') as HTMLElement;
+             if (wrapper) wrapper.style.transform = originalParentTransform;
+          }
+
+          setTimeout(() => {
+            setIsExporting(false);
+            if (confirm("PDF downloaded successfully!\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
+              purgeAllData();
+              router.push('/');
+            }
+          }, 500);
+        } catch (e) {
+          console.error("PDF generation failed:", e);
+          setIsExporting(false);
+          alert("Failed to generate PDF. Please try again.");
+        }
       } else {
         reactToPrintFn();
         setIsExporting(false);
