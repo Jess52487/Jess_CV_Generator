@@ -123,7 +123,7 @@ export default function Onboarding() {
           </div>
           <div className="mb-8 flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse"></div>
-            <span className="font-[family-name:var(--font-label-stamp)] text-[10px] text-gray-400">READY FOR DISPATCH TO EXECUTIVE SUITE</span>
+            <span className="font-[family-name:var(--font-label-stamp)] text-[10px] text-gray-400">CREATED BY JESSICA SAMUEL</span>
           </div>
         </div>
         
