@@ -349,6 +349,18 @@ export default function Notepad() {
                       )}
                     </div>
                     
+                    {!isEditingExp && (
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-[var(--color-surface-container)] border border-[var(--color-outline-variant)] p-4 rounded-sm mb-8 shadow-sm gap-4">
+                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">
+                          Have multiple experiences? Click "Add Another" to include more entries.
+                        </p>
+                        <button onClick={openNewExpForm} className="stamp-button bg-[var(--color-secondary)] text-white px-4 py-2 rounded-sm font-[family-name:var(--font-label-stamp)] text-[12px] uppercase shadow-sm hover:opacity-90 flex items-center gap-2 whitespace-nowrap">
+                          <span className="material-symbols-outlined text-sm">add</span>
+                          ADD ANOTHER
+                        </button>
+                      </div>
+                    )}
+                    
                     {isEditingExp && currentExp && (
                       <div className="mb-8 p-6 bg-yellow-50 border border-yellow-200 shadow-lg rounded-sm relative transform rotate-1">
                         <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-4 bg-red-500/20 shadow-sm tape-strip"></div>
@@ -425,6 +437,18 @@ export default function Notepad() {
                         </button>
                       )}
                     </div>
+                    
+                    {!isEditingEdu && (
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-[var(--color-surface-container)] border border-[var(--color-outline-variant)] p-4 rounded-sm mb-8 shadow-sm gap-4">
+                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">
+                          Have multiple degrees or certifications? Click "Add Another" to include more entries.
+                        </p>
+                        <button onClick={openNewEduForm} className="stamp-button bg-[var(--color-secondary)] text-white px-4 py-2 rounded-sm font-[family-name:var(--font-label-stamp)] text-[12px] uppercase shadow-sm hover:opacity-90 flex items-center gap-2 whitespace-nowrap">
+                          <span className="material-symbols-outlined text-sm">add</span>
+                          ADD ANOTHER
+                        </button>
+                      </div>
+                    )}
                     
                     {isEditingEdu && currentEdu && (
                       <div className="mb-8 p-6 bg-blue-50 border border-blue-200 shadow-lg rounded-sm relative transform -rotate-1">
