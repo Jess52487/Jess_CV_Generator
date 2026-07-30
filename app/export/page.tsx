@@ -166,15 +166,15 @@ export default function ExportClipboard() {
           <div className="relative max-w-6xl w-full flex flex-col-reverse xl:flex-row gap-6 xl:gap-12 items-start justify-center print:block print:max-w-none print:w-full print:overflow-visible">
             
             {/* The Wood Clipboard (Left Side) */}
-            <div className="clipboard-tilt max-xl:[zoom:0.55] relative wood-texture p-6 md:p-10 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-4 border-[#3d2b1f] w-full max-w-[650px] transition-transform hover:rotate-0 duration-500 mx-auto xl:mx-0 print:shadow-none print:border-none print:p-0 print:bg-none print:w-full print:max-w-none print:m-0 print:block print:overflow-visible">
+            <div className="clipboard-tilt relative wood-texture p-4 md:p-6 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-4 border-[#3d2b1f] w-fit inline-block mx-auto transition-transform hover:rotate-0 duration-500 xl:mx-0 print:shadow-none print:border-none print:p-0 print:bg-none print:w-full print:max-w-none print:m-0 print:block print:overflow-visible">
               {/* Metal Clip */}
               <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-48 h-16 metal-clip rounded-t-lg z-20 flex items-center justify-center border-b-2 border-[var(--color-outline-variant)] print:hidden">
                 <div className="w-12 h-2 bg-[var(--color-outline-variant)] rounded-full opacity-30"></div>
               </div>
               
               {/* CV Paper Document (Target for PDF) */}
-              <div className="w-full flex justify-center pb-4 relative print:block print:overflow-visible print:pb-0">
-                <div className="cv-document-wrapper print:block print:overflow-visible mt-4 md:mt-0">
+              <div className="w-full flex justify-center relative print:block print:overflow-visible">
+                <div className="cv-document-wrapper print:block print:overflow-visible">
                   <div 
                     ref={targetRef} 
                     className="paper-stack bg-white relative flex flex-col p-0 m-0 print:m-0 mx-auto shadow-sm"

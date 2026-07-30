@@ -370,14 +370,16 @@
   margin: 0 auto;
 }
 
+/* Apply zoom to the entire clipboard so the layout height scales properly. 
+   Increased mobile scale by ~15% for readability. */
 @media screen and (max-width: 1024px) {
-  .cv-document-wrapper { transform: scale(0.85); }
+  .clipboard-tilt { zoom: 0.95; }
 }
 @media screen and (max-width: 768px) {
-  .cv-document-wrapper { transform: scale(0.65); }
+  .clipboard-tilt { zoom: 0.70; }
 }
 @media screen and (max-width: 480px) {
-  .cv-document-wrapper { transform: scale(0.45); }
+  .clipboard-tilt { zoom: 0.55; } /* Increased from 0.45 */
 }
 
 .paper-stack {
