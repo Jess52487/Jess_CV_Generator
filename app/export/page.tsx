@@ -190,14 +190,14 @@ export default function ExportClipboard() {
               
               <div className="bg-[var(--color-surface-container)] rounded-xl shadow-xl border border-[var(--color-outline-variant)] overflow-hidden flex flex-col h-full max-h-[850px]">
                 {/* Panel Header */}
-                <div className="bg-[var(--color-surface-container-high)] p-6 border-b border-[var(--color-outline-variant)] flex items-center gap-3 relative overflow-hidden">
+                <div className="bg-[var(--color-surface-container-high)] p-6 border-b border-[var(--color-outline-variant)] flex items-center gap-3 relative overflow-hidden order-1">
                   <div className="absolute inset-0 bg-[var(--color-primary)]/5"></div>
                   <span className="material-symbols-outlined text-[var(--color-primary)] text-3xl relative z-10">folder_open</span>
                   <h2 className="font-[family-name:var(--font-headline-md)] text-2xl text-[var(--color-on-surface)] relative z-10 font-bold">Filing Cabinet</h2>
                 </div>
 
                 {/* List of CVs */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                <div className="flex-1 overflow-y-auto p-4 space-y-4 order-3 md:order-2">
                   {savedCVs.map(cv => (
                     <div 
                       key={cv.id} 
@@ -247,7 +247,7 @@ export default function ExportClipboard() {
                   ))}
                 </div>
 
-                <div className="p-6 bg-[var(--color-surface-container-low)] border-t border-[var(--color-outline-variant)] flex flex-col gap-3">
+                <div className="p-6 bg-[var(--color-surface-container-low)] border-b md:border-b-0 md:border-t border-[var(--color-outline-variant)] flex flex-col gap-3 order-2 md:order-3">
                   <button 
                     onClick={() => {
                       if (activeCV) {
