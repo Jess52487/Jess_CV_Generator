@@ -54,9 +54,9 @@ export default function Onboarding() {
       </div>
       
       {/* The Central Document (Stationery Paper) */}
-      <div className="document-paper bg-white w-full max-w-4xl min-h-[85vh] md:min-h-0 md:aspect-[1/1.414] flex flex-col z-20 overflow-hidden transform md:scale-95 lg:scale-100 transition-transform duration-500 my-8 md:my-0" ref={docRef}>
+      <div className="document-paper bg-white w-full max-w-4xl min-h-[85vh] md:min-h-0 md:aspect-[1/1.414] flex flex-col z-20 overflow-hidden transform md:scale-95 lg:scale-100 transition-transform duration-500 my-2 md:my-0" ref={docRef}>
         {/* Clipboard Header */}
-        <div className="clipboard-clamp h-16 w-1/3 mx-auto flex items-center justify-center rounded-b-xl mb-8 relative">
+        <div className="clipboard-clamp h-10 md:h-16 w-1/3 mx-auto flex items-center justify-center rounded-b-xl mb-4 md:mb-8 relative">
           <div className="w-8 h-8 rounded-full border-2 border-gray-500/30 flex items-center justify-center">
             <div className="w-2 h-2 bg-gray-600 rounded-full"></div>
           </div>
@@ -74,12 +74,12 @@ export default function Onboarding() {
           <h1 className="font-[family-name:var(--font-headline-lg)] text-[30px] md:text-[40px] text-[var(--color-on-background)] mb-[var(--spacing-gutter)] leading-tight font-bold">
             Create Your <span className="italic text-[var(--color-primary)] border-b-2 border-[var(--color-primary)]/30">Professional</span> CV
           </h1>
-          <p className="font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface-variant)] max-w-xl mb-12">
+          <p className="font-[family-name:var(--font-body-lg)] text-[15px] md:text-[18px] text-[var(--color-on-surface-variant)] max-w-xl mb-6 md:mb-12">
             Experience the tactile satisfaction of a physical workspace paired with digital precision. Build a career-defining portfolio that stands out from the noise.
           </p>
           
           {/* Input Indent Mimic */}
-          <div className="w-full max-w-md space-y-6 mb-16">
+          <div className="w-full max-w-md space-y-4 md:space-y-6 mb-8 md:mb-16">
             <div className="text-left">
               <label className="font-[family-name:var(--font-label-stamp)] text-[10px] text-[var(--color-on-surface-variant)] uppercase ml-2 mb-1 block">Full Name Signature</label>
               <div className="indent-effect p-4 rounded-lg flex items-center gap-4 transition-shadow">
@@ -93,7 +93,7 @@ export default function Onboarding() {
           </div>
           
           {/* Features Bento-lite */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--spacing-gutter)] w-full mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[var(--spacing-gutter)] w-full mb-8 md:mb-16">
             <div className="perforated pb-4 text-left">
               <span className="material-symbols-outlined text-[var(--color-primary)] mb-2">history_edu</span>
               <h3 className="font-[family-name:var(--font-label-stamp)] text-[14px] mb-1 font-bold">Authentic Prints</h3>
@@ -112,16 +112,16 @@ export default function Onboarding() {
           </div>
           
           {/* Rubber Stamp CTA */}
-          <div className="mt-auto mb-12 w-full flex justify-center">
+          <div className="mt-auto mb-6 md:mb-12 w-full flex justify-center">
             <Link href="/notepad">
-              <button className="stamp-button group bg-[var(--color-primary)] text-[var(--color-on-primary)] px-12 py-6 rounded-lg font-[family-name:var(--font-headline-md)] uppercase tracking-widest flex items-center gap-4 cursor-pointer relative overflow-hidden">
-                <span className="material-symbols-outlined text-3xl">ink_highlighter</span>
+              <button className="stamp-button group bg-[var(--color-primary)] text-[var(--color-on-primary)] px-8 py-4 md:px-12 md:py-6 rounded-lg font-[family-name:var(--font-headline-md)] text-[14px] md:text-base uppercase tracking-widest flex items-center gap-4 cursor-pointer relative overflow-hidden">
+                <span className="material-symbols-outlined text-2xl md:text-3xl">ink_highlighter</span>
                 Create My CV
                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg"></div>
               </button>
             </Link>
           </div>
-          <div className="mb-8 flex items-center gap-2">
+          <div className="mb-4 md:mb-8 flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse"></div>
             <span className="font-[family-name:var(--font-label-stamp)] text-[10px] text-gray-400">CREATED BY JESSICA SAMUEL</span>
           </div>
