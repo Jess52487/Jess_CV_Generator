@@ -354,7 +354,7 @@ export default function Notepad() {
                         <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)] italic">
                           Have multiple experiences? Click "Add Another" to include more entries.
                         </p>
-                        <button onClick={openNewExpForm} className="flex items-center gap-2 px-3 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[13px] hover:bg-gray-100 transition-colors whitespace-nowrap">
+                        <button onClick={openNewExpForm} className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px] whitespace-nowrap">
                           <span className="material-symbols-outlined text-sm">add</span>
                           ADD ANOTHER
                         </button>
@@ -443,7 +443,7 @@ export default function Notepad() {
                         <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)] italic">
                           Have multiple degrees or certifications? Click "Add Another" to include more entries.
                         </p>
-                        <button onClick={openNewEduForm} className="flex items-center gap-2 px-3 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[13px] hover:bg-gray-100 transition-colors whitespace-nowrap">
+                        <button onClick={openNewEduForm} className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px] whitespace-nowrap">
                           <span className="material-symbols-outlined text-sm">add</span>
                           ADD ANOTHER
                         </button>
