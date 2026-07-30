@@ -339,12 +339,15 @@ export default function Notepad() {
                 {/* --- TAB CONTENT: EXPERIENCE --- */}
                 {activeTab === "Experience" && (
                   <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                    <div className="flex items-center justify-between border-b-2 border-dotted border-[var(--color-outline-variant)] pb-2 mb-8">
-                      <h2 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-secondary)] uppercase font-bold">Experience History</h2>
+                    <div className="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-dotted border-[var(--color-outline-variant)] pb-4 mb-8 gap-4">
+                      <div>
+                        <h2 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-secondary)] uppercase font-bold mb-1">Experience History</h2>
+                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">Have multiple experiences? Click "Add Another" to include more entries.</p>
+                      </div>
                       {!isEditingExp && (
-                        <button onClick={openNewExpForm} className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px]">
+                        <button onClick={openNewExpForm} className="paperclip-btn flex items-center gap-2 px-6 py-2 bg-[var(--color-secondary)] text-white rounded-sm font-[family-name:var(--font-label-stamp)] text-[14px] shadow-sm hover:opacity-90 transition-opacity">
                           <span className="material-symbols-outlined text-sm" data-icon="add">add</span>
-                          ATTACH RECORD
+                          ADD ANOTHER
                         </button>
                       )}
                     </div>
@@ -416,12 +419,15 @@ export default function Notepad() {
                 {/* --- TAB CONTENT: EDUCATION --- */}
                 {activeTab === "Education" && (
                   <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                    <div className="flex items-center justify-between border-b-2 border-dotted border-[var(--color-outline-variant)] pb-2 mb-8">
-                      <h2 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-secondary)] uppercase font-bold">Academic Records</h2>
+                    <div className="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-dotted border-[var(--color-outline-variant)] pb-4 mb-8 gap-4">
+                      <div>
+                        <h2 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-secondary)] uppercase font-bold mb-1">Academic Records</h2>
+                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">Have multiple degrees or certifications? Click "Add Another" to include more entries.</p>
+                      </div>
                       {!isEditingEdu && (
-                        <button onClick={openNewEduForm} className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px]">
+                        <button onClick={openNewEduForm} className="paperclip-btn flex items-center gap-2 px-6 py-2 bg-[var(--color-secondary)] text-white rounded-sm font-[family-name:var(--font-label-stamp)] text-[14px] shadow-sm hover:opacity-90 transition-opacity">
                           <span className="material-symbols-outlined text-sm" data-icon="add">add</span>
-                          ATTACH RECORD
+                          ADD ANOTHER
                         </button>
                       )}
                     </div>
@@ -581,22 +587,44 @@ export default function Notepad() {
             
             {/* Action Bar (Footer of Notepad) */}
             <div className="bg-[var(--color-surface-container)] border-t border-[var(--color-outline-variant)] p-6 flex flex-col md:flex-row justify-between items-center gap-4">
-              <button 
-                onClick={handleClear}
-                className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-error)] uppercase tracking-wider hover:underline"
-              >
-                Clear All Fields
-              </button>
-              
-              <div className="flex gap-4">
-                <button 
-                  onClick={handleSave}
-                  className="stamp-button bg-[var(--color-primary)] text-white px-8 py-3 rounded-sm font-[family-name:var(--font-label-stamp)] text-[14px] uppercase font-bold tracking-widest flex items-center gap-2"
-                >
-                  <span className="material-symbols-outlined" data-icon="task_alt">task_alt</span>
-                  Finalize Draft
-                </button>
-              </div>
+              {activeTab === "References" ? (
+                <>
+                  <button 
+                    onClick={handleClear}
+                    className="font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-error)] uppercase tracking-wider hover:underline"
+                  >
+                    Clear All Fields
+                  </button>
+                  
+                  <div className="flex gap-4">
+                    <button 
+                      onClick={handleSave}
+                      className="stamp-button bg-[var(--color-primary)] text-white px-8 py-3 rounded-sm font-[family-name:var(--font-label-stamp)] text-[14px] uppercase font-bold tracking-widest flex items-center gap-2"
+                    >
+                      <span className="material-symbols-outlined" data-icon="task_alt">task_alt</span>
+                      Finalize Draft
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div></div> {/* Spacer to push Next button to right */}
+                  <button 
+                    onClick={() => {
+                      const tabs: Tab[] = ["Profile", "Experience", "Education", "Skills", "References"];
+                      const currentIndex = tabs.indexOf(activeTab);
+                      if (currentIndex < tabs.length - 1) {
+                        setActiveTab(tabs[currentIndex + 1]);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                    className="stamp-button bg-[var(--color-primary)] text-white px-8 py-3 rounded-sm font-[family-name:var(--font-label-stamp)] text-[14px] uppercase font-bold tracking-widest flex items-center gap-2"
+                  >
+                    Next Section
+                    <span className="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                  </button>
+                </>
+              )}
             </div>
           </div>
           
