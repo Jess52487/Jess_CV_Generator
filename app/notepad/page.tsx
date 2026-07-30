@@ -345,7 +345,7 @@ export default function Notepad() {
                         <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">Have multiple experiences? Click "Add Another" to include more entries.</p>
                       </div>
                       {!isEditingExp && (
-                        <button onClick={openNewExpForm} className="paperclip-btn flex items-center gap-2 px-6 py-2 bg-[var(--color-secondary)] text-white rounded-sm font-[family-name:var(--font-label-stamp)] text-[14px] shadow-sm hover:opacity-90 transition-opacity">
+                        <button onClick={openNewExpForm} className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px]">
                           <span className="material-symbols-outlined text-sm" data-icon="add">add</span>
                           ADD ANOTHER
                         </button>
@@ -425,7 +425,7 @@ export default function Notepad() {
                         <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">Have multiple degrees or certifications? Click "Add Another" to include more entries.</p>
                       </div>
                       {!isEditingEdu && (
-                        <button onClick={openNewEduForm} className="paperclip-btn flex items-center gap-2 px-6 py-2 bg-[var(--color-secondary)] text-white rounded-sm font-[family-name:var(--font-label-stamp)] text-[14px] shadow-sm hover:opacity-90 transition-opacity">
+                        <button onClick={openNewEduForm} className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px]">
                           <span className="material-symbols-outlined text-sm" data-icon="add">add</span>
                           ADD ANOTHER
                         </button>
@@ -620,7 +620,7 @@ export default function Notepad() {
                     }}
                     className="stamp-button bg-[var(--color-primary)] text-white px-8 py-3 rounded-sm font-[family-name:var(--font-label-stamp)] text-[14px] uppercase font-bold tracking-widest flex items-center gap-2"
                   >
-                    Next Section
+                    Next
                     <span className="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
                   </button>
                 </>
