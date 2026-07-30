@@ -189,11 +189,8 @@ export const CVProvider = ({ children }: { children: ReactNode }) => {
       data: { ...data }
     };
     
-    setSavedCVs(prev => {
-      const updated = [newSavedCV, ...prev];
-      localStorage.setItem("jess-cv-history", JSON.stringify(updated));
-      return updated;
-    });
+    setSavedCVs([newSavedCV]);
+    localStorage.setItem("jess-cv-history", JSON.stringify([newSavedCV]));
 
     // Reset current draft to default
     setDataState(defaultData);
