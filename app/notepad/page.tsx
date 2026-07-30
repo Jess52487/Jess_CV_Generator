@@ -350,11 +350,11 @@ export default function Notepad() {
                     </div>
                     
                     {!isEditingExp && (
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-[var(--color-surface-container)] border border-[var(--color-outline-variant)] p-4 rounded-sm mb-8 shadow-sm gap-4">
-                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)] italic">
                           Have multiple experiences? Click "Add Another" to include more entries.
                         </p>
-                        <button onClick={openNewExpForm} className="stamp-button bg-[var(--color-secondary)] text-white px-4 py-2 rounded-sm font-[family-name:var(--font-label-stamp)] text-[12px] uppercase shadow-sm hover:opacity-90 flex items-center gap-2 whitespace-nowrap">
+                        <button onClick={openNewExpForm} className="flex items-center gap-2 px-3 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[13px] hover:bg-gray-100 transition-colors whitespace-nowrap">
                           <span className="material-symbols-outlined text-sm">add</span>
                           ADD ANOTHER
                         </button>
@@ -439,11 +439,11 @@ export default function Notepad() {
                     </div>
                     
                     {!isEditingEdu && (
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-[var(--color-surface-container)] border border-[var(--color-outline-variant)] p-4 rounded-sm mb-8 shadow-sm gap-4">
-                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)] italic">
                           Have multiple degrees or certifications? Click "Add Another" to include more entries.
                         </p>
-                        <button onClick={openNewEduForm} className="stamp-button bg-[var(--color-secondary)] text-white px-4 py-2 rounded-sm font-[family-name:var(--font-label-stamp)] text-[12px] uppercase shadow-sm hover:opacity-90 flex items-center gap-2 whitespace-nowrap">
+                        <button onClick={openNewEduForm} className="flex items-center gap-2 px-3 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[13px] hover:bg-gray-100 transition-colors whitespace-nowrap">
                           <span className="material-symbols-outlined text-sm">add</span>
                           ADD ANOTHER
                         </button>
