@@ -339,15 +339,12 @@ export default function Notepad() {
                 {/* --- TAB CONTENT: EXPERIENCE --- */}
                 {activeTab === "Experience" && (
                   <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-dotted border-[var(--color-outline-variant)] pb-4 mb-8 gap-4">
-                      <div>
-                        <h2 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-secondary)] uppercase font-bold mb-1">Experience History</h2>
-                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">Have multiple experiences? Click "Add Another" to include more entries.</p>
-                      </div>
+                    <div className="flex items-center justify-between border-b-2 border-dotted border-[var(--color-outline-variant)] pb-2 mb-8">
+                      <h2 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-secondary)] uppercase font-bold">Experience History</h2>
                       {!isEditingExp && (
                         <button onClick={openNewExpForm} className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px]">
                           <span className="material-symbols-outlined text-sm" data-icon="add">add</span>
-                          ADD ANOTHER
+                          ATTACH RECORD
                         </button>
                       )}
                     </div>
@@ -419,15 +416,12 @@ export default function Notepad() {
                 {/* --- TAB CONTENT: EDUCATION --- */}
                 {activeTab === "Education" && (
                   <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-dotted border-[var(--color-outline-variant)] pb-4 mb-8 gap-4">
-                      <div>
-                        <h2 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-secondary)] uppercase font-bold mb-1">Academic Records</h2>
-                        <p className="font-[family-name:var(--font-body-md)] text-sm text-[var(--color-on-surface-variant)]">Have multiple degrees or certifications? Click "Add Another" to include more entries.</p>
-                      </div>
+                    <div className="flex items-center justify-between border-b-2 border-dotted border-[var(--color-outline-variant)] pb-2 mb-8">
+                      <h2 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-secondary)] uppercase font-bold">Academic Records</h2>
                       {!isEditingEdu && (
                         <button onClick={openNewEduForm} className="paperclip-btn flex items-center gap-2 px-4 py-1 rounded-sm text-[var(--color-secondary)] font-[family-name:var(--font-label-stamp)] text-[14px]">
                           <span className="material-symbols-outlined text-sm" data-icon="add">add</span>
-                          ADD ANOTHER
+                          ATTACH RECORD
                         </button>
                       )}
                     </div>
