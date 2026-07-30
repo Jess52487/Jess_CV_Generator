@@ -136,7 +136,7 @@ export default function ExportClipboard() {
       <SideNav />
 
       {/* Main Content Canvas (The Desk Surface) */}
-      <main className="pt-24 pb-20 px-4 md:pl-32 md:pr-12 min-h-screen flex items-center justify-center print:p-0 print:m-0 print:block print:min-h-0">
+      <main className="pt-16 pb-8 md:pt-24 md:pb-20 px-4 md:pl-32 md:pr-12 min-h-[calc(100vh-80px)] md:min-h-screen flex items-center justify-center print:p-0 print:m-0 print:block print:min-h-0">
         
         {savedCVs.length === 0 ? (
           /* --- EMPTY STATE --- */
@@ -163,10 +163,10 @@ export default function ExportClipboard() {
           </div>
         ) : (
           /* --- GALLERY / EXPORT WORKFLOW --- */
-          <div className="relative max-w-6xl w-full flex flex-col xl:flex-row gap-12 items-start justify-center print:block print:max-w-none print:w-full print:overflow-visible">
+          <div className="relative max-w-6xl w-full flex flex-col xl:flex-row gap-6 md:gap-12 items-start justify-center print:block print:max-w-none print:w-full print:overflow-visible">
             
             {/* The Wood Clipboard (Left Side) */}
-            <div className="clipboard-tilt relative wood-texture p-6 md:p-10 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-4 border-[#3d2b1f] w-full max-w-[650px] transition-transform hover:rotate-0 duration-500 mx-auto xl:mx-0 print:shadow-none print:border-none print:p-0 print:bg-none print:w-full print:max-w-none print:m-0 print:block print:overflow-visible">
+            <div className="clipboard-tilt relative wood-texture p-3 md:p-10 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-4 border-[#3d2b1f] w-full max-w-[650px] transition-transform hover:rotate-0 duration-500 mx-auto xl:mx-0 print:shadow-none print:border-none print:p-0 print:bg-none print:w-full print:max-w-none print:m-0 print:block print:overflow-visible">
               {/* Metal Clip */}
               <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-48 h-16 metal-clip rounded-t-lg z-20 flex items-center justify-center border-b-2 border-[var(--color-outline-variant)] print:hidden">
                 <div className="w-12 h-2 bg-[var(--color-outline-variant)] rounded-full opacity-30"></div>
@@ -186,11 +186,11 @@ export default function ExportClipboard() {
             </div>
 
             {/* Filing Cabinet / History Panel (Right Side) */}
-            <div className="flex-1 w-full flex flex-col gap-6 print:hidden">
+            <div className="flex-1 w-full flex flex-col gap-4 md:gap-6 print:hidden">
               
               <div className="bg-[var(--color-surface-container)] rounded-xl shadow-xl border border-[var(--color-outline-variant)] overflow-hidden flex flex-col h-full max-h-[850px]">
                 {/* Panel Header */}
-                <div className="bg-[var(--color-surface-container-high)] p-6 border-b border-[var(--color-outline-variant)] flex items-center gap-3 relative overflow-hidden">
+                <div className="bg-[var(--color-surface-container-high)] p-4 md:p-6 border-b border-[var(--color-outline-variant)] flex items-center gap-3 relative overflow-hidden">
                   <div className="absolute inset-0 bg-[var(--color-primary)]/5"></div>
                   <span className="material-symbols-outlined text-[var(--color-primary)] text-3xl relative z-10">folder_open</span>
                   <h2 className="font-[family-name:var(--font-headline-md)] text-2xl text-[var(--color-on-surface)] relative z-10 font-bold">Filing Cabinet</h2>
@@ -247,7 +247,7 @@ export default function ExportClipboard() {
                   ))}
                 </div>
 
-                <div className="p-6 bg-[var(--color-surface-container-low)] border-t border-[var(--color-outline-variant)] flex flex-col gap-3">
+                <div className="p-4 md:p-6 bg-[var(--color-surface-container-low)] border-t border-[var(--color-outline-variant)] flex flex-col gap-2 md:gap-3">
                   <button 
                     onClick={() => {
                       if (activeCV) {
@@ -256,23 +256,23 @@ export default function ExportClipboard() {
                       }
                     }}
                     disabled={!activeCV}
-                    className="w-full bg-[var(--color-secondary)] text-[var(--color-on-secondary)] py-3 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90 shadow-md"
+                    className="w-full bg-[var(--color-secondary)] text-[var(--color-on-secondary)] py-2 md:py-3 px-4 rounded-sm flex items-center justify-center gap-2 md:gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90 shadow-md"
                   >
-                    <span className="material-symbols-outlined text-2xl">edit_document</span>
-                    <span className="font-[family-name:var(--font-label-stamp)] text-[16px] tracking-widest uppercase font-bold">
+                    <span className="material-symbols-outlined text-xl md:text-2xl">edit_document</span>
+                    <span className="font-[family-name:var(--font-label-stamp)] text-[14px] md:text-[16px] tracking-widest uppercase font-bold">
                       Edit Draft
                     </span>
                   </button>
                     <button 
                       onClick={() => handleExport()}
                       disabled={!activeCV || isExporting}
-                      className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-4 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-3 md:py-4 px-4 rounded-sm flex items-center justify-center gap-2 md:gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                      <span className={`material-symbols-outlined text-3xl ${isExporting ? 'animate-spin' : ''}`} style={{ fontVariationSettings: "'FILL' 1" }}>
+                      <span className={`material-symbols-outlined text-2xl md:text-3xl ${isExporting ? 'animate-spin' : ''}`} style={{ fontVariationSettings: "'FILL' 1" }}>
                         {isExporting ? 'progress_activity' : 'download'}
                       </span>
-                      <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase mt-1">
+                      <span className="font-[family-name:var(--font-label-stamp)] text-[15px] md:text-[18px] tracking-widest uppercase mt-1">
                         {isExporting ? 'Preparing...' : 'Export PDF'}
                       </span>
                     </button>
