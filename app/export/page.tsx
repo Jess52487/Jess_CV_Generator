@@ -173,8 +173,8 @@ export default function ExportClipboard() {
               </div>
               
               {/* CV Paper Document (Target for PDF) */}
-              <div className="w-full overflow-hidden flex justify-center pb-4 relative print:block print:overflow-visible print:pb-0">
-                <div className="cv-document-wrapper print:block print:overflow-visible">
+              <div className="w-full flex justify-center pb-4 relative print:block print:overflow-visible print:pb-0 h-[50vh] md:h-auto overflow-y-auto md:overflow-visible">
+                <div className="cv-document-wrapper print:block print:overflow-visible transform scale-[0.6] md:scale-100 origin-top mt-4 md:mt-0">
                   <div 
                     ref={targetRef} 
                     className="paper-stack bg-white relative flex flex-col p-0 m-0 print:m-0 mx-auto shadow-sm"
@@ -196,8 +196,39 @@ export default function ExportClipboard() {
                   <h2 className="font-[family-name:var(--font-headline-md)] text-2xl text-[var(--color-on-surface)] relative z-10 font-bold">Filing Cabinet</h2>
                 </div>
 
+                <div className="p-6 bg-[var(--color-surface-container-low)] border-b border-[var(--color-outline-variant)] flex flex-col gap-3 order-2">
+                  <button 
+                    onClick={() => {
+                      if (activeCV) {
+                        setData(activeCV.data);
+                        router.push('/notepad');
+                      }
+                    }}
+                    disabled={!activeCV}
+                    className="w-full bg-[var(--color-secondary)] text-[var(--color-on-secondary)] py-3 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90 shadow-md"
+                  >
+                    <span className="material-symbols-outlined text-2xl">edit_document</span>
+                    <span className="font-[family-name:var(--font-label-stamp)] text-[16px] tracking-widest uppercase font-bold">
+                      Edit Draft
+                    </span>
+                  </button>
+                    <button 
+                      onClick={() => handleExport()}
+                      disabled={!activeCV || isExporting}
+                      className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-4 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                      <span className={`material-symbols-outlined text-3xl ${isExporting ? 'animate-spin' : ''}`} style={{ fontVariationSettings: "'FILL' 1" }}>
+                        {isExporting ? 'progress_activity' : 'download'}
+                      </span>
+                      <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase mt-1">
+                        {isExporting ? 'Preparing...' : 'Export PDF'}
+                      </span>
+                    </button>
+                </div>
+
                 {/* List of CVs */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 order-3 md:order-2">
+                <div className="flex-1 overflow-y-auto p-4 space-y-4 order-3">
                   {savedCVs.map(cv => (
                     <div 
                       key={cv.id} 
@@ -247,36 +278,6 @@ export default function ExportClipboard() {
                   ))}
                 </div>
 
-                <div className="p-6 bg-[var(--color-surface-container-low)] border-b md:border-b-0 md:border-t border-[var(--color-outline-variant)] flex flex-col gap-3 order-2 md:order-3">
-                  <button 
-                    onClick={() => {
-                      if (activeCV) {
-                        setData(activeCV.data);
-                        router.push('/notepad');
-                      }
-                    }}
-                    disabled={!activeCV}
-                    className="w-full bg-[var(--color-secondary)] text-[var(--color-on-secondary)] py-3 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90 shadow-md"
-                  >
-                    <span className="material-symbols-outlined text-2xl">edit_document</span>
-                    <span className="font-[family-name:var(--font-label-stamp)] text-[16px] tracking-widest uppercase font-bold">
-                      Edit Draft
-                    </span>
-                  </button>
-                    <button 
-                      onClick={() => handleExport()}
-                      disabled={!activeCV || isExporting}
-                      className="rubber-stamp w-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] py-4 px-4 rounded-sm flex items-center justify-center gap-3 group relative cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                      <span className={`material-symbols-outlined text-3xl ${isExporting ? 'animate-spin' : ''}`} style={{ fontVariationSettings: "'FILL' 1" }}>
-                        {isExporting ? 'progress_activity' : 'download'}
-                      </span>
-                      <span className="font-[family-name:var(--font-label-stamp)] text-[18px] tracking-widest uppercase mt-1">
-                        {isExporting ? 'Preparing...' : 'Export PDF'}
-                      </span>
-                    </button>
-                </div>
               </div>
 
             </div>
