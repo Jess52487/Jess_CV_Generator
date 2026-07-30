@@ -38,7 +38,7 @@ export default function ExportClipboard() {
           purgeAllData();
           router.push('/');
         }
-      }, 500);
+      }, 1000);
     },
   });
 
@@ -101,12 +101,13 @@ export default function ExportClipboard() {
           }
 
           setIsExporting(false);
+          // Give the browser ample time to physically initiate the file download before blocking the thread with confirm()
           setTimeout(() => {
             if (confirm("PDF downloaded successfully!\n\nClick OK to clear your data for privacy and start fresh for a new user, or Cancel to keep your data on this device.")) {
               purgeAllData();
               router.push('/');
             }
-          }, 500);
+          }, 2500);
 
         } catch (e) {
           console.error("PDF generation failed:", e);
