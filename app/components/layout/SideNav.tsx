@@ -26,14 +26,14 @@ export default function SideNav() {
         <span className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-secondary-container)] font-bold">Desk</span>
       </div>
       <div className="flex flex-row md:flex-col gap-4 md:gap-8 w-full md:w-auto items-center justify-around md:justify-center px-4 md:px-0">
-        <Link href="/notepad">
-          <div className={getNavClass('/notepad')}>
-            <span className={getIconClass('/notepad')} style={pathname === '/notepad' ? { fontVariationSettings: "'FILL' 1" } : {}}>person</span>
-          </div>
-        </Link>
         <Link href="/templates">
           <div className={getNavClass('/templates')}>
             <span className={getIconClass('/templates')} style={pathname === '/templates' ? { fontVariationSettings: "'FILL' 1" } : {}}>description</span>
+          </div>
+        </Link>
+        <Link href="/notepad">
+          <div className={getNavClass('/notepad')}>
+            <span className={getIconClass('/notepad')} style={pathname === '/notepad' ? { fontVariationSettings: "'FILL' 1" } : {}}>person</span>
           </div>
         </Link>
         <Link href="/export">
