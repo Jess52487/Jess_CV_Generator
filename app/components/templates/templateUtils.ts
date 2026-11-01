@@ -13,3 +13,10 @@ export const hasEducationContent = (education: Education) =>
 
 export const hasContactInfo = (data: CVData) =>
   [data.email, data.phone, data.address, data.linkedin, data.website, data.github].some(hasText);
+
+export const hasCVContent = (data: CVData) =>
+  [data.fullName, data.jobTitle, data.summary, data.references].some(hasText) ||
+  hasContactInfo(data) ||
+  data.experiences.some(hasExperienceContent) ||
+  (data.education || []).some(hasEducationContent) ||
+  cleanList(data.globalSkills).length > 0;
