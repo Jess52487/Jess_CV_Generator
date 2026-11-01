@@ -37,23 +37,23 @@ export default function TemplateGallery() {
       <SideNav />
 
       {/* Main Content: The Filing Cabinet Drawer */}
-      <main className="pt-32 pb-24 px-[var(--spacing-desktop-margin)] md:ml-20 min-h-screen flex flex-col items-center relative z-20">
+      <main className="pt-28 pb-24 px-[var(--spacing-mobile-margin)] md:pt-32 md:px-[var(--spacing-desktop-margin)] md:ml-20 min-h-screen flex flex-col items-center relative z-20">
         <div className="w-full max-w-6xl">
           {/* Cabinet Header Area */}
-          <div className="mb-12 text-center md:text-left">
-            <h1 className="font-[family-name:var(--font-headline-lg)] text-[40px] text-[var(--color-on-surface)] mb-2 drop-shadow-lg">The Template Cabinet</h1>
-            <p className="font-[family-name:var(--font-body-lg)] text-[18px] text-[var(--color-on-surface-variant)] max-w-2xl">Browse our executive suite of professional layouts. Each template is precision-crafted to ensure your credentials stand out on the recruiter's desk.</p>
+          <div className="mb-8 md:mb-12 text-center md:text-left">
+            <h1 className="font-[family-name:var(--font-headline-lg)] text-3xl md:text-[40px] text-[var(--color-on-surface)] mb-2 drop-shadow-lg">The Template Cabinet</h1>
+            <p className="font-[family-name:var(--font-body-lg)] text-base md:text-[18px] text-[var(--color-on-surface-variant)] max-w-2xl">Browse our executive suite of professional layouts. Each template is precision-crafted to ensure your credentials stand out on the recruiter's desk.</p>
           </div>
 
           {/* The Metal Drawer Container */}
-          <div className="brushed-steel rounded-t-3xl p-12 min-h-[600px] drawer-slide relative overflow-hidden cabinet-shadow">
+          <div className="brushed-steel rounded-t-3xl p-4 sm:p-8 md:p-12 min-h-[600px] drawer-slide relative overflow-hidden cabinet-shadow">
             {/* Drawer Pull / Handle Design */}
             <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-48 h-8 rounded-b-xl drawer-handle flex items-center justify-center border-t border-white">
               <div className="w-32 h-1 bg-black/20 rounded-full"></div>
             </div>
 
             {/* Template Grid (Bento Style Layout) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 relative z-10">
               
               {templates.map((tpl, i) => {
                 const isSelected = data.selectedTemplate === tpl.name;
@@ -77,7 +77,7 @@ export default function TemplateGallery() {
                     </div>
                     <div className="flex justify-between items-center px-2">
                       <div>
-                        <h3 className="font-[family-name:var(--font-headline-md)] text-[24px] text-[var(--color-on-surface)]">{tpl.name}</h3>
+                        <h3 className="font-[family-name:var(--font-headline-md)] text-xl md:text-[24px] text-[var(--color-on-surface)]">{tpl.name}</h3>
                         <p className="font-[family-name:var(--font-label-embossed)] text-[12px] text-[var(--color-on-surface-variant)] italic">{tpl.style}</p>
                       </div>
                       <button 
@@ -95,7 +95,7 @@ export default function TemplateGallery() {
 
             {/* Cabinet Bottom Details */}
             <div className="mt-16 pt-8 border-t border-black/10 flex flex-col sm:flex-row justify-center items-center gap-4">
-              <button onClick={() => alert("No more template records available in the physical archive at this time.")} className="px-12 py-4 bg-[var(--color-surface-container-high)] rounded-lg font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] shadow-md hover:shadow-lg transition-all border border-white/50 active:shadow-inner uppercase tracking-widest flex items-center gap-2 cursor-pointer">
+              <button onClick={() => alert("No more template records available in the physical archive at this time.")} className="w-full sm:w-auto justify-center px-6 sm:px-12 py-4 bg-[var(--color-surface-container-high)] rounded-lg font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] shadow-md hover:shadow-lg transition-all border border-white/50 active:shadow-inner uppercase tracking-widest flex items-center gap-2 cursor-pointer">
                 <span className="material-symbols-outlined">sync</span>
                 Load More Records
               </button>
@@ -103,7 +103,7 @@ export default function TemplateGallery() {
                 ref={nextButtonRef}
                 onClick={() => router.push("/notepad")}
                 disabled={!data.selectedTemplate}
-                className="stamp-button bg-[var(--color-primary)] text-white px-10 py-4 rounded-lg font-[family-name:var(--font-label-stamp)] text-[14px] uppercase tracking-widest flex items-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                className="stamp-button w-full sm:w-auto justify-center bg-[var(--color-primary)] text-white px-6 sm:px-10 py-4 rounded-lg font-[family-name:var(--font-label-stamp)] text-[14px] uppercase tracking-widest flex items-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Next: Start Building
                 <span className="material-symbols-outlined">arrow_forward</span>
