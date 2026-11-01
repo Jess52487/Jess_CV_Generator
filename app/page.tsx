@@ -113,12 +113,10 @@ export default function Onboarding() {
           
           {/* Rubber Stamp CTA */}
           <div className="mt-auto mb-6 md:mb-12 w-full flex justify-center">
-            <Link href="/notepad">
-              <button className="stamp-button group bg-[var(--color-primary)] text-[var(--color-on-primary)] px-8 py-4 md:px-12 md:py-6 rounded-lg font-[family-name:var(--font-headline-md)] text-[14px] md:text-base uppercase tracking-widest flex items-center gap-4 cursor-pointer relative overflow-hidden">
+            <Link href="/templates" className="stamp-button group bg-[var(--color-primary)] text-[var(--color-on-primary)] px-8 py-4 md:px-12 md:py-6 rounded-lg font-[family-name:var(--font-headline-md)] text-[14px] md:text-base uppercase tracking-widest flex items-center gap-4 cursor-pointer relative overflow-hidden">
                 <span className="material-symbols-outlined text-2xl md:text-3xl">ink_highlighter</span>
                 Create My CV
                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg"></div>
-              </button>
             </Link>
           </div>
           <div className="mb-4 md:mb-8 flex items-center gap-2">

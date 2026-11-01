@@ -12,7 +12,6 @@ export default function TemplateGallery() {
 
   const handleSelectTemplate = (templateName: string) => {
     updateField("selectedTemplate", templateName);
-    router.push("/export");
   };
 
   const templates = [
@@ -90,10 +89,18 @@ export default function TemplateGallery() {
             </div>
 
             {/* Cabinet Bottom Details */}
-            <div className="mt-16 pt-8 border-t border-black/10 flex justify-center">
+            <div className="mt-16 pt-8 border-t border-black/10 flex flex-col sm:flex-row justify-center items-center gap-4">
               <button onClick={() => alert("No more template records available in the physical archive at this time.")} className="px-12 py-4 bg-[var(--color-surface-container-high)] rounded-lg font-[family-name:var(--font-label-stamp)] text-[14px] text-[var(--color-on-surface)] shadow-md hover:shadow-lg transition-all border border-white/50 active:shadow-inner uppercase tracking-widest flex items-center gap-2 cursor-pointer">
                 <span className="material-symbols-outlined">sync</span>
                 Load More Records
+              </button>
+              <button
+                onClick={() => router.push("/notepad")}
+                disabled={!data.selectedTemplate}
+                className="stamp-button bg-[var(--color-primary)] text-white px-10 py-4 rounded-lg font-[family-name:var(--font-label-stamp)] text-[14px] uppercase tracking-widest flex items-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Next: Start Building
+                <span className="material-symbols-outlined">arrow_forward</span>
               </button>
             </div>
           </div>
