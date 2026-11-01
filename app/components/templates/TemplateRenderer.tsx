@@ -9,17 +9,12 @@ import FreshStartTemplate from "./FreshStartTemplate";
 import AvantGardeTemplate from "./AvantGardeTemplate";
 import NeoBrutalistTemplate from "./NeoBrutalistTemplate";
 import GlassmorphismTemplate from "./GlassmorphismTemplate";
-import { hasCVContent } from "./templateUtils";
 
 interface TemplateRendererProps {
   data: CVData;
 }
 
 export default function TemplateRenderer({ data }: TemplateRendererProps) {
-  if (!hasCVContent(data)) {
-    return <div className="template-root min-h-full flex-grow bg-white" aria-label="Blank CV preview" />;
-  }
-
   const templateName = data.selectedTemplate;
 
   switch (templateName) {
