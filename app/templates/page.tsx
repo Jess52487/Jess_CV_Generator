@@ -5,13 +5,18 @@ import SideNav from "../components/layout/SideNav";
 import Footer from "../components/layout/Footer";
 import { useCVContext } from "../context/CVContext";
 import { useRouter } from "next/navigation";
+import { useRef } from "react";
 
 export default function TemplateGallery() {
   const { data, updateField } = useCVContext();
   const router = useRouter();
+  const nextButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleSelectTemplate = (templateName: string) => {
     updateField("selectedTemplate", templateName);
+    requestAnimationFrame(() => {
+      nextButtonRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
   };
 
   const templates = [
@@ -95,6 +100,7 @@ export default function TemplateGallery() {
                 Load More Records
               </button>
               <button
+                ref={nextButtonRef}
                 onClick={() => router.push("/notepad")}
                 disabled={!data.selectedTemplate}
                 className="stamp-button bg-[var(--color-primary)] text-white px-10 py-4 rounded-lg font-[family-name:var(--font-label-stamp)] text-[14px] uppercase tracking-widest flex items-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
